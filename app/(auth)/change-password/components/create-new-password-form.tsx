@@ -19,8 +19,16 @@ function CreateNewPassword() {
     >
       <Form>
         <div className="flex flex-col gap-y-[3.063rem]">
-          <TextInput label="New Password" name="newPassword" />
-          <TextInput label="Confirm Password" name="confirmPassword" />
+          <TextInput
+            label="New Password"
+            name="newPassword"
+            icon="./icons/password-check.svg"
+          />
+          <TextInput
+            label="Confirm Password"
+            name="confirmPassword"
+            icon="./icons/password-check.svg"
+          />
         </div>
 
         <div className="flex justify-center mt-[6.063rem]">

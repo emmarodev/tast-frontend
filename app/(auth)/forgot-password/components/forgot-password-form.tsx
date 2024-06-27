@@ -19,7 +19,7 @@ function ForgotPasswordForm() {
     >
       <Form>
         <div className="flex flex-col gap-y-[3.063rem]">
-          <TextInput label="Email" name="email" />
+          <TextInput label="Email" name="email" icon="./icons/password-check.svg" />
         </div>
 
         <div className="flex justify-center mt-[6.063rem]">

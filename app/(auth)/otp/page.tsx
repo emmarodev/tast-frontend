@@ -1,24 +1,27 @@
 "use client";
 
+import OTPForm from "./components/otp-form";
 
 function Verification() {
   // const email = localStorage.getItem("email");
 
   return (
     <section className="text-center">
-      <h1 className="font-extrabold text-[50px] leading-[97.52px] ">
-        Enter Verification Code!
-      </h1>
-      <p className="font-normal text-[25px] leading-[30.48px]">
-        We have sent a 4 digit verification code on{" "}
-        <span>
-          email
-          <div />
-        </span>
-      </p>
+      <header className="mb-10">
+        <h1 className="text-2xl font-extrabold lg:text-4xl 2xl:text-[80px] 2xl:leading-[97.52px] mb-[13px]">
+          Enter Verification Code!
+        </h1>
+        <p className="sm:text-[18px] 2xl:text-[25px]">
+          We have sent a 4 digit verification code on{" "}
+          <span>
+            email
+            <div />
+          </span>
+        </p>
+      </header>
 
       <main>
-
+        <OTPForm />
       </main>
     </section>
   );

@@ -21,8 +21,8 @@ function LoginForm() {
     >
       <Form>
         <div className="flex flex-col gap-y-[3.063rem]">
-          <TextInput label="Username" name="username" />
-          <TextInput label="Password" name="password" />
+          <TextInput label="Username" name="username" icon="./icons/profile.svg"/>
+          <TextInput label="Password" name="password" icon="./icons/password-check.svg"/>
         </div>
 
         <div className="flex justify-center mt-[2.625rem]">

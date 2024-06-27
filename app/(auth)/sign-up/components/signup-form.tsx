@@ -10,7 +10,6 @@ function SignUpForm() {
       initialValues={{
         username: "",
         password: "",
-        email: "",
       }}
       validationSchema={{}}
       onSubmit={(values, { setSubmitting }) => {
@@ -33,8 +32,8 @@ function SignUpForm() {
               name="password"
               icon="./icons/password-check.svg"
             />
-            <p className="text-xs 2xl:text-base pl-5">
-              Password should be at least 8 characters long.
+            <p className="text-xs 2xl:text-base pl-4 mt-1">
+              Password should be at least 8 character long.
             </p>
           </div>
         </div>
