@@ -7,7 +7,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="flex items-center justify-center h-screen w-screen">
+    <section className="flex items-center justify-center h-screen w-screen overflow-y-scroll py-20">
       <Image
         alt="Mountains"
         src={bg}
@@ -20,7 +20,9 @@ export default function AuthLayout({
           zIndex: -5,
         }}
       />
-      <div className="bg-white rounded-[40px] max-w-[865px] w-[36.3%]">{children}</div>
+      <div className="bg-white h-fit rounded-none sm:rounded-[40px] pl-[5.313rem] pr-[7.25rem] py-[4.625rem]">
+        {children}
+      </div>
     </section>
   );
 }
