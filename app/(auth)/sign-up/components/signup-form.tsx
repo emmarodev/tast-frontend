@@ -38,7 +38,7 @@ function SignUpForm() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center 2xl:mt-[2.625rem] mt-5">
+        <div className="flex flex-col justify-center 2xl:mt-[2.625rem] mt-5 text-center">
           <Link href="/otp">
             <button
               type="submit"
