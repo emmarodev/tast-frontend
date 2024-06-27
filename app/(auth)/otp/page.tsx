@@ -1,6 +1,5 @@
 "use client";
 
-import Button from "../components/Button";
 import Input from "../components/TextInput";
 
 function Verification() {
@@ -26,7 +25,7 @@ function Verification() {
           <Input />
         </ul>
 
-        <Button text={"Verify"} />
+        {/* <Button text={"Verify"} /> */}
       </form>
     </section>
   );
