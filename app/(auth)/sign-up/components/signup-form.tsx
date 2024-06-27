@@ -10,6 +10,7 @@ function SignUpForm() {
       initialValues={{
         username: "",
         password: "",
+        email: "",
       }}
       validationSchema={{}}
       onSubmit={(values, { setSubmitting }) => {
@@ -20,9 +21,22 @@ function SignUpForm() {
     >
       <Form>
         <div className="flex flex-col sm:gap-y-6 2xl:gap-y-[3.063rem]">
-          <TextInput label="Username" name="username" />
-          <TextInput label="Email" name="email" />
-          <TextInput label="Password" name="password" />
+          <TextInput
+            label="Username"
+            name="username"
+            icon="./icons/profile.svg"
+          />
+          <TextInput label="Email" name="email" icon="./icons/message.svg" />
+          <div>
+            <TextInput
+              label="Password"
+              name="password"
+              icon="./icons/password-check.svg"
+            />
+            <p className="text-xs 2xl:text-base pl-5">
+              Password should be at least 8 characters long.
+            </p>
+          </div>
         </div>
 
         <div className="flex justify-center 2xl:mt-[2.625rem] mt-5">

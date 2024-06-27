@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+input:focus ~ label,
+input:not(:placeholder-shown) ~ label {
+  transform: translateY(-1.5rem) scale(0.75);
+  color: #0077b6; /* blue color */
+}
+
+label {
+  position: absolute;
+  left: 0.75rem;
+  pointer-events: none;
+  transition: transform 0.2s ease-in-out, font-size 0.2s ease-in-out;
+  transform-origin: left top;
+  background: white; /* Background to hide input text */
+  padding: 0 0.25rem; /* Padding to give space for background */
+}
+
+input:focus ~ label,
+input:not(:placeholder-shown) ~ label {
+  transform: translateY(-1.5rem) scale(0.75);
+}
