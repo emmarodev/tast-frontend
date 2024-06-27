@@ -1,9 +1,9 @@
 "use client";
 
-import Input from "../components/TextInput";
+// import Input from "../components/TextInput";
 
 function Verification() {
-  const email = localStorage.getItem("email");
+  // const email = localStorage.getItem("email");
 
   return (
     <section className="text-center">
@@ -13,16 +13,17 @@ function Verification() {
       <p className="font-normal text-[25px] leading-[30.48px]">
         We have sent a 4 digit verification code on{" "}
         <span>
-          {email} <div />
+          email
+          <div />
         </span>
       </p>
 
       <form className="mt-[71px] max-w-[714px]">
         <ul className="flex gap-x-[36.95px]">
+          {/* <Input />
           <Input />
           <Input />
-          <Input />
-          <Input />
+          <Input /> */}
         </ul>
 
         {/* <Button text={"Verify"} /> */}

@@ -1,22 +1,21 @@
-import CreateNewPassword from "./components/create-new-password-form";
+import ForgotPasswordForm from "./components/forgot-password-form";
 
-function CreatePassword() {
+function ForgotPassword() {
   return (
     <>
       <header className="text-center mb-[78px]">
         <h1 className="text-3xl font-extrabold lg:text-5xl 2xl:text-[80px] 2xl:leading-[97.52px] mb-[13px] text-left">
-          Enter new password!
+          Forget password
         </h1>
         <p className="sm:text-[18px] 2xl:text-[25px]">
-          Please enter a password for your security.
+          Enter your valid email address where you receive otp.
         </p>
       </header>
-
       <main>
-        <CreateNewPassword />
+        <ForgotPasswordForm />
       </main>
     </>
   );
 }
 
-export default CreatePassword;
+export default ForgotPassword;
