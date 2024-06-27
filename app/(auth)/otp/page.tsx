@@ -1,6 +1,5 @@
 "use client";
 
-// import Input from "../components/TextInput";
 
 function Verification() {
   // const email = localStorage.getItem("email");
@@ -18,16 +17,9 @@ function Verification() {
         </span>
       </p>
 
-      <form className="mt-[71px] max-w-[714px]">
-        <ul className="flex gap-x-[36.95px]">
-          {/* <Input />
-          <Input />
-          <Input />
-          <Input /> */}
-        </ul>
+      <main>
 
-        {/* <Button text={"Verify"} /> */}
-      </form>
+      </main>
     </section>
   );
 }

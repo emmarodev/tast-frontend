@@ -1,8 +1,8 @@
 "use client";
 
 import { Form, Formik } from "formik";
-import * as Yup from "yup";
 import TextInput from "../../components/TextInput";
+import Link from "next/link";
 
 function SignUpForm() {
   return (
@@ -14,25 +14,26 @@ function SignUpForm() {
       validationSchema={{}}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
           setSubmitting(false);
         }, 400);
       }}
     >
       <Form>
-        <div className="flex flex-col gap-y-[3.063rem]">
+        <div className="flex flex-col sm:gap-y-6 2xl:gap-y-[3.063rem]">
           <TextInput label="Username" name="username" />
           <TextInput label="Email" name="email" />
           <TextInput label="Password" name="password" />
         </div>
 
-        <div className="flex justify-center mt-[2.625rem]">
-          <button
-            type="submit"
-            className="bg-[#0077B6] text-white rounded-[30px] px-[5.813rem] py-[1.688rem] text-[2.813rem] leading-[3.429rem] font-extrabold"
-          >
-            Sign Up
-          </button>
+        <div className="flex justify-center 2xl:mt-[2.625rem] mt-5">
+          <Link href="/otp">
+            <button
+              type="submit"
+              className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl text-xl px-10 py-4 2xl:leading-[3.429rem] font-extrabold"
+            >
+              Sign Up
+            </button>
+          </Link>
         </div>
       </Form>
     </Formik>

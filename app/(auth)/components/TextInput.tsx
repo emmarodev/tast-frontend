@@ -18,12 +18,18 @@ function TextInput({ label, classname, type, ...props }: Props) {
 
   return (
     <div className="group relative ">
-      <label
-        htmlFor={props.name}
-        className="font-medium text-[30px] leading-[36.57px] absolute top-1/2 -translate-y-1/2 left-[5.938rem]"
-      >
-        {label}
-      </label>
+      <div>
+        <span>
+          {/* <Image alt="Profile icon" src={icon} /> */}
+        </span>
+        <label
+          htmlFor={props.name}
+          className="font-medium sm:text-lg 2xl:text-[30px] leading-[36.57px] absolute top-1/2 -translate-y-1/2 left-[5.938rem]"
+        >
+          {label}
+        </label>
+      </div>
+
       <input className=" w-full rounded-[40px] bg-[#2F2F2F1A] py-7 px-6" />
     </div>
   );
