@@ -15,7 +15,7 @@ function Verification() {
           We have sent a 4 digit verification code on{" "}
           <span className="font-bold flex justify-center items-center gap-x-2">
             {email}
-            <div className="w-4 h-4 bg-[#004485] rounded-full"/>
+            <div className="w-4 h-4 bg-[#004485] rounded-full" />
           </span>
         </p>
       </header>

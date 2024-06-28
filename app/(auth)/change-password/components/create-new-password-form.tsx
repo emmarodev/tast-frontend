@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 function CreateNewPassword() {
   const router = useRouter();
   const [errMsg, setErrMsg] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   return (
     <Formik
@@ -20,9 +21,11 @@ function CreateNewPassword() {
       validationSchema={toFormikValidationSchema(
         ChangePasswordFormValidationSchema
       )}
-      onSubmit={async (values, { setSubmitting }) => {
+      onSubmit={async (values) => {
         const mail = localStorage.getItem("email");
         const newValues = { ...values, email: mail };
+
+        setIsSubmitting(true);
 
         await fetch("https://tast-pwvf.onrender.com/user/reset/password", {
           method: "POST",
@@ -39,41 +42,40 @@ function CreateNewPassword() {
             } else {
               setErrMsg(data.message);
             }
+
+            setIsSubmitting(false);
           })
         );
-
-        setSubmitting(false);
       }}
     >
-      {({ isSubmitting }) => (
-        <Form>
-          <div className="flex flex-col 2xl:gap-y-[3.063rem] gap-y-10">
-            <TextInput
-              label="Current Password"
-              name="currentpassword"
-              type="password"
-              icon="./icons/password-check.svg"
-              placeholder="password"
-            />
-            <TextInput
-              label="New Password"
-              name="newpassword"
-              type="password"
-              icon="./icons/password-check.svg"
-              placeholder="password"
-            />
-          </div>
+      <Form>
+        {errMsg && <p className="mb-2 text-red-500">{errMsg}</p>}
+        <div className="flex flex-col 2xl:gap-y-[3.063rem] gap-y-10">
+          <TextInput
+            label="Current Password"
+            name="currentpassword"
+            type="password"
+            icon="./icons/password-check.svg"
+            placeholder="password"
+          />
+          <TextInput
+            label="New Password"
+            name="newpassword"
+            type="password"
+            icon="./icons/password-check.svg"
+            placeholder="password"
+          />
+        </div>
 
-          <div className="flex justify-center 2xl:mt-[6.063rem] mt-[2rem]">
-            <button
-              type="submit"
-              className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl text-xl px-10 py-4 2xl:leading-[3.429rem] font-extrabold"
-            >
-              {isSubmitting ? "Waiting..." : "Continue"}
-            </button>
-          </div>
-        </Form>
-      )}
+        <div className="flex justify-center 2xl:mt-[6.063rem] mt-[2rem]">
+          <button
+            type="submit"
+            className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl text-xl px-10 py-4 2xl:leading-[3.429rem] font-extrabold"
+          >
+            {isSubmitting ? "Waiting..." : "Continue"}
+          </button>
+        </div>
+      </Form>
     </Formik>
   );
 }
