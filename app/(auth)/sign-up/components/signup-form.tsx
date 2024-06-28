@@ -23,14 +23,24 @@ function SignUpForm() {
           <TextInput
             label="Username"
             name="username"
+            placeholder="Username"
             icon="./icons/profile.svg"
+            type="text"
           />
-          <TextInput label="Email" name="email" icon="./icons/message.svg" />
+          <TextInput
+            label="Email"
+            name="email"
+            icon="./icons/message.svg"
+            placeholder="email"
+            type="text"
+          />
           <div>
             <TextInput
               label="Password"
               name="password"
+              type="password"
               icon="./icons/password-check.svg"
+              placeholder="password"
             />
             <p className="text-xs 2xl:text-base pl-4 mt-1">
               Password should be at least 8 character long.
@@ -38,7 +48,7 @@ function SignUpForm() {
           </div>
         </div>
 
-        <div className="flex flex-col justify-center 2xl:mt-[2.625rem] mt-5 text-center">
+        <div className="flex justify-center 2xl:mt-[2.625rem] mt-5 text-center">
           <Link href="/otp">
             <button
               type="submit"

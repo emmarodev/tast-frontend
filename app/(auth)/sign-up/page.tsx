@@ -1,3 +1,4 @@
+import Link from "next/link";
 import SignUpForm from "./components/signup-form";
 
 function SignUp() {
@@ -14,6 +15,14 @@ function SignUp() {
       <main>
         <SignUpForm />
       </main>
+      <footer className="mt-3 text-center">
+        <p className="text-sm">
+          Already have an account?{" "}
+          <Link href="/sign-in" className="font-bold text-base">
+            Sign in
+          </Link>
+        </p>
+      </footer>
     </>
   );
 }
