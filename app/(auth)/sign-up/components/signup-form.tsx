@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 function SignUpForm() {
   const router = useRouter();
   const [errMsg, setErrMsg] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   return (
     <Formik
@@ -21,6 +22,7 @@ function SignUpForm() {
       }}
       validationSchema={toFormikValidationSchema(SignUpFormValidationSchema)}
       onSubmit={async (values, { setSubmitting }) => {
+        setIsSubmitting(true);
         fetch("https://tast-pwvf.onrender.com/user/signup", {
           method: "POST",
           body: JSON.stringify(values),
@@ -36,15 +38,15 @@ function SignUpForm() {
             } else {
               setErrMsg(data.message);
             }
+            setIsSubmitting(false);
           })
         );
 
-        setSubmitting(false);
       }}
     >
-      {({ isSubmitting }) => (
+     
         <Form>
-          {errMsg && <p>{errMsg}</p>}
+          {errMsg && <p className="text-center mb-2 text-red-500">{errMsg}</p>}
 
           <div className="flex flex-col sm:gap-y-6 2xl:gap-y-[3.063rem]">
             <TextInput
@@ -80,11 +82,11 @@ function SignUpForm() {
               type="submit"
               className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl text-xl px-10 py-4 2xl:leading-[3.429rem] font-extrabold"
             >
-              Sign Up
+              {isSubmitting ? "Signing up..." : "Sign Up"}
             </button>
           </div>
         </Form>
-      )}
+    
     </Formik>
   );
 }

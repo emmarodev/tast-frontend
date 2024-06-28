@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -10,9 +9,11 @@ function OTPForm() {
   const [num3, setNum3] = useState("");
   const [num4, setNum4] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    setIsSubmitting(true);
 
     const otp = num1 + num2 + num3 + num4;
 
@@ -27,9 +28,11 @@ function OTPForm() {
         console.log(data);
 
         if (data.status && data.status_code === 200) {
+          setIsSubmitting(false);
           router.push("/success-signup");
         } else {
           setErrMsg(data.message);
+          setIsSubmitting(false);
         }
       })
     );
@@ -42,26 +45,26 @@ function OTPForm() {
         <input
           name="num1"
           type="number"
-          className="rounded-40 py-4 px-6 text-xl font-extrabold focus:bg-[#CDEEFF80] focus:border-[#0077B6] bg-[#2F2F2F1A] w-[70px] 2xl:w-[120px] 2xl:py-10 text-center rounded-xl focus:outline-none focus:border"
+          className="rounded-40 py-4 px-6 text-xl font-extrabold focus:bg-[#CDEEFF80] focus:border-[#0077B6] bg-[#2F2F2F1A] w-[70px] 2xl:w-[120px] 2xl:py-10 text-center rounded-xl focus:outline-none focus:border remove-arrow"
           onChange={(e) => setNum1(e.target.value)}
         />
 
         <input
           name="num2"
           type="number"
-          className="rounded-40 py-4 px-6 text-xl font-extrabold focus:bg-[#CDEEFF80] focus:border-[#0077B6] bg-[#2F2F2F1A] w-[70px] 2xl:w-[120px] 2xl:py-10 text-center rounded-xl focus:outline-none focus:border"
+          className="rounded-40 py-4 px-6 text-xl font-extrabold focus:bg-[#CDEEFF80] focus:border-[#0077B6] bg-[#2F2F2F1A] w-[70px] 2xl:w-[120px] 2xl:py-10 text-center rounded-xl focus:outline-none focus:border remove-arrow"
           onChange={(e) => setNum2(e.target.value)}
         />
         <input
           name="num3"
           type="number"
-          className="rounded-40 py-4 px-6 text-xl font-extrabold focus:bg-[#CDEEFF80] focus:border-[#0077B6] bg-[#2F2F2F1A] w-[70px] 2xl:w-[120px] 2xl:py-10 text-center rounded-xl focus:outline-none focus:border"
+          className="rounded-40 py-4 px-6 text-xl font-extrabold focus:bg-[#CDEEFF80] focus:border-[#0077B6] bg-[#2F2F2F1A] w-[70px] 2xl:w-[120px] 2xl:py-10 text-center rounded-xl focus:outline-none focus:borderremove-arrow remove-arrow"
           onChange={(e) => setNum3(e.target.value)}
         />
         <input
           name="num4"
           type="number"
-          className="rounded-40 py-4 px-6 text-xl font-extrabold focus:bg-[#CDEEFF80] focus:border-[#0077B6] bg-[#2F2F2F1A] w-[70px] 2xl:w-[120px] 2xl:py-10 text-center rounded-xl focus:outline-none focus:border"
+          className="rounded-40 py-4 px-6 text-xl font-extrabold focus:bg-[#CDEEFF80] focus:border-[#0077B6] bg-[#2F2F2F1A] w-[70px] 2xl:w-[120px] 2xl:py-10 text-center rounded-xl focus:outline-none focus:border remove-arrow"
           onChange={(e) => setNum4(e.target.value)}
         />
       </div>
@@ -72,7 +75,7 @@ function OTPForm() {
           onClick={handleSubmit}
           className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl text-xl px-16 py-4 2xl:leading-[3.429rem] font-extrabold"
         >
-          Verify
+          {isSubmitting ? "Verifying" : "Verify"}
         </button>
 
         <p>

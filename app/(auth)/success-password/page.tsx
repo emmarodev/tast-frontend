@@ -9,7 +9,7 @@ function Success() {
       <p className="sm:text-[18px] 2xl:text-[25px]">
         You have successfully change the password and now you are ready to go.
       </p>
-      <button className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl text-xl px-10 py-4 2xl:leading-[3.429rem] font-extrabold mt-20">
+      <button className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl text-xl px-10 py-4 2xl:leading-[3.429rem] font-extrabold mt-10">
         Continue
       </button>
     </div>
