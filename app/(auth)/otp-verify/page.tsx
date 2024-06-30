@@ -1,11 +1,17 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import OTPForm from "./components/otp-form";
 
 function Verification() {
-  const email = localStorage.getItem("email")
-    ? localStorage.getItem("email")
-    : "";
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    let value;
+    // Get the value from local storage if it exists
+    value = localStorage.getItem("email") || "";
+    setEmail(value);
+  }, []);
 
   return (
     <section className="text-center">
