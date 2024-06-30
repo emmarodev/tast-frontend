@@ -17,8 +17,8 @@ function page() {
   return (
     <section className="rounded-xl py-5 px-6">
       <div className="grid grid-cols-4 gap-3 mb-4">
-        {cardTitles.map((title) => (
-          <Card title={title} />
+        {cardTitles.map((title, i) => (
+          <Card title={title} key={i} />
         ))}
       </div>
 
