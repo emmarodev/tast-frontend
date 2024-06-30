@@ -3,7 +3,9 @@
 import OTPForm from "./components/otp-form";
 
 function Verification() {
-  const email = localStorage.getItem("email");
+  const email = localStorage.getItem("email")
+    ? localStorage.getItem("email")
+    : "";
 
   return (
     <section className="text-center">
@@ -15,7 +17,7 @@ function Verification() {
           We have sent a 4 digit verification code on{" "}
           <span className="font-bold flex justify-center items-center gap-x-2">
             {email}
-            <div className="w-4 h-4 bg-[#004485] rounded-full"/>
+            <div className="w-4 h-4 bg-[#004485] rounded-full" />
           </span>
         </p>
       </header>

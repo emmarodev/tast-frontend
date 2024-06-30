@@ -3,7 +3,9 @@
 import OTPForm from "./components/otp-form";
 
 function Verification() {
-  const email = localStorage.getItem("email");
+  const email = localStorage.getItem("email")
+    ? localStorage.getItem("email")
+    : "";
 
   return (
     <section className="text-center">
