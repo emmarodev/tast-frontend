@@ -8,3 +8,11 @@
     @apply appearance-none;
   }
 }
+
+.sidebar {
+  @apply py-3 rounded-md px-4 flex gap-x-4 hover:bg-[#FFB200]/70 hover:font-semibold transition-all duration-75 hover:text-black items-center font-medium text-lg;
+}
+
+.navbar {
+  @apply text-[#FFFFFFB2] hover:text-[#FFFFFFE6];
+}

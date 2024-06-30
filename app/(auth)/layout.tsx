@@ -7,7 +7,7 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="h-screen w-screen overflow-y-scroll sm:py-20">
+    <section className="h-screen w-screen overflow-y-scroll sm:py-20 relative">
       <div className="w-full h-full sm:flex items-center justify-center">
         <div className="hidden sm:block">
           <Image

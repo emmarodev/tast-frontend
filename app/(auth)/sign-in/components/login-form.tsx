@@ -21,7 +21,7 @@ function LoginForm() {
         password: "",
       }}
       validationSchema={toFormikValidationSchema(SignInFormValidationSchema)}
-      onSubmit={async (values, { setSubmitting }) => {
+      onSubmit={async (values) => {
         setIsSubmitting(true);
         fetch("https://tast-pwvf.onrender.com/user/login", {
           method: "POST",
