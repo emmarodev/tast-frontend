@@ -1,6 +1,6 @@
 import Image from "next/image";
-import logo from "../../../public/logo.svg";
-import { NavLink } from "./NavLink";
+import logo from "../../public/logo.svg";
+import NavLink from "./NavLink";
 
 function Navbar() {
   const active = "font-bold text-white hover:text-white";
@@ -13,7 +13,7 @@ function Navbar() {
 
       <ul className="flex gap-x-5 items-center">
         <li>
-          <NavLink to="/dashboard" className="navbar" active={active}>
+          <NavLink to="/home" className="navbar" active={active}>
             Home
           </NavLink>
         </li>

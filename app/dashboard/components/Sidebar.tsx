@@ -1,5 +1,5 @@
 import { FaUserAlt } from "react-icons/fa";
-import { NavLink } from "./NavLink";
+import { NavLink } from "../../components/NavLink";
 import { RiReceiptFill } from "react-icons/ri";
 import { MdPayments } from "react-icons/md";
 import { IoLogOut, IoSettings, IoTriangle } from "react-icons/io5";
