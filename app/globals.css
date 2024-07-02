@@ -16,3 +16,26 @@
 .navbar {
   @apply text-[#FFFFFFB2] hover:text-[#FFFFFFE6];
 }
+
+.flip-card {
+  perspective: 1000px; /* Adds perspective for 3D effect */
+}
+
+.flip-card-inner {
+  transition: transform 0.6s; /* Smooth transition on transform */
+  transform-style: preserve-3d; /* Preserve 3D transformation */
+  position: relative;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg); /* Flips the card on hover */
+}
+
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden; /* Hides the back of the card initially */
+}
+
+.flip-card-back {
+  transform: rotateY(180deg); /* Initially hidden, flipped 180 degrees */
+}
