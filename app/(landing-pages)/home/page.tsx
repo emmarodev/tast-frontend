@@ -68,9 +68,11 @@ const Hero = () => {
           /> */}
         </div>
         <div className="rounded-none sm:rounded-[40px] 2xl:pl-[5.313rem] 2xl:pr-[7.25rem] 2xl:py-[4.625rem] px-5 sm:px-20 py-8 flex gap-y-5 flex-col items-start">
-          <h1 className="text-5xl max-w-[740px] font-bold leading-[60px]">
-            THE HEALTH, <span className="text-[#FFB200]">EDUCATIONAL</span> AND
-            <span className="text-[#2A56EB]"> HOUSING</span> FACILITY BOARD
+          <h1 className="text-3xl max-w-[740px] font-bold leading-[60px]">
+            THE HEALTH, <span className="text-[#FFB200]">EDUCATIONAL</span>{" "}
+            <br /> AND
+            <span className="text-[#2A56EB]"> HOUSING</span> FACILITY <br />{" "}
+            BOARD
           </h1>
           <Line />
           <p className="max-w-[540px]">

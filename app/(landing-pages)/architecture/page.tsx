@@ -45,7 +45,7 @@ const Hero = () => {
         </div>
         <div className="rounded-none sm:rounded-[40px] 2xl:pl-[5.313rem] 2xl:pr-[7.25rem] 2xl:py-[4.625rem] px-5 sm:px-20 py-8 flex gap-y-5 flex-col items-start">
           <Line />
-          <h1 className="text-5xl max-w-[740px] font-bold leading-[60px] capitalize">
+          <h1 className="text-3xl max-w-[740px] font-bold leading-[60px] capitalize">
             our project
             <span className="text-[#ffb200]"> architecture</span> project
           </h1>
