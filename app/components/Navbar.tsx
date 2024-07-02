@@ -53,7 +53,7 @@ function Navbar() {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/blog" active={active} className="navbar">
+          <NavLink to="/news" active={active} className="navbar">
             Blog
           </NavLink>
         </li>

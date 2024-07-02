@@ -14,7 +14,7 @@ function Services() {
         <Hero />
       </div>
       <div className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14">
-        <Service />
+        <Table />
       </div>
       <div className="px-14 pb-4 bg-[#231B7D] relative">
         <Footer />
@@ -43,11 +43,10 @@ const Hero = () => {
               }}
             /> */}
         </div>
-        <div className="rounded-none sm:rounded-[40px] 2xl:pl-[5.313rem] 2xl:pr-[7.25rem] 2xl:py-[4.625rem] px-5 sm:px-20 py-8 flex gap-y- flex-col items-start">
+        <div className="rounded-none sm:rounded-[40px] 2xl:pl-[5.313rem] 2xl:pr-[7.25rem] 2xl:py-[4.625rem] px-5 sm:px-20 py-8 flex gap-y-2 flex-col items-start">
           <Line />
           <h1 className="text-3xl max-w-[740px] font-bold leading-[60px] capitalize">
-            Our
-            <span className="text-[#ffb200]"> Services</span>
+            <span className="text-[#ffb200]">Notice</span> Board
           </h1>
           <div>
             <input
@@ -65,40 +64,37 @@ const Hero = () => {
   );
 };
 
-const Service = () => {
+const Table = () => {
   return (
     <div>
-      <section className="grid grid-cols-4 gap-10">
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-      </section>
+      <table className="w-full text-sm rounded-lg mt-4 border border-[#FFB200]">
+        <thead className="bg-[#FFB200]">
+          <tr>
+            <th className="py-6">SL</th>
+            <th className="">Notice Title</th>
+            <th className="">Upload Data</th>
+            <th className="">Status</th>
+            <th className="">View</th>
+          </tr>
+        </thead>
+        <tbody className="text-center border border-[#FFB200]">
+          <tr className="odd:bg-[#FAEFD8] even:bg-white">
+            <td className="py-6 border-r border-r-[#FFB200]">
+              <span className="rounded px-2 py-1 bg-[#FFB200] font-semibold">
+                1
+              </span>
+            </td>
+            <td className="border-r border-r-[#FFB200]">Notice Title</td>
+            <td className="border-r border-r-[#FFB200]">2023-10-20</td>
+            <td className="border-r border-r-[#FFB200]">Software Engineer</td>
+            <td className="border-r border-r-[#FFB200]">
+              <button className="uppercase bg-[#FFB200] py-2 px-6 rounded font-semibold text-sm">
+                View
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-  );
-};
-
-const ServiceCard = () => {
-  return (
-    <article className="group border border-[#B0B0B0] rounded-md bg-white flex flex-col items-center py-5 h-fit text-sm gap-y-2 hover:bg-[#ffb200] transition-all duration-200">
-      <div className="rounded-full h-16 w-16 bg-[#ffb200] group-hover:bg-black transition-all duration-200 flex items-center justify-center">
-        <GrServices className="group-hover:text-[#ffb200] text-black text-4xl transition-all duration-200" />
-      </div>
-      <h3 className="font-bold text-base">Technology Consulting</h3>
-      <p className="text-sm">
-        Of Scripture chosen <br /> especially for the su
-      </p>
-      <button className="border bg-transparent py-2 px-4 text-xs border-[#ffb200] rounded mt-4 font-bold group-hover:border-black group-hover:text-white group-hover:bg-black transition-all duration-150">
-        LEARN MORE
-      </button>
-    </article>
   );
 };
