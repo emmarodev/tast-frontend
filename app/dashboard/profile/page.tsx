@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import Details from "../components/Details";
-import getProfileData from "./get-profileData";
 import { useEffect, useState } from "react";
 
 function Profile() {
