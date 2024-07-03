@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Details from "../components/Details";
 
 function Profile() {
@@ -12,7 +13,12 @@ function Profile() {
           </div>
         </div>
 
-        <button className="text-lg text-blue-700 font-semibold">Edit</button>
+        <Link
+          href="/dashboard/edit-profile"
+          className="text-lg text-blue-700 font-semibold"
+        >
+          Edit
+        </Link>
       </header>
       <main className="flex gap-x-2 items-start">
         <section className="bg-white w-1/2 rounded-lg py-4">

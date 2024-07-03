@@ -1,7 +1,6 @@
 "use client";
 
 import { Form, Formik } from "formik";
-import * as Yup from "yup";
 import TextInput from "../../components/TextInput";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { SignInFormValidationSchema } from "../lib/validate";
@@ -34,6 +33,8 @@ function LoginForm() {
             console.log(data);
 
             if (data.status && data.status_code === 200) {
+              localStorage.setItem("userid", data.data.userDetails._id);
+              localStorage.setItem("token", data.data.token);
               router.push("/success-login");
             } else {
               setErrMsg(data.message);
