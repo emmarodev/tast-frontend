@@ -7,6 +7,7 @@ import { Footer } from "../home/page";
 import { GrServices } from "react-icons/gr";
 import Image from "next/image";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
+import Link from "next/link";
 
 function Orders() {
     const categories = [
@@ -45,6 +46,7 @@ function Orders() {
           </button>
         </div>
       </div>
+      
       <div className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14">
         <Order />
       </div>

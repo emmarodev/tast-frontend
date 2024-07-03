@@ -1,24 +1,22 @@
-"use client";
+'use client';
 import React, { useState } from 'react';
 import Navbar from "@/app/components/Navbar";
 import { Footer } from "../home/page";
 import Line from "@/app/components/Line";
 import Image from "next/image";
-import { IoMdList, IoMdShare } from "react-icons/io";
-import { FaArrowLeft, FaArrowRight, FaFacebookF, FaTwitter, FaInstagram } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight, FaFacebookF, FaGooglePlusG, FaTwitter, FaInstagram, FaYoutube, FaWhatsapp } from "react-icons/fa";
 import ReactPaginate from 'react-paginate';
-import { TiSocialPinterest, TiSocialVimeo  } from "react-icons/ti";
-import { IoEyeSharp } from 'react-icons/io5';
-import { CiHeart } from 'react-icons/ci';
 
 const items = Array.from({ length: 50 }, (_, i) => ({
   id: i + 1,
-  name: `Employee ${i + 1}`,
-  position: 'Project Manager',
-  image: '/order.png', // replace with actual image paths
+  flag: '/flag.png', 
+  country: 'Country Name',
+  address: 'Enzo Massart,Boulevard Ceulemans,832,Hannut Mortselt 0748',
+  phone: '+19293237981',
+  email: 'Abc@Apple.Com',
 }));
 
-const Blogs = () => {
+const Globals = () => {
   const itemsPerPage = 12;
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -37,9 +35,9 @@ const Blogs = () => {
         <Hero />
       </div>
       <div className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14">
-        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-2 gap-10">
+        <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-10">
           {currentItems.map(item => (
-            <BlogCard key={item.id} name={item.name} position={item.position} image={item.image} />
+            <GlobalCard key={item.id} flag={item.flag} country={item.country} address={item.address} phone={item.phone} email={item.email} />
           ))}
         </div>
         <div className="flex justify-center mt-8">
@@ -69,7 +67,7 @@ const Blogs = () => {
   );
 };
 
-export default Blogs;
+export default Globals;
 
 const Hero = () => {
   return (
@@ -79,8 +77,8 @@ const Hero = () => {
         <div className="rounded-none sm:rounded-[40px] 2xl:pl-[5.313rem] 2xl:pr-[7.25rem] 2xl:py-[4.625rem] px-5 sm:px-20 py-8 flex gap-y-2 flex-col items-start">
           <Line />
           <h1 className="text-3xl max-w-[740px] font-bold leading-[60px] capitalize">
-            OUR LATEST
-            <span className="text-[#ffb200]"> NEWS</span>
+           GLOBAL
+            <span className="text-[#ffb200]"> Our Branches</span>
           </h1>
           <div>
             <input
@@ -98,48 +96,45 @@ const Hero = () => {
   );
 };
 
-type BlogCardProps = {
-  name: string;
-  position: string;
-  image: string;
+type GlobalCardProps = {
+  flag: string;
+  country: string;
+  address: string;
+  phone: string;
+  email: string;
 };
 
-const BlogCard: React.FC<BlogCardProps> = ({ name, position, image }) => {
+const GlobalCard: React.FC<GlobalCardProps> = ({ flag, country, address, phone, email }) => {
   return (
-    <div className="flip-card shadow-xl">
-      <div className="flip-card-inner transform transition duration-500">
-       <article className="flip-card-front rounded-md bg-slate-50 h-96 flex flex-col">
-     
-        <div className="w-full h-80 overflow-hidden mt-4 mx-4">
-          <Image alt={name} src={image} height={120} width={240} />
+    <div className="shadow-xl bg-[#B0B0B0] p-4 flex flex-col items-center">
+      <div className="w-60 -mb-6 z-10 text-center flex justify-center">
+        <Image alt={country} src={flag} width={180} height={100} className="" />
+      </div>
+     <div className='w-60 h-60 rounded-full items-center text-center bg-gray-400'>
+     <h3 className="text-xl font-bold mb-2 mt-16">{country}</h3>
+      <p className="text-sm text-center">{address}</p>
+      <p className="text-sm mt-2">{phone}</p>
+      <p className="text-sm">{email}</p>
+     </div>
+     <div className="flex justify-center gap-2 mt-4">
+        <SocialIcon icon={<FaFacebookF className='flex justify-center text-center items-center text-white'/>} className="item-center text-center flex items-center justify-center w-10 h-10 bg-blue-600 rounded-full" />
+        <SocialIcon icon={<FaWhatsapp className='flex justify-center text-center items-center text-white'/>} className="item-center text-center flex justify-center items-center w-10 h-10 bg-green-600 rounded-full" />
+        <SocialIcon icon={<FaYoutube className='flex justify-center text-center items-center text-white'/>} className="item-center text-center flex justify-center items-center w-10 h-10 bg-orange-700 rounded-full" />
+        <SocialIcon icon={<FaGooglePlusG className='flex justify-center text-center items-center text-white'/>} className="item-center text-center flex justify-center items-center w-10 h-10 bg-red-600 rounded-full" />
         </div>
-     
-      <div className="p-4">
-      <p className="mb-1 tracking-wider">NOV. 12, 2024</p>
-            <Line />
-            <h3 className="text-black text-xl font-bold mt-2">
-              Stunning Designs
-            </h3>
-            <p className="text-xs"> Of Scripture chosen especially for the su
-            </p>
-          </div> 
-        <div className="flex items-center gap-x-4 text-base px-6 mb-6">
-          <div className="flex gap-x-2 items-center">
-            <IoEyeSharp className="text-black text-2xl font-bold" />
-            <p className="text-[#79797999] font-semibold">1.2k</p>
-          </div>
-          <div className="flex gap-x-2 items-center">
-            <IoMdShare className="text-black text-2xl font-bold" />
-            <p className="text-[#79797999] font-semibold">1.2k</p>
-          </div>
-          <div className="flex gap-x-2 items-center">
-            <CiHeart className="text-black text-2xl font-bold" />
-            <p className="text-[#79797999] font-semibold">1.2k</p>
-          </div>
-        </div>  
-    </article>
-    </div>   
-    </div>     
+    </div>
+
   );
 };
-
+type SocialIconProps = {
+    icon: React.ReactNode;
+    className: string;
+  };
+  
+  const SocialIcon: React.FC<SocialIconProps> = ({ icon, className }) => {
+    return (
+      <div className={className}>
+        {icon}
+      </div>
+    );
+  };

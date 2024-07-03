@@ -57,6 +57,11 @@ function Navbar() {
             Blog
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/global" active={active} className="navbar">
+            Global
+          </NavLink>
+        </li>
         {/* <li>
           <button className="bg-[#FFB200] text-[#231F20] font-semibold tracking-widest py-2.5 px-3 rounded-md">
             SIGN IN
