@@ -1,7 +1,35 @@
+"use client";
+
 import Link from "next/link";
 import Details from "../components/Details";
+import getProfileData from "./get-profileData";
+import { useEffect, useState } from "react";
 
 function Profile() {
+  const [data, setData] = useState();
+  const [errMsg, setErrMsg] = useState();
+
+  useEffect(() => {
+    const userid = localStorage.getItem("token");
+    fetch("https://tast-pwvf.onrender.com/user/retrieve/profile", {
+      method: "POST",
+      body: JSON.stringify({ userid: userid }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    }).then((res) =>
+      res.json().then((data) => {
+        console.log(data);
+
+        if (data.status && data.status_code === 200) {
+          setData(data.data);
+        } else {
+          setErrMsg(data.message);
+        }
+      })
+    );
+  }, []);
+
   return (
     <section className="bg-[#F2E6C9] rounded-xl py-5 px-6">
       <header className="flex justify-between items-end mb-4">

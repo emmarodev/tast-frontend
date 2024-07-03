@@ -8,13 +8,15 @@ import {
   EditPersonalInfoFormValidationSchema,
   EditPresentAddressFormValidationSchema,
 } from "./validate";
-import { useRouter } from "next/navigation";
 import TextInput from "./components/TextInput";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function EditProfile() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting2, setIsSubmitting2] = useState(false);
+  const [isSubmitting3, setIsSubmitting3] = useState(false);
+  const [isSubmitting4, setIsSubmitting4] = useState(false);
   const [errMsg, setErrMsg] = useState("");
   const [userId, setUserId] = useState("");
 
@@ -177,7 +179,7 @@ function EditProfile() {
                   userid: userId,
                 };
 
-                setIsSubmitting(true);
+                setIsSubmitting2(true);
 
                 await fetch(
                   "https://tast-pwvf.onrender.com/user/update/company/info",
@@ -198,7 +200,7 @@ function EditProfile() {
                       setErrMsg(data.message);
                     }
 
-                    setIsSubmitting(false);
+                    setIsSubmitting2(false);
                   })
                 );
               }}
@@ -243,7 +245,7 @@ function EditProfile() {
                     type="submit"
                     className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl px-10 py-1 2xl:leading-[3.429rem] font-medium text-base"
                   >
-                    {isSubmitting ? "Sending Update..." : "Edit"}
+                    {isSubmitting2 ? "Sending Update..." : "Edit"}
                   </button>
                 </div>
               </Form>
@@ -272,7 +274,7 @@ function EditProfile() {
                   userid: userId,
                 };
 
-                setIsSubmitting(true);
+                setIsSubmitting3(true);
 
                 await fetch(
                   "https://tast-pwvf.onrender.com/user/update/present/address",
@@ -293,7 +295,7 @@ function EditProfile() {
                       setErrMsg(data.message);
                     }
 
-                    setIsSubmitting(false);
+                    setIsSubmitting3(false);
                   })
                 );
               }}
@@ -338,7 +340,7 @@ function EditProfile() {
                     type="submit"
                     className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl px-10 py-1 2xl:leading-[3.429rem] font-medium text-base"
                   >
-                    {isSubmitting ? "Sending Update..." : "Edit"}
+                    {isSubmitting3 ? "Sending Update..." : "Edit"}
                   </button>
                 </div>
               </Form>
@@ -364,7 +366,7 @@ function EditProfile() {
                   userid: userId,
                 };
 
-                setIsSubmitting(true);
+                setIsSubmitting4(true);
 
                 await fetch(
                   "https://tast-pwvf.onrender.com/user/update/permanent/address",
@@ -385,7 +387,7 @@ function EditProfile() {
                       setErrMsg(data.message);
                     }
 
-                    setIsSubmitting(false);
+                    setIsSubmitting4(false);
                   })
                 );
               }}
@@ -430,7 +432,7 @@ function EditProfile() {
                     type="submit"
                     className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl px-10 py-1 2xl:leading-[3.429rem] font-medium text-base"
                   >
-                    {isSubmitting ? "Sending Update..." : "Edit"}
+                    {isSubmitting4 ? "Sending Update..." : "Edit"}
                   </button>
                 </div>
               </Form>

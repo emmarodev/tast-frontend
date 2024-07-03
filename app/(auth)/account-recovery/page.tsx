@@ -2,7 +2,7 @@ function AccountRecovery() {
   return (
     <section className="text-center">
       <header className="2xl:mb-[69px] mb-10">
-        <h1 className="text-2xl font-extrabold lg:text-5xl 2xl:text-[80px] 2xl:leading-[97.52px] mb-[13px]">
+        <h1 className="text-xl font-extrabold lg:text-3xl 2xl:text-[80px] 2xl:leading-[97.52px] mb-[13px]">
           Account Recovery!
         </h1>
       </header>

@@ -1,10 +1,10 @@
-import hierarchy from "../../../public/icons/hierarchy.svg";
-import target from "../../../public/icons/target.svg";
-import finance from "../../../public/icons/finance.svg";
-import func from "../../../public/icons/func.svg";
-import func1 from "../../../public/icons/func1.svg";
-import func3 from "../../../public/icons/func3.svg";
-import func4 from "../../../public/icons/func4.svg";
+import hierarchy from "../public/icons/hierarchy.svg";
+import target from "../public/icons/target.svg";
+import finance from "../public/icons/finance.svg";
+import func from "../public/icons/func.svg";
+import func1 from "../public/icons/func1.svg";
+import func3 from "../public/icons/func3.svg";
+import func4 from "../public/icons/func4.svg";
 
 export const placeholderData = [
   {
