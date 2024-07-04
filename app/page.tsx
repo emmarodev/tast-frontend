@@ -7,6 +7,8 @@ import { FaArrowLeft, FaArrowRight, FaStar } from "react-icons/fa";
 import { IoCall, IoEyeSharp } from "react-icons/io5";
 import { IoMdPricetag, IoMdShare } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
+import { MdOutlineEmail } from "react-icons/md";
+import { FaLocationDot } from "react-icons/fa6";
 import logo from "../public/logo.svg";
 import parallel from "../public/parallel.jpg";
 import skyscrapper from "../public/skyscrapper.jpg";
@@ -14,9 +16,18 @@ import house from "../public/house.jpg";
 import oil from "../public/oil.jpg";
 import art from "../public/art.jpg";
 import duplex from "../public/duplex.jpg";
-import glass from "../public/glass.jpg";
-import { MdOutlineEmail } from "react-icons/md";
-import { FaLocationDot } from "react-icons/fa6";
+import team from "../public/team.jpg";
+import rally from "../public/rally.jpg";
+import estate from "../public/estate.jpg";
+import discuss from "../public/discuss.jpg";
+import cloud from "../public/cloud.jpg";
+import camp from "../public/camp.jpg";
+import brain from "../public/brain.jpg";
+import canoe from "../public/canoe.jpg";
+import ceiling from "../public/ceiling.jpg";
+import anthony from "../public/anthony.png";
+import nabur from "../public/nabur.png";
+import map from "../public/map.png";
 
 function Home() {
   return (
@@ -43,6 +54,24 @@ function Home() {
       </div>
       <div className="p-14 bg-[#231B7D] pb-10">
         <News />
+      </div>
+      <div className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14">
+        <Evidence />
+      </div>
+      <div className="p-14 bg-[#231B7D] pb-10">
+        <div className="relative mx-auto w-[95%] h-72">
+          <Image
+            alt="Mountains"
+            src={map}
+            placeholder="blur"
+            quality={100}
+            layout="fill"
+            sizes="100vw"
+            style={{
+              objectFit: "cover",
+            }}
+          />
+        </div>
       </div>
       <div className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14">
         <Evidence />
@@ -412,14 +441,14 @@ const Project = () => {
       </div>
 
       <div className="grid grid-cols-4 gap-4">
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
-        <ProjectCard />
+        <ProjectCard image={camp} />
+        <ProjectCard image={discuss} />
+        <ProjectCard image={brain} />
+        <ProjectCard image={team} />
+        <ProjectCard image={cloud} />
+        <ProjectCard image={rally} />
+        <ProjectCard image={camp} />
+        <ProjectCard image={estate} />
       </div>
 
       <div className="flex justify-center">
@@ -431,10 +460,22 @@ const Project = () => {
   );
 };
 
-const ProjectCard = () => {
+const ProjectCard = ({ image }: { image: any }) => {
   return (
     <article className="bg-white rounded-xl shadow-xl px-6 py-5 text-[#00000099] font-medium relative overflow-hidden">
-      <header className="bg-gray-500 rounded-lg h-52 mb-4"></header>
+      <header className="rounded-lg h-52 mb-4 relative overflow-hidden">
+        <Image
+          alt="Mountains"
+          src={image}
+          placeholder="blur"
+          quality={100}
+          layout="fill"
+          sizes="100vw"
+          style={{
+            objectFit: "cover",
+          }}
+        />
+      </header>
       <main className="mb-2">
         <p className="tracking-wide text-sm">NOV. 12, 2024</p>
         <h3 className="font-bold text-xl text-black mb-2">Web Development</h3>
@@ -505,7 +546,21 @@ const FeaturesCardFront = () => {
   return (
     <article className="flip-card-front absolute w-full rounded-md h-[400px] flex flex-col">
       <div className="grow">
-        <div className="bg-gray-400 h-full relative">
+        <div className="h-full relative">
+          <Image
+            alt="Mountains"
+            src={canoe}
+            placeholder="blur"
+            quality={100}
+            layout="fill"
+            sizes="100vw"
+            style={{
+              objectFit: "cover",
+            }}
+          />
+
+          <div className="absolute top-0 left-0 w-full h-full bg-black/80"></div>
+
           <div className="absolute bottom-6 left-6">
             <Line />
             <h3 className="text-white text-2xl font-bold mt-2">
@@ -544,7 +599,21 @@ const FeaturesCardFront = () => {
 
 const FeaturesCardBack = () => {
   return (
-    <article className="flip-card-back h-[400px] w-full relative border px-6 bg-gray-900 py-16">
+    <article className="flip-card-back h-[400px] w-full px-6 bg-gray-900 py-10 relative">
+      <Image
+        alt="Mountains"
+        src={ceiling}
+        placeholder="blur"
+        quality={100}
+        layout="fill"
+        sizes="100vw"
+        style={{
+          objectFit: "cover",
+        }}
+        className="-z-20"
+      />
+      <div className="absolute top-0 left-0 h-full w-full -z-10 bg-black/80"></div>
+
       <div className="mb-4">
         <Line />
         <h3 className="text-white text-2xl font-bold mt-2">Stunning Designs</h3>
@@ -608,18 +677,30 @@ const Feedback = () => {
       </div>
 
       <div className="grid grid-cols-3 place-items-center">
-        <FeedbackCard />
-        <FeedbackCard />
-        <FeedbackCard />
+        <FeedbackCard image={anthony} />
+        <FeedbackCard image={nabur} />
+        <FeedbackCard image={anthony} />
       </div>
     </section>
   );
 };
 
-const FeedbackCard = () => {
+const FeedbackCard = ({ image }: { image: any }) => {
   return (
     <article className="group hover:bg-[#ffb200] w-[240px] rounded-md px-10 py-8 h-[400px] flex flex-col items-center gap-y-4">
-      <div className="rounded-full h-40 w-40 border-2 border-[#ffb200] bg-gray-100 group-hover:h-44 group-hover:w-32"></div>
+      <div className="rounded-full h-40 w-40 border-2 border-[#ffb200] group-hover:h-44 group-hover:w-32 relative overflow-hidden">
+        <Image
+          alt="Mountains"
+          src={image}
+          placeholder="blur"
+          quality={100}
+          layout="fill"
+          sizes="100vw"
+          style={{
+            objectFit: "cover",
+          }}
+        />
+      </div>
 
       <div className="h-6 w-[2px] bg-[#ffb200] group-hover:bg-black" />
 
@@ -672,7 +753,19 @@ const News = () => {
 const NewsCard = () => {
   return (
     <article className="bg-white shadow-xl p-2 text-[#00000099] font-medium relative overflow-hidden">
-      <header className="bg-gray-500 h-52 mb-4"></header>
+      <header className="relative h-52 mb-4">
+        <Image
+          alt="Mountains"
+          src={canoe}
+          placeholder="blur"
+          quality={100}
+          layout="fill"
+          sizes="100vw"
+          style={{
+            objectFit: "cover",
+          }}
+        />
+      </header>
       <main className="mb-2 px-3">
         <p className="tracking-wide text-sm mb-2">NOV. 12, 2024</p>
         <div className="flex flex-col gap-y-1 mb-1">
