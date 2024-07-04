@@ -3,8 +3,14 @@ import Navbar from "@/app/components/Navbar";
 import Image from "next/image";
 import { functionalData, placeholderData } from "./data";
 import { GrServices } from "react-icons/gr";
-import { FaArrowLeft, FaArrowRight, FaStar } from "react-icons/fa";
-import { IoCall, IoEyeSharp } from "react-icons/io5";
+import {
+  FaArrowLeft,
+  FaArrowRight,
+  FaFacebookF,
+  FaStar,
+  FaYoutube,
+} from "react-icons/fa";
+import { IoCall, IoEyeSharp, IoLogoTiktok } from "react-icons/io5";
 import { IoMdPricetag, IoMdShare } from "react-icons/io";
 import { CiHeart } from "react-icons/ci";
 import { MdOutlineEmail } from "react-icons/md";
@@ -28,6 +34,20 @@ import ceiling from "../public/ceiling.jpg";
 import anthony from "../public/anthony.png";
 import nabur from "../public/nabur.png";
 import map from "../public/map.png";
+import usa from "../public/icons/usa.png";
+import chat from "../public/icons/chat.png";
+import bitcoin from "../public/icons/bitcoin.png";
+import payoneer from "../public/icons/payoneer.png";
+import master from "../public/icons/master.png";
+import paypl from "../public/icons/paypl.png";
+import sbi from "../public/icons/sbi.png";
+import lola from "../public/lola.png";
+import cp from "../public/cp.png";
+import huff from "../public/huff.png";
+import vienna from "../public/vienna.png";
+import ags from "../public/ags.png";
+import park from "../public/park.png";
+import { BsBrightnessHigh, BsTwitterX } from "react-icons/bs";
 
 function Home() {
   return (
@@ -74,11 +94,10 @@ function Home() {
         </div>
       </div>
       <div className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14">
-        <Evidence />
+        <Sponsors />
       </div>
-      <div className="px-14 pb-4 bg-[#231B7D] relative">
-        <Footer />
-      </div>
+
+      <Footer />
     </section>
   );
 }
@@ -794,7 +813,7 @@ const NewsCard = () => {
 
 const Evidence = () => {
   return (
-    <section className="bg-[#ffb200] rounded py-8 px-10">
+    <section className="bg-[#ffb200] rounded py-8 px-10 shadow-xl">
       <ul className="flex gap-x-4 justify-between">
         <li className="flex items-center flex-col">
           <span className="text-3xl tracking-wider font-bold">125 M+</span>
@@ -825,11 +844,32 @@ const Evidence = () => {
   );
 };
 
+const Sponsors = () => {
+  return (
+    <section className="mb-10">
+      <div className="flex flex-col gap-y-4">
+        <Line />
+        <h2 className="font-bold text-2xl text-black">Placeholder</h2>
+      </div>
+
+      <div className="flex gap-x-6 items-center justify-between">
+        <Image src={lola} alt="lola company logo" width={120} />
+        <Image src={cp} alt="lola company logo" width={120} />
+        <Image src={huff} alt="lola company logo" width={120} />
+        <Image src={park} alt="lola company logo" width={120} />
+        <Image src={vienna} alt="lola company logo" width={120} />
+        <Image src={ags} alt="lola company logo" width={120} />
+        <Image src={lola} alt="lola company logo" width={120} />
+      </div>
+    </section>
+  );
+};
+
 export const Footer = () => {
   return (
-    <footer className="relative">
-      <section className="bg-[#ffb200] text-sm py-10 px-10 mb-3">
-        <div className="mb-4 flex justify-between">
+    <footer className="px-14 pb-4 bg-[#231B7D] relative">
+      <section className="bg-[#ffb200] relative -top-10 text-sm py-10 px-10">
+        <div className="mb-10 flex justify-between">
           <ul>
             <li className="flex gap-x-4 items-center">
               <Image src={logo} alt="Logo" />
@@ -839,6 +879,13 @@ export const Footer = () => {
             </li>
             <li className="mt-4">
               <ul className="flex gap-y-2 flex-col">
+                <li>
+                  <Image
+                    src={usa}
+                    alt="text with USA flag text color"
+                    width={100}
+                  />
+                </li>
                 <li className="flex gap-x-1 items-center">
                   <FaLocationDot /> London, Vladivostok named Sergey
                 </li>
@@ -856,8 +903,8 @@ export const Footer = () => {
               </ul>
             </li>
           </ul>
-          <ul>
-            <li className="font-bold text-lg mb-2">Company</li>
+          <ul className="flex flex-col gap-y-2">
+            <li className="font-bold text-base mb-2">Company</li>
             <li>Cookies</li>
             <li>Contact Us</li>
             <li>Help $ Support</li>
@@ -868,8 +915,8 @@ export const Footer = () => {
             <li>Global Locations</li>
             <li>Global Businesses</li>
           </ul>
-          <ul>
-            <li className="font-bold text-lg mb-2">Information technology</li>
+          <ul className="flex flex-col gap-y-2">
+            <li className="font-bold text-base mb-2">Information technology</li>
             <li>Fire Safety</li>
             <li>Electrical Safety</li>
             <li>Detailed Engineering Assessment(DEA)</li>
@@ -880,8 +927,8 @@ export const Footer = () => {
             <li>Impact Assessment</li>
             <li>Green Building</li>
           </ul>
-          <ul>
-            <li className="font-bold text-lg mb-2">Civil Engineering</li>
+          <ul className="flex flex-col gap-y-2">
+            <li className="font-bold text-base mb-2">Civil Engineering</li>
             <li>Energy Efficient Audit</li>
             <li>Architectural</li>
             <li>Testing and Training</li>
@@ -892,13 +939,62 @@ export const Footer = () => {
             <li>Material Testing</li>
           </ul>
         </div>
+
+        <div className="flex justify-between gap-x-5">
+          <div className="flex gap-x-4 items-center">
+            {/* Switch */}
+            <div className="p-2 rounded-full h-10 w-20 bg-orange-800 relative">
+              <div className="rounded-full bg-white h-8 w-8 absolute right-1 top-1" />
+              <BsBrightnessHigh className="absolute top-2 left-2 text-white text-2xl" />
+            </div>
+            {/* Select */}
+            <select className="rounded-lg px-3 py-2 border border-black">
+              <option value="english">English</option>
+              <option value="english">Afrikans</option>
+              <option value="english">Bahasa</option>
+              <option value="english">English</option>
+              <option value="english">Indonesia</option>
+            </select>
+            {/* Input & Btn */}
+            <div>
+              <input
+                type="text"
+                className="rounded-l-full py-3 px-6 font-semibold text-sm"
+              />
+              <button className="rounded-r-full bg-[#231B7D] text-white py-3 px-6 font-semibold text-sm">
+                Subscribe
+              </button>
+            </div>
+          </div>
+          <div className="flex flex-col items-end">
+            {/* Chatbot */}
+            <Image src={chat} alt="Chat bot icon" width={70} className="mb-4" />
+
+            {/* Sponsors */}
+            <div className="flex gap-x-4 items-center">
+              <Image src={bitcoin} alt="Chat bot icon" width={60} />
+              <Image src={payoneer} alt="Chat bot icon" width={50} />
+              <Image src={master} alt="Chat bot icon" width={40} />
+              <Image src={paypl} alt="Chat bot icon" width={50} />
+              <Image src={sbi} alt="Chat bot icon" width={50} />
+            </div>
+          </div>
+        </div>
       </section>
       <section className="text-[#FFFFFFB2] flex justify-between items-center">
-        <ul className="flex gap-x-2">
-          <li className="h-10 w-10 rounded-full bg-[#ffb200]"></li>
-          <li className="h-10 w-10 rounded-full bg-[#ffb200]"></li>
-          <li className="h-10 w-10 rounded-full bg-[#ffb200]"></li>
-          <li className="h-10 w-10 rounded-full bg-[#ffb200]"></li>
+        <ul className="flex gap-x-2 text-black text-xl">
+          <li className="h-10 w-10 rounded-full bg-[#ffb200] items-center justify-center flex">
+            <FaFacebookF />
+          </li>
+          <li className="h-10 w-10 rounded-full bg-[#ffb200] items-center justify-center flex">
+            <FaYoutube />
+          </li>
+          <li className="h-10 w-10 rounded-full bg-[#ffb200] items-center justify-center flex">
+            <IoLogoTiktok />
+          </li>
+          <li className="h-10 w-10 rounded-full bg-[#ffb200] items-center justify-center flex">
+            <BsTwitterX />
+          </li>
         </ul>
         <p className="text-sm">© 2024 Sample. All rights reserved.</p>
       </section>
