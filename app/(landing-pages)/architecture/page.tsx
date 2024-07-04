@@ -1,9 +1,10 @@
+import Footer from "@/app/components/Footer";
 import Line from "@/app/components/Line";
 import Navbar from "@/app/components/Navbar";
 import { CiHeart } from "react-icons/ci";
-import { IoMdPricetag, IoMdShare } from "react-icons/io";
+import { IoMdShare } from "react-icons/io";
 import { IoEyeSharp } from "react-icons/io5";
-import { Footer } from "../../page";
+
 
 function Architecture() {
   return (
