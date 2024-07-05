@@ -1,12 +1,12 @@
 import Hero from "@/app/components/Hero";
-import HeroForm from "@/app/components/HeroForm";
 import Line from "@/app/components/Line";
 import Paginate from "@/app/components/Pagination";
-import NewsCard from "@/app/components/NewsCard";
+import HeroForm from "@/app/components/HeroForm";
 import skyfaced from "../../../public/skyfaced.jpg";
+import EmployeeCard from "@/app/components/EmployeeCard";
 
-function News() {
-  let news = new Array(12).fill(undefined);
+export default function Employers() {
+  let orders = new Array(12).fill(undefined);
 
   return (
     <>
@@ -14,23 +14,21 @@ function News() {
         <Hero image={skyfaced}>
           <Line />
           <h1 className="hero-heading">
-            our latest
-            <span className="text-[#ffb200]"> news</span>
+            Our
+            <span className="text-[#ffb200]"> Employees</span>
           </h1>
           <HeroForm />
         </Hero>
       </header>
 
       <main className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14 pb-20">
-        <div className="mb-8 grid grid-cols-4 gap-4">
-          {news.map((_, i) => (
-            <NewsCard key={i} />
+        <section className="mb-8 grid grid-cols-4 gap-10">
+          {orders.map((_, i) => (
+            <EmployeeCard key={i} />
           ))}
-        </div>
+        </section>
         <Paginate />
       </main>
     </>
   );
 }
-
-export default News;

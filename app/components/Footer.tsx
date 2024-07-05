@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { BsBrightnessHigh, BsTwitterX } from "react-icons/bs";
-import { IoCall, IoEyeSharp, IoLogoTiktok } from "react-icons/io5";
+import { IoCall, IoLogoTiktok } from "react-icons/io5";
 import { FaFacebookF, FaYoutube } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";

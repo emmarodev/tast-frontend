@@ -10,7 +10,7 @@
 }
 
 .sidebar {
-  @apply py-3 rounded-md px-4 flex gap-x-4 hover:bg-[#FFB200]/70 hover:font-semibold transition-all duration-75 hover:text-black items-center font-medium text-lg;
+  @apply flex items-center gap-x-4 rounded-md px-4 py-3 text-lg font-medium transition-all duration-75 hover:bg-[#FFB200]/70 hover:font-semibold hover:text-black;
 }
 
 .navbar {
@@ -38,4 +38,12 @@
 
 .flip-card-back {
   transform: rotateY(180deg); /* Initially hidden, flipped 180 degrees */
+}
+
+.hero-heading {
+  @apply max-w-[740px] text-3xl font-bold capitalize leading-[60px];
+}
+
+.tool-container {
+  @apply flex h-16 w-16 items-center justify-center rounded-full;
 }

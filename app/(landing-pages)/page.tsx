@@ -2,10 +2,8 @@ import Image from "next/image";
 import { functionalData, placeholderData } from "../data";
 import { GrServices } from "react-icons/gr";
 import { FaArrowLeft, FaArrowRight, FaStar } from "react-icons/fa";
-import { IoEyeSharp, IoLogoTiktok } from "react-icons/io5";
-import { IoMdPricetag, IoMdShare } from "react-icons/io";
-import { MdOutlineEmail } from "react-icons/md";
-import { FaLocationDot } from "react-icons/fa6";
+import { IoEyeSharp } from "react-icons/io5";
+import { IoMdShare } from "react-icons/io";
 import house from "../../public/house.jpg";
 import oil from "../../public/oil.jpg";
 import art from "../../public/art.jpg";
@@ -20,7 +18,6 @@ import cloud from "../../public/cloud.jpg";
 import camp from "../../public/camp.jpg";
 import brain from "../../public/brain.jpg";
 import canoe from "../../public/canoe.jpg";
-import ceiling from "../../public/ceiling.jpg";
 import anthony from "../../public/anthony.png";
 import nabur from "../../public/nabur.png";
 import map from "../../public/map.png";
@@ -30,41 +27,61 @@ import ags from "../../public/ags.png";
 import park from "../../public/park.png";
 import lola from "../../public/lola.png";
 import cp from "../../public/cp.png";
-import { BsBrightnessHigh, BsTwitterX } from "react-icons/bs";
-import Footer from "../components/Footer";
 import { CiHeart } from "react-icons/ci";
 import Line from "../components/Line";
+import ProjectCard from "../components/ProjectCard";
+import FeaturesCard from "../components/FeaturesCard";
+import Hero from "../components/Hero";
+import ServiceCard from "../components/ServiceCard";
 
 function Home() {
   return (
-    <section>
-      <div className="px-4 bg-[#231B7D] pb-10">
-        <Hero />
+    <>
+      <header className="bg-[#231B7D] px-4 pb-10">
+        <Hero image={parallel}>
+          <h1 className="hero-heading">
+            THE HEALTH, <span className="text-[#FFB200]">EDUCATIONAL</span>{" "}
+            <br /> AND
+            <span className="text-[#2A56EB]"> HOUSING</span> FACILITY <br />{" "}
+            BOARD
+          </h1>
+          <Line />
+          <p className="max-w-[540px]">
+            There are four general steps in the HRP process: identifying the
+            current supply of employees, determining the future of the
+            workforce, balancing between labor supply and demand, and developing
+            plans that support the companys goals.
+          </p>
+          <button className="mt-4 rounded-lg bg-[#FFB200] px-5 py-3 text-sm font-bold text-black">
+            GET STARTED
+          </button>
+        </Hero>
         <Placeholder />
-      </div>
+      </header>
+
       <div className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14">
         <Service />
       </div>
-      <div className="p-14 bg-[#231B7D] pb-10">
+      <div className="bg-[#231B7D] p-14 pb-10">
         <Gallery />
       </div>
       <div className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14">
         <Project />
       </div>
-      <div className="p-14 bg-[#231B7D] pb-10">
+      <div className="bg-[#231B7D] p-14 pb-10">
         <Features />
       </div>
       <div className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14">
         <Feedback />
       </div>
-      <div className="p-14 bg-[#231B7D] pb-10">
+      <div className="bg-[#231B7D] p-14 pb-10">
         <News />
       </div>
       <div className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14">
         <Evidence />
       </div>
-      <div className="p-14 bg-[#231B7D] pb-10">
-        <div className="relative mx-auto w-[95%] h-72">
+      <div className="bg-[#231B7D] p-14 pb-10">
+        <div className="relative mx-auto h-72 w-[95%]">
           <Image
             alt="Mountains"
             src={map}
@@ -81,66 +98,24 @@ function Home() {
       <div className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14">
         <Sponsors />
       </div>
-    </section>
+    </>
   );
 }
 
 export default Home;
 
-const Hero = () => {
-  return (
-    <section className="sm:py-20 relative">
-      <div className="w-full h-full sm:flex items-center text-white">
-        <div className="hidden sm:block">
-          <Image
-            alt="Mountains"
-            src={parallel}
-            placeholder="blur"
-            quality={100}
-            layout="fill"
-            sizes="100vw"
-            style={{
-              objectFit: "cover",
-              zIndex: 0,
-            }}
-          />
-        </div>
-        <div className="z-10 absolute w-full h-full top-0 left-0 bg-black/80"></div>
-        <div className="rounded-none sm:rounded-[40px] 2xl:pl-[5.313rem] 2xl:pr-[7.25rem] 2xl:py-[4.625rem] px-5 sm:px-20 py-8 flex gap-y-5 flex-col items-start z-20">
-          <h1 className="text-3xl max-w-[740px] font-bold leading-[60px]">
-            THE HEALTH, <span className="text-[#FFB200]">EDUCATIONAL</span>{" "}
-            <br /> AND
-            <span className="text-[#2A56EB]"> HOUSING</span> FACILITY <br />{" "}
-            BOARD
-          </h1>
-          <Line />
-          <p className="max-w-[540px]">
-            There are four general steps in the HRP process: identifying the
-            current supply of employees, determining the future of the
-            workforce, balancing between labor supply and demand, and developing
-            plans that support the companys goals.
-          </p>
-          <button className="bg-[#FFB200] text-black mt-4 rounded-lg py-3 px-5 font-bold text-sm">
-            GET STARTED
-          </button>
-        </div>
-      </div>
-    </section>
-  );
-};
-
 const Placeholder = () => {
   return (
     <section className="mt-6">
-      <div className="flex flex-col items-center gap-y-4 mb-10">
+      <div className="mb-10 flex flex-col items-center gap-y-4">
         <Line />
-        <h2 className="font-bold text-2xl text-white">Placeholder Text</h2>
+        <h2 className="text-2xl font-bold text-white">Placeholder Text</h2>
       </div>
       <div className="flex justify-center gap-x-52">
         {placeholderData.map((data, i) => {
           return (
             <article
-              className="text-center max-w-[200px] text-sm text-white"
+              className="max-w-[200px] text-center text-sm text-white"
               key={i}
             >
               <Image
@@ -149,9 +124,9 @@ const Placeholder = () => {
                 width={60}
                 className="mx-auto mb-3"
               />
-              <h3 className="font-bold text-base mb-3">{data.title}</h3>
-              <p className="text-[#FFFFFFB2] mb-3">{data.text}</p>
-              <button className="font-semibold bg-[#FFB200] text-black py-2 px-4 rounded uppercase hover:bg-black hover:text-white transition-all duration-150 text-xs">
+              <h3 className="mb-3 text-base font-bold">{data.title}</h3>
+              <p className="mb-3 text-[#FFFFFFB2]">{data.text}</p>
+              <button className="rounded bg-[#FFB200] px-4 py-2 text-xs font-semibold uppercase text-black transition-all duration-150 hover:bg-black hover:text-white">
                 Read more
               </button>
             </article>
@@ -159,9 +134,9 @@ const Placeholder = () => {
         })}
       </div>
 
-      <div className="mt-20 flex px-10 gap-x-10">
-        <div className="w-3/5 bg-[#EDEDED] rounded flex flex-col">
-          <div className="rounded grow relative bg-gray-500">
+      <div className="mt-20 flex gap-x-10 px-10">
+        <div className="flex w-3/5 flex-col rounded bg-[#EDEDED]">
+          <div className="relative grow rounded bg-gray-500">
             <Image
               alt="Mountains"
               src={skyscrapper}
@@ -173,39 +148,39 @@ const Placeholder = () => {
                 objectFit: "cover",
               }}
             />
-            <div className="absolute top-0 left-0 w-full h-full bg-black/60"></div>
-            <div className="flex gap-y-4 flex-col absolute bottom-0 px-10 pb-10 z-20">
+            <div className="absolute left-0 top-0 h-full w-full bg-black/60"></div>
+            <div className="absolute bottom-0 z-20 flex flex-col gap-y-4 px-10 pb-10">
               <Line />
-              <h2 className="font-semibold text-white text-2xl">
+              <h2 className="text-2xl font-semibold text-white">
                 Company Website Security
               </h2>
             </div>
           </div>
-          <div className="p-10 grid gap-y-2">
+          <div className="grid gap-y-2 p-10">
             <p>
               Out that no scientist had seen a Blakiston’s fish owl so far south
               in a hundred years, and my photographs were evidence that this
               rare, reclusive species still persisted. Out that no scientist had
               seen a Blakiston’s fish owl so far south in a hundred years.
             </p>
-            <button className="font-bold bg-[#ffb200] w-full py-3 rounded">
+            <button className="w-full rounded bg-[#ffb200] py-3 font-bold">
               READ MORE
             </button>
           </div>
         </div>
-        <div className="w-2/5 grid gap-y-4">
+        <div className="grid w-2/5 gap-y-4">
           {functionalData.map((data, i) => {
             return (
               <article
                 key={i}
-                className="flex items-center gap-x-4 px-4 py-4 hover:bg-[#ffb200] bg-white rounded transition-all duration-150"
+                className="flex items-center gap-x-4 rounded bg-white px-4 py-4 transition-all duration-150 hover:bg-[#ffb200]"
               >
                 <div>
                   <Image src={data.icon} alt="icon" />
                 </div>
                 <div className="">
                   <h3 className="font-semibold">{data.title}</h3>
-                  <p className="text-[#00000099] text-sm">{data.text}</p>
+                  <p className="text-sm text-[#00000099]">{data.text}</p>
                 </div>
               </article>
             );
@@ -222,8 +197,8 @@ const Service = () => {
       <section className="grid grid-cols-4 gap-10">
         <div className="col-span-2 flex flex-col gap-y-3">
           <Line color={"#231F20"} />
-          <h2 className="text-[#231F20] text-2xl font-bold">Our Service</h2>
-          <p className="min-w-[480px] mt-4">
+          <h2 className="text-2xl font-bold text-[#231F20]">Our Service</h2>
+          <p className="mt-4 min-w-[480px]">
             Lorem ipsum dolor sit amet consectetur. Phasellus eros purus eu
             urna. Nunc aliquam est. Lorem ipsum dolor sit amet consectetur.
             Phasellus eros purus eu urna. Nunc aliquam est Lorem ipsum dolor sit
@@ -241,7 +216,7 @@ const Service = () => {
       </section>
 
       <div className="flex justify-center">
-        <button className="bg-[#222222] py-3 rounded text-white text-sm font-semibold px-6 inline-block mt-10 border hover:bg-[#222222]/90">
+        <button className="mt-10 inline-block rounded border bg-[#222222] px-6 py-3 text-sm font-semibold text-white hover:bg-[#222222]/90">
           SEE MORE
         </button>
       </div>
@@ -249,22 +224,6 @@ const Service = () => {
   );
 };
 
-const ServiceCard = () => {
-  return (
-    <article className="group border border-[#B0B0B0] rounded-md bg-white flex flex-col items-center py-5 h-fit text-sm gap-y-2 hover:bg-[#ffb200] transition-all duration-200">
-      <div className="rounded-full h-16 w-16 bg-[#ffb200] group-hover:bg-black transition-all duration-200 flex items-center justify-center">
-        <GrServices className="group-hover:text-[#ffb200] text-black text-4xl transition-all duration-200" />
-      </div>
-      <h3 className="font-bold text-base">Technology Consulting</h3>
-      <p className="text-sm">
-        Of Scripture chosen <br /> especially for the su
-      </p>
-      <button className="border bg-transparent py-2 px-4 text-xs border-[#ffb200] rounded mt-4 font-bold group-hover:border-black group-hover:text-white group-hover:bg-black transition-all duration-150">
-        LEARN MORE
-      </button>
-    </article>
-  );
-};
 
 const Gallery = () => {
   const categories = [
@@ -278,14 +237,14 @@ const Gallery = () => {
   ];
   return (
     <section>
-      <div className="flex flex-col items-center gap-y-4 mb-10">
+      <div className="mb-10 flex flex-col items-center gap-y-4">
         <Line />
-        <h2 className="font-bold text-2xl text-white">
+        <h2 className="text-2xl font-bold text-white">
           Exclusive Service Gallery
         </h2>
       </div>
-      <div className="flex gap-x-4 items-center">
-        <button className="flex justify-center items-center h-8 w-8 bg-[#ffb200] rounded-full text-[#231B7D] hover:bg-[#ffb200]/90">
+      <div className="flex items-center gap-x-4">
+        <button className="flex h-8 w-8 items-center justify-center rounded-full bg-[#ffb200] text-[#231B7D] hover:bg-[#ffb200]/90">
           <FaArrowLeft />
         </button>
         <div className="flex grow gap-x-6">
@@ -293,20 +252,20 @@ const Gallery = () => {
             return (
               <button
                 key={i}
-                className="bg-white hover:bg-black hover:text-white rounded py-3 uppercase font-semibold text-center grow transition-all duration-150"
+                className="grow rounded bg-white py-3 text-center font-semibold uppercase transition-all duration-150 hover:bg-black hover:text-white"
               >
                 {category}
               </button>
             );
           })}
         </div>
-        <button className="flex justify-center items-center h-8 w-8 bg-[#ffb200] rounded-full text-[#231B7D] hover:bg-[#ffb200]/90">
+        <button className="flex h-8 w-8 items-center justify-center rounded-full bg-[#ffb200] text-[#231B7D] hover:bg-[#ffb200]/90">
           <FaArrowRight />
         </button>
       </div>
 
-      <div className="grid grid-cols-4 grid-rows-3 gap-4 mt-6">
-        <div className="col-span-2 row-span-2 relative rounded">
+      <div className="mt-6 grid grid-cols-4 grid-rows-3 gap-4">
+        <div className="relative col-span-2 row-span-2 rounded">
           <Image
             alt="Mountains"
             src={art}
@@ -426,7 +385,7 @@ const Gallery = () => {
       </div>
 
       <div className="flex justify-center">
-        <button className="bg-[#ffb200] py-3 rounded text-sm font-semibold px-6 inline-block mt-10 hover:bg-[#ffb200]/90">
+        <button className="mt-10 inline-block rounded bg-[#ffb200] px-6 py-3 text-sm font-semibold hover:bg-[#ffb200]/90">
           SEE MORE
         </button>
       </div>
@@ -437,9 +396,9 @@ const Gallery = () => {
 const Project = () => {
   return (
     <section>
-      <div className="flex flex-col items-center gap-y-4 mb-10">
+      <div className="mb-10 flex flex-col items-center gap-y-4">
         <Line />
-        <h2 className="font-bold text-2xl text-[#222222]">Our Project</h2>
+        <h2 className="text-2xl font-bold text-[#222222]">Our Project</h2>
       </div>
 
       <div className="grid grid-cols-4 gap-4">
@@ -454,7 +413,7 @@ const Project = () => {
       </div>
 
       <div className="flex justify-center">
-        <button className="bg-[#ffb200] py-3 rounded text-sm font-semibold px-6 inline-block mt-10 hover:bg-[#ffb200]/90">
+        <button className="mt-10 inline-block rounded bg-[#ffb200] px-6 py-3 text-sm font-semibold hover:bg-[#ffb200]/90">
           SEE MORE
         </button>
       </div>
@@ -462,58 +421,15 @@ const Project = () => {
   );
 };
 
-const ProjectCard = ({ image }: { image: any }) => {
-  return (
-    <article className="bg-white rounded-xl shadow-xl px-6 py-5 text-[#00000099] font-medium relative overflow-hidden">
-      <header className="rounded-lg h-52 mb-4 relative overflow-hidden">
-        <Image
-          alt="Mountains"
-          src={image}
-          placeholder="blur"
-          quality={100}
-          layout="fill"
-          sizes="100vw"
-          style={{
-            objectFit: "cover",
-          }}
-        />
-      </header>
-      <main className="mb-2">
-        <p className="tracking-wide text-sm">NOV. 12, 2024</p>
-        <h3 className="font-bold text-xl text-black mb-2">Web Development</h3>
-        <p>Of Scripture chosen especially for the su</p>
-      </main>
-      <footer className="flex items-center gap-x-4">
-        <div className="flex gap-x-2 items-center">
-          <IoEyeSharp className="text-[#172554] text-2xl font-bold" />
-          <p className="text-[#79797999] font-semibold">1.2k</p>
-        </div>
-        <div className="flex gap-x-2 items-center">
-          <IoMdShare className="text-[#172554] text-2xl font-bold" />
-          <p className="text-[#79797999] font-semibold">1.2k</p>
-        </div>
-        <div className="flex gap-x-2 items-center">
-          <CiHeart className="text-[#172554] text-2xl font-bold" />
-          <p className="text-[#79797999] font-semibold">1.2k</p>
-        </div>
-      </footer>
-      <div className="absolute top-0 right-0 bg-[#172554] text-white font-medium text-xl rounded-es-full flex items-center gap-x-1 px-8 py-3">
-        <IoMdPricetag className="text-white text-2xl" />
-        <p>$1234</p>
-      </div>
-    </article>
-  );
-};
-
 const Features = () => {
   return (
     <section>
-      <div className="flex flex-col items-center gap-y-4 mb-10">
+      <div className="mb-10 flex flex-col items-center gap-y-4">
         <Line />
-        <h2 className="font-bold text-2xl text-white">Featured Architecture</h2>
+        <h2 className="text-2xl font-bold text-white">Featured Architecture</h2>
       </div>
 
-      <div className="grid gap-4 grid-cols-4">
+      <div className="grid grid-cols-4 gap-4">
         <FeaturesCard />
         <FeaturesCard />
         <FeaturesCard />
@@ -525,7 +441,7 @@ const Features = () => {
       </div>
 
       <div className="flex justify-center">
-        <button className="bg-[#ffb200] py-3 rounded text-sm font-semibold px-6 inline-block mt-10 hover:bg-[#ffb200]/90">
+        <button className="mt-10 inline-block rounded bg-[#ffb200] px-6 py-3 text-sm font-semibold hover:bg-[#ffb200]/90">
           SEE MORE
         </button>
       </div>
@@ -533,143 +449,12 @@ const Features = () => {
   );
 };
 
-const FeaturesCard = () => {
-  return (
-    <div className="flip-card relative shadow-xl">
-      <div className="flip-card-inner absolute transform transition duration-500 ease-in-out hover:rotate-y-180 h-fit">
-        <FeaturesCardFront />
-        <FeaturesCardBack />
-      </div>
-    </div>
-  );
-};
-
-const FeaturesCardFront = () => {
-  return (
-    <article className="flip-card-front absolute w-full rounded-md h-[400px] flex flex-col">
-      <div className="grow">
-        <div className="h-full relative">
-          <Image
-            alt="Mountains"
-            src={canoe}
-            placeholder="blur"
-            quality={100}
-            layout="fill"
-            sizes="100vw"
-            style={{
-              objectFit: "cover",
-            }}
-          />
-
-          <div className="absolute top-0 left-0 w-full h-full bg-black/80"></div>
-
-          <div className="absolute bottom-6 left-6">
-            <Line />
-            <h3 className="text-white text-2xl font-bold mt-2">
-              Stunning Designs
-            </h3>
-          </div>
-
-          <div className="absolute top-6 -right-2 bg-[#ffb200] text-white px-4 py-1 rounded">
-            <p>$2300</p>
-          </div>
-        </div>
-      </div>
-      <div className="bg-white px-6 font-semibold text-sm py-6 text-[#727272]">
-        <p className="mb-1 tracking-wider">NOV. 12, 2024</p>
-        <button className="bg-[#ffb200] text-black py-3 w-full rounded mb-4">
-          SEE PLAN
-        </button>
-        <div className="flex items-center gap-x-4 text-base">
-          <div className="flex gap-x-2 items-center">
-            <IoEyeSharp className="text-black text-2xl font-bold" />
-            <p className="text-[#79797999] font-semibold">1.2k</p>
-          </div>
-          <div className="flex gap-x-2 items-center">
-            <IoMdShare className="text-black text-2xl font-bold" />
-            <p className="text-[#79797999] font-semibold">1.2k</p>
-          </div>
-          <div className="flex gap-x-2 items-center">
-            <CiHeart className="text-black text-2xl font-bold" />
-            <p className="text-[#79797999] font-semibold">1.2k</p>
-          </div>
-        </div>
-      </div>
-    </article>
-  );
-};
-
-const FeaturesCardBack = () => {
-  return (
-    <article className="flip-card-back h-[400px] w-full px-6 bg-gray-900 py-10 relative">
-      <Image
-        alt="Mountains"
-        src={ceiling}
-        placeholder="blur"
-        quality={100}
-        layout="fill"
-        sizes="100vw"
-        style={{
-          objectFit: "cover",
-        }}
-        className="-z-20"
-      />
-      <div className="absolute top-0 left-0 h-full w-full -z-10 bg-black/80"></div>
-
-      <div className="mb-4">
-        <Line />
-        <h3 className="text-white text-2xl font-bold mt-2">Stunning Designs</h3>
-      </div>
-
-      <ul className="text-white flex flex-col gap-y-1">
-        <li>
-          <span className="font-bold">House:</span> 1200 sq ft. house
-        </li>
-        <li>
-          <span className="font-bold">Kitchens:</span> 2
-        </li>
-        <li>
-          <span className="font-bold">Bedrooms:</span> 3
-        </li>
-        <li>
-          <span className="font-bold">Balconies:</span> 1
-        </li>
-      </ul>
-
-      <div className="absolute top-6 -right-2 bg-[#ffb200] text-white px-4 py-1 rounded">
-        <p>$2300</p>
-      </div>
-
-      <div className="font-semibold text-sm py-6 text-[#727272] ">
-        <p className="mb-1 tracking-wider">NOV. 12, 2024</p>
-        <button className="bg-[#ffb200] text-black py-3 w-full rounded mb-4">
-          SEE PLAN
-        </button>
-        <div className="flex items-center gap-x-4 text-base">
-          <div className="flex gap-x-2 items-center">
-            <IoEyeSharp className="text-[#ffb200] text-2xl font-bold" />
-            <p className="text-white font-medium">1.2k</p>
-          </div>
-          <div className="flex gap-x-2 items-center">
-            <IoMdShare className="text-[#ffb200] text-2xl font-bold" />
-            <p className="text-white font-medium">1.2k</p>
-          </div>
-          <div className="flex gap-x-2 items-center">
-            <CiHeart className="text-[#ffb200] text-2xl font-bold" />
-            <p className="text-white font-medium">1.2k</p>
-          </div>
-        </div>
-      </div>
-    </article>
-  );
-};
-
 const Feedback = () => {
   return (
     <section>
-      <div className="flex flex-col items-center gap-y-1 mb-10">
+      <div className="mb-10 flex flex-col items-center gap-y-1">
         <Line />
-        <h2 className="font-bold text-2xl text-[#222222] mt-3">
+        <h2 className="mt-3 text-2xl font-bold text-[#222222]">
           Customer Feedback
         </h2>
         <p>
@@ -689,8 +474,8 @@ const Feedback = () => {
 
 const FeedbackCard = ({ image }: { image: any }) => {
   return (
-    <article className="group hover:bg-[#ffb200] w-[240px] rounded-md px-10 py-8 h-[400px] flex flex-col items-center gap-y-4">
-      <div className="rounded-full h-40 w-40 border-2 border-[#ffb200] group-hover:h-44 group-hover:w-32 relative overflow-hidden">
+    <article className="group flex h-[400px] w-[240px] flex-col items-center gap-y-4 rounded-md px-10 py-8 hover:bg-[#ffb200]">
+      <div className="relative h-40 w-40 overflow-hidden rounded-full border-2 border-[#ffb200] group-hover:h-44 group-hover:w-32">
         <Image
           alt="Mountains"
           src={image}
@@ -704,12 +489,9 @@ const FeedbackCard = ({ image }: { image: any }) => {
         />
       </div>
 
-      <div className="h-6 w-[2px] bg-[#ffb200] group-hover:bg-black" />
+     
 
-      <div
-        className="
-      flex flex-col items-center"
-      >
+      <div className="flex flex-col items-center">
         <h3>Nina Sanchez</h3>
         <p>Architect</p>
         <div className="flex gap-x-1 text-[#ffb200] group-hover:text-black">
@@ -727,12 +509,12 @@ const FeedbackCard = ({ image }: { image: any }) => {
 const News = () => {
   return (
     <section>
-      <div className="flex flex-col items-center gap-y-4 mb-10">
+      <div className="mb-10 flex flex-col items-center gap-y-4">
         <Line />
-        <h2 className="font-bold text-2xl text-white">Our Latest News</h2>
+        <h2 className="text-2xl font-bold text-white">Our Latest News</h2>
       </div>
 
-      <div className="grid gap-4 grid-cols-4">
+      <div className="grid grid-cols-4 gap-4">
         <NewsCard />
         <NewsCard />
         <NewsCard />
@@ -744,7 +526,7 @@ const News = () => {
       </div>
 
       <div className="flex justify-center">
-        <button className="bg-[#ffb200] py-3 rounded text-sm font-semibold px-6 inline-block mt-10 hover:bg-[#ffb200]/90">
+        <button className="mt-10 inline-block rounded bg-[#ffb200] px-6 py-3 text-sm font-semibold hover:bg-[#ffb200]/90">
           SEE MORE
         </button>
       </div>
@@ -754,8 +536,8 @@ const News = () => {
 
 const NewsCard = () => {
   return (
-    <article className="bg-white shadow-xl p-2 text-[#00000099] font-medium relative overflow-hidden">
-      <header className="relative h-52 mb-4">
+    <article className="relative overflow-hidden bg-white p-2 font-medium text-[#00000099] shadow-xl">
+      <header className="relative mb-4 h-52">
         <Image
           alt="Mountains"
           src={canoe}
@@ -769,25 +551,25 @@ const NewsCard = () => {
         />
       </header>
       <main className="mb-2 px-3">
-        <p className="tracking-wide text-sm mb-2">NOV. 12, 2024</p>
-        <div className="flex flex-col gap-y-1 mb-1">
+        <p className="mb-2 text-sm tracking-wide">NOV. 12, 2024</p>
+        <div className="mb-1 flex flex-col gap-y-1">
           <Line />
-          <h3 className="font-bold text-xl text-black">Stunning Design</h3>
+          <h3 className="text-xl font-bold text-black">Stunning Design</h3>
         </div>
         <p>Of Scripture chosen especially for the su</p>
       </main>
       <footer className="flex items-center gap-x-4 px-3 pb-2">
-        <div className="flex gap-x-2 items-center">
-          <IoEyeSharp className="text-[#172554] text-2xl font-bold" />
-          <p className="text-[#79797999] font-semibold">1.2k</p>
+        <div className="flex items-center gap-x-2">
+          <IoEyeSharp className="text-2xl font-bold text-[#172554]" />
+          <p className="font-semibold text-[#79797999]">1.2k</p>
         </div>
-        <div className="flex gap-x-2 items-center">
-          <IoMdShare className="text-[#172554] text-2xl font-bold" />
-          <p className="text-[#79797999] font-semibold">1.2k</p>
+        <div className="flex items-center gap-x-2">
+          <IoMdShare className="text-2xl font-bold text-[#172554]" />
+          <p className="font-semibold text-[#79797999]">1.2k</p>
         </div>
-        <div className="flex gap-x-2 items-center">
-          <CiHeart className="text-[#172554] text-2xl font-bold" />
-          <p className="text-[#79797999] font-semibold">1.2k</p>
+        <div className="flex items-center gap-x-2">
+          <CiHeart className="text-2xl font-bold text-[#172554]" />
+          <p className="font-semibold text-[#79797999]">1.2k</p>
         </div>
       </footer>
     </article>
@@ -796,31 +578,31 @@ const NewsCard = () => {
 
 const Evidence = () => {
   return (
-    <section className="bg-[#ffb200] rounded py-8 px-10 shadow-xl">
-      <ul className="flex gap-x-4 justify-between">
-        <li className="flex items-center flex-col">
-          <span className="text-3xl tracking-wider font-bold">125 M+</span>
-          <p className="font-semibold text-sm uppercase">Customers</p>
+    <section className="rounded bg-[#ffb200] px-10 py-8 shadow-xl">
+      <ul className="flex justify-between gap-x-4">
+        <li className="flex flex-col items-center">
+          <span className="text-3xl font-bold tracking-wider">125 M+</span>
+          <p className="text-sm font-semibold uppercase">Customers</p>
         </li>
-        <li className="flex items-center flex-col">
-          <span className="text-3xl tracking-wider font-bold">125 K+</span>
-          <p className="font-semibold text-sm uppercase">projects</p>
+        <li className="flex flex-col items-center">
+          <span className="text-3xl font-bold tracking-wider">125 K+</span>
+          <p className="text-sm font-semibold uppercase">projects</p>
         </li>
-        <li className="flex items-center flex-col">
-          <span className="text-3xl tracking-wider font-bold">25 K+</span>
-          <p className="font-semibold text-sm uppercase">Completed project</p>
+        <li className="flex flex-col items-center">
+          <span className="text-3xl font-bold tracking-wider">25 K+</span>
+          <p className="text-sm font-semibold uppercase">Completed project</p>
         </li>
-        <li className="flex items-center flex-col">
-          <span className="text-3xl tracking-wider font-bold">24 K+</span>
-          <p className="font-semibold text-sm uppercase">Client satisfied</p>
+        <li className="flex flex-col items-center">
+          <span className="text-3xl font-bold tracking-wider">24 K+</span>
+          <p className="text-sm font-semibold uppercase">Client satisfied</p>
         </li>
-        <li className="flex items-center flex-col">
-          <span className="text-3xl tracking-wider font-bold">95 K+</span>
-          <p className="font-semibold text-sm uppercase">Employers</p>
+        <li className="flex flex-col items-center">
+          <span className="text-3xl font-bold tracking-wider">95 K+</span>
+          <p className="text-sm font-semibold uppercase">Employers</p>
         </li>
-        <li className="flex items-center flex-col">
-          <span className="text-3xl tracking-wider font-bold">200 M+</span>
-          <p className="font-semibold text-sm uppercase">our support</p>
+        <li className="flex flex-col items-center">
+          <span className="text-3xl font-bold tracking-wider">200 M+</span>
+          <p className="text-sm font-semibold uppercase">our support</p>
         </li>
       </ul>
     </section>
@@ -832,10 +614,10 @@ const Sponsors = () => {
     <section className="mb-10">
       <div className="flex flex-col gap-y-4">
         <Line />
-        <h2 className="font-bold text-2xl text-black">Placeholder</h2>
+        <h2 className="text-2xl font-bold text-black">Placeholder</h2>
       </div>
 
-      <div className="flex gap-x-6 items-center justify-between">
+      <div className="flex items-center justify-between gap-x-6">
         <Image src={lola} alt="lola company logo" width={120} />
         <Image src={cp} alt="lola company logo" width={120} />
         <Image src={huff} alt="lola company logo" width={120} />

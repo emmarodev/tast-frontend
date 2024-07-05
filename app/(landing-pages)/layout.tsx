@@ -9,7 +9,7 @@ export default function LandingPageLayout({
   return (
     <section>
       <Navbar />
-      <main>{children}</main>
+      {children}
       <Footer />
     </section>
   );
