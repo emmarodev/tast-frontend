@@ -7,7 +7,9 @@ const HeroFormWithSelect = ({ options }: { options: string[] }) => {
         className="mr-1 rounded-lg px-4 py-3 text-black focus:outline-none"
       >
         {options.map((option, i) => (
-          <option value={option}>{option}</option>
+          <option key={i} value={option}>
+            {option}
+          </option>
         ))}
       </select>
       <input
@@ -22,4 +24,4 @@ const HeroFormWithSelect = ({ options }: { options: string[] }) => {
   );
 };
 
-export default HeroFormWithSelect
+export default HeroFormWithSelect;

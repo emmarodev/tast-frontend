@@ -45,8 +45,8 @@ export default function Orders() {
       <main className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14 pb-20">
         <section className="mb-8 grid grid-cols-5 gap-10">
           {images.map((img, i) => (
-            <div>
-              <Image key={i} src={img} alt='background image
+            <div key={i}>
+              <Image  src={img} alt='background image
               'className="" />
             </div>
           ))}
