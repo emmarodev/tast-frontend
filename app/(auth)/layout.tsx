@@ -23,7 +23,7 @@ export default function AuthLayout({
             }}
           />
         </div>
-        <div className="bg-white h-fit rounded-none sm:rounded-[40px] 2xl:pl-[5.313rem] 2xl:pr-[7.25rem] 2xl:py-[4.625rem] px-5 sm:px-10 py-8">
+        <div className="bg-white h-fit rounded-none sm:rounded-[40px] px-5 sm:px-10 py-8">
           {children}
         </div>
       </div>

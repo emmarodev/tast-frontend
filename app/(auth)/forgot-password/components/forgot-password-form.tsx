@@ -53,10 +53,10 @@ function ForgotPasswordForm() {
           />
         </div>
 
-        <div className="flex justify-center mt-[2.625rem] 2xl:mt-[6rem]">
+        <div className="flex justify-center mt-[2.625rem] mt-[6rem]">
           <button
             type="submit"
-            className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl text-xl px-10 py-4 2xl:leading-[3.429rem] font-extrabold"
+            className="bg-[#0077B6] text-white rounded-[30px] px-[5.813rem] py-[1.688rem] text-2xl text-xl px-10 py-4 leading-[3.429rem] font-extrabold"
           >
             Reset
           </button>

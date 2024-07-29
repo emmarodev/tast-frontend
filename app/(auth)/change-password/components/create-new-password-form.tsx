@@ -50,7 +50,7 @@ function CreateNewPassword() {
     >
       <Form>
         {errMsg && <p className="mb-2 text-red-500">{errMsg}</p>}
-        <div className="flex flex-col 2xl:gap-y-[3.063rem] gap-y-10">
+        <div className="flex flex-gap-y-[3.063rem] gap-y-10">
           <TextInput
             label="Current Password"
             name="currentpassword"
@@ -67,10 +67,10 @@ function CreateNewPassword() {
           />
         </div>
 
-        <div className="flex justify-center 2xl:mt-[6.063rem] mt-[2rem]">
+        <div className="flex justify-center mt-[6.063rem] mt-[2rem]">
           <button
             type="submit"
-            className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl text-xl px-10 py-4 2xl:leading-[3.429rem] font-extrabold"
+            className="bg-[#0077B6] text-white rounded-[30px] px-[5.813rem] py-[1.688rem] text-2xl text-xl px-10 py-4 leading-[3.429rem] font-extrabold"
           >
             {isSubmitting ? "Waiting..." : "Continue"}
           </button>

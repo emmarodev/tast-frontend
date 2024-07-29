@@ -26,7 +26,7 @@ export default function Hero({
 
         <Overlay />
 
-        <div className="z-20 flex flex-col items-start gap-y-5 rounded-none px-5 py-8 sm:rounded-[40px] sm:px-20 2xl:py-[4.625rem] 2xl:pl-[5.313rem] 2xl:pr-[7.25rem]">
+        <div className="z-20 flex flex-col items-start gap-y-5 rounded-none px-5 py-8 sm:rounded-[40px] sm:px-20 ">
           {children}
         </div>
       </div>

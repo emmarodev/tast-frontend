@@ -47,7 +47,7 @@ function LoginForm() {
       <Form>
         {errMsg && <p className="text-center mb-2 text-red-500">{errMsg}</p>}
 
-        <div className="flex flex-col gap-y-8 2xl:gap-y-[3.063rem]">
+        <div className="flex flex-col gap-y-8">
           <TextInput
             label="Email"
             name="email"
@@ -76,7 +76,7 @@ function LoginForm() {
         <div className="flex flex-col justify-center mt-[2.625rem]">
           <button
             type="submit"
-            className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl text-xl px-10 py-4 2xl:leading-[3.429rem] font-extrabold"
+            className="bg-[#0077B6] text-white rounded-[30px] text-xl px-10 py-3 font-extrabold"
           >
             {isSubmitting ? "Signing in..." : "Sign In"}
           </button>

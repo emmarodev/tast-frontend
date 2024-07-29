@@ -17,10 +17,13 @@ export default function NavLink({
   const pathname = usePathname();
   console.log(pathname.includes(to));
 
+  const isActive = pathname === to || (to === '/' && pathname === '/')
+  || pathname.startsWith(to) && to !== '/';
+
   return (
     <Link
       href={to}
-      className={`${className} ${pathname.includes(to) ? active : ""}`}
+      className={`${className} ${isActive ? active : ""}`}
     >
       {children}
     </Link>

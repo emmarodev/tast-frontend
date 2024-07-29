@@ -4,15 +4,15 @@ import React from "react";
 function Success() {
   return (
     <div className="text-center">
-      <h1 className="text-xl font-extrabold lg:text-3xl 2xl:text-[80px] 2xl:leading-[97.52px] mb-[13px]">
+      <h1 className="text-xl font-extrabold lg:text-3xl mb-[13px]">
         SignUp Successfully!
       </h1>
-      <p className="sm:text-[18px] 2xl:text-[25px]">
+      <p className="sm:text-[18px]">
         You have successfully login your details and now you are ready to go.
       </p>
       <Link
         href="/sign-in"
-        className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl text-xl px-10 py-4 2xl:leading-[3.429rem] font-extrabold mt-10 inline-block"
+        className="bg-[#0077B6] text-white rounded-[30px] text-xl px-10 py-4 font-extrabold mt-10 inline-block"
       >
         Continue
       </Link>

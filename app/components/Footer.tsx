@@ -46,7 +46,8 @@ export default function Footer() {
     "green building",
     "cap management",
     "material testing",
-  ];
+  ]
+  
 
   return (
     <footer className="bg-[#231B7D] px-14 pb-2">
@@ -185,10 +186,95 @@ const Switch = () => {
 };
 
 const Subscribe = () => {
+  const languages = [
+    "Afrikaans", 
+    "Azərbaycan", 
+    "Bahasa Indonesia", 
+    "Bahasa Malaysia", 
+    "Bosanski", 
+    "Català", 
+    "Čeština", 
+    "Dansk", 
+    "Deutsch", 
+    "Eesti", 
+    "English (India)", 
+    "English (UK)", 
+    "English (US)", 
+    "Español (España)", 
+    "Español (Latinoamérica)", 
+    "Español (US)", 
+    "Euskara", 
+    "Filipino", 
+    "Français", 
+    "Français (Canada)", 
+    "Galego", 
+    "Hrvatski", 
+    "IsiZulu", 
+    "Íslenska", 
+    "Italiano", 
+    "Kiswahili", 
+    "Latviešu valoda", 
+    "Lietuvių", 
+    "Magyar", 
+    "Nederlands", 
+    "Norsk", 
+    "O‘zbek", 
+    "Polski", 
+    "Português", 
+    "Português (Brasil)", 
+    "Română", 
+    "Shqip", 
+    "Slovenčina", 
+    "Slovenščina", 
+    "Srpski", 
+    "Suomi", 
+    "Svenska", 
+    "Tiếng Việt", 
+    "Türkçe", 
+    "Беларуская", 
+    "Български", 
+    "Кыргызча", 
+    "Қазақ Тілі", 
+    "Македонски", 
+    "Монгол", 
+    "Русский", 
+    "Српски", 
+    "Українська", 
+    "Ελληνικά", 
+    "Հայերեն", 
+    "עברית", 
+    "اردو", 
+    "فارسی", 
+    "नेपाली", 
+    "मराठी", 
+    "हिन्दी", 
+    "অসমীয়া", 
+    "বাংলা", 
+    "ਪੰਜਾਬੀ", 
+    "ગુજરાતી", 
+    "ଓଡ଼ିଆ", 
+    "தமிழ்", 
+    "తెలుగు", 
+    "ಕನ್ನಡ", 
+    "മലയാളം", 
+    "සිංහල", 
+    "ภาษาไทย", 
+    "ລາວ", 
+    "ဗမာ", 
+    "ქართული", 
+    "አማርኛ", 
+    "ខ្មែរ", 
+    "中文 (简体)", 
+    "中文 (繁體)", 
+    "中文 (香港)", 
+    "日本語", 
+    "한국어"
+  ];
+
   return (
     <form>
-      <select className="mr-4 rounded-lg border border-black px-3 py-2">
-        <option value="english">English</option>
+      <select className="mr-4 rounded-lg border border-black px-3 py-2">      
+        {languages.map((l, i) => <option value="english" key={i}>{l}</option>)}
       </select>
 
       <input

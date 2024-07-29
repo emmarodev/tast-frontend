@@ -148,10 +148,10 @@ function EditProfile() {
                   />
                 </div>
 
-                <div className="flex justify-center 2xl:mt-[6.063rem] mt-[2rem]">
+                <div className="flex justify-center mt-[2rem]">
                   <button
                     type="submit"
-                    className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl px-10 py-1 2xl:leading-[3.429rem] font-medium text-base"
+                    className="bg-[#0077B6] text-white rounded-[30px] px-10 py-1 font-medium text-base"
                   >
                     {isSubmitting ? "Sending Update..." : "Edit"}
                   </button>
@@ -240,10 +240,10 @@ function EditProfile() {
                   />
                 </div>
 
-                <div className="flex justify-center 2xl:mt-[6.063rem] mt-[2rem]">
+                <div className="flex justify-center mt-[2rem]">
                   <button
                     type="submit"
-                    className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl px-10 py-1 2xl:leading-[3.429rem] font-medium text-base"
+                    className="bg-[#0077B6] text-white rounded-[30px]  px-10 py-1 font-medium text-base"
                   >
                     {isSubmitting2 ? "Sending Update..." : "Edit"}
                   </button>
@@ -335,10 +335,10 @@ function EditProfile() {
                   />
                 </div>
 
-                <div className="flex justify-center 2xl:mt-[6.063rem] mt-[2rem]">
+                <div className="flex justify-center  mt-[2rem]">
                   <button
                     type="submit"
-                    className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl px-10 py-1 2xl:leading-[3.429rem] font-medium text-base"
+                    className="bg-[#0077B6] text-white rounded-[30px] px-10 py-1 font-medium text-base"
                   >
                     {isSubmitting3 ? "Sending Update..." : "Edit"}
                   </button>
@@ -427,10 +427,10 @@ function EditProfile() {
                   />
                 </div>
 
-                <div className="flex justify-center 2xl:mt-[6.063rem] mt-[2rem]">
+                <div className="flex justify-center mt-[2rem]">
                   <button
                     type="submit"
-                    className="bg-[#0077B6] text-white rounded-[30px] 2xl:px-[5.813rem] 2xl:py-[1.688rem] 2xl:text-2xl px-10 py-1 2xl:leading-[3.429rem] font-medium text-base"
+                    className="bg-[#0077B6] text-white rounded-[30px] px-10 py-1 font-medium text-base"
                   >
                     {isSubmitting4 ? "Sending Update..." : "Edit"}
                   </button>
