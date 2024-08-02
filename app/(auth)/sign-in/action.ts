@@ -1,7 +1,7 @@
 "use server";
 
 import { cookies } from "next/headers";
-import { permanentRedirect, RedirectType } from "next/navigation";
+import { redirect, RedirectType } from "next/navigation";
 import { SERVER_URL } from "@/app/constants/api";
 import { loginSchema } from "./validate";
 import { FormState } from "./definition";
@@ -28,21 +28,21 @@ export async function signIn(
       },
     });
 
-    const { data } = await res.json();
+    const data = await res.json();
 
-    if (!data.status) {
+    if (!data.status || data.status_code === 400) {
       return {
         message: [data.message || "An unknown error occurred."],
       };
     }
 
-    cookies().set("token", data.token);
-    cookies().set("userId", data.userDetails._id);
+    cookies().set("token", data.data.token);
+    cookies().set("userId", data.data.userDetails._id);
   } catch (error) {
     return {
       message: ["Failed to connect to the server. Please try again later."],
     };
   }
 
-  permanentRedirect("/sign-in-success", RedirectType.replace);
+  redirect("/sign-in-success", RedirectType.replace);
 }

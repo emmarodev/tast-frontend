@@ -59,7 +59,7 @@ export default function TextInput({
         />
         <label
           htmlFor={name}
-          className={`pointer-events-none absolute -top-2 left-[60px] bg-white px-2 font-medium leading-none transition-all duration-300 peer-placeholder-shown:left-20 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:bg-transparent peer-placeholder-shown:px-0 peer-placeholder-shown:py-0 peer-focus:-top-0 peer-focus:left-[60px] peer-focus:bg-white peer-focus:px-2 peer-focus:text-[#0077B6]`}
+          className="pointer-events-none absolute origin-[0] transform font-medium transition-all duration-300 peer-placeholder-shown:left-20 peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:-top-0 peer-focus:left-[60px] peer-focus:scale-90 peer-focus:bg-white peer-focus:px-2 peer-[:not(:placeholder-shown)]:-top-3 peer-[:not(:placeholder-shown)]:left-[60px] peer-[:not(:placeholder-shown)]:scale-95 peer-[:not(:placeholder-shown)]:bg-white peer-[:not(:placeholder-shown)]:px-2"
         >
           {label}
         </label>

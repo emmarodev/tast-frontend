@@ -1,13 +1,19 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { verifyToken } from "./action";
-import SubmitButton from "../components/submit-button";
 
 const OTP_LENGTH = 4;
 
 export default function Page() {
+  const searchParams = useSearchParams();
+  const verificationType = searchParams.get("verify") as string;
+
+  const formRef = useRef<HTMLFormElement | null>(null);
   const [otp, setOtp] = useState<string[]>(Array(OTP_LENGTH).fill(""));
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
   const inputRefs = useRef<(HTMLInputElement | null)[]>(
     Array(OTP_LENGTH).fill(null),
   );
@@ -38,6 +44,10 @@ export default function Page() {
     if (e.key === "ArrowLeft") focusPrevInput(idx);
     if (e.key === "Backspace" && !(e.target as HTMLInputElement).value)
       focusPrevInput(idx);
+    if (e.key === "Enter") {
+      e.preventDefault();
+      formRef.current?.requestSubmit();
+    }
   };
 
   const handleChange = (
@@ -70,17 +80,26 @@ export default function Page() {
     inputRefs.current.forEach((input) => input?.blur());
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
+    setErrorMessage(null);
 
-    // Handle form submission logic here
+    const token = otp.join("");
+    const result = await verifyToken(token, verificationType);
 
-    // Display the otp code
-    alert(otp.join(""));
+    if (result?.message) {
+      setErrorMessage(result.message.join(" ")); // Set error message
+    }
+
+    setLoading(false);
   };
 
   return (
-    <form action={verifyToken}>
+    <form ref={formRef} onSubmit={handleSubmit}>
+      {errorMessage && (
+        <div className="mb-2 text-center text-red-500">{errorMessage}</div>
+      )}
       <div className="mx-auto flex w-fit gap-x-4">
         {otp.map((input: string, idx: number) => (
           <input
@@ -94,13 +113,19 @@ export default function Page() {
             onChange={(e) => handleChange(e, idx)}
             onKeyDown={(e) => handleKeyDown(e, idx)}
             onPaste={(e) => handlePaste(e)}
-            className="h-16 w-20 rounded-xl border border-transparent bg-[#2F2F2F1A] text-center focus:border-[#0077B6] focus:bg-[#CDEEFF80] focus:outline-none"
+            className="h-16 w-20 rounded-xl border border-transparent bg-[#2F2F2F1A] text-center text-2xl font-extrabold focus:border-[#0077B6] focus:bg-[#CDEEFF80] focus:outline-none"
           />
         ))}
       </div>
 
       <div className="mt-6 flex justify-center">
-        <SubmitButton pendingText="Verifying..." text="Verify" />
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-fit rounded-xl bg-[#0077B6] px-10 py-3 text-xl font-bold text-white transition-all duration-150 hover:bg-[#0077B6]/90 disabled:cursor-not-allowed"
+        >
+          {loading ? "Verifying..." : "Verify"}
+        </button>
       </div>
     </form>
   );

@@ -27,9 +27,9 @@ export async function updatePassword(
       },
     });
 
-    const { data } = await res.json();
+    const data = await res.json();
 
-    if (!data.status) {
+    if (!data.status || data.status_code === 400) {
       return {
         message: [data.message || "An unknown error occured"],
       };
@@ -42,5 +42,5 @@ export async function updatePassword(
     };
   }
 
-  permanentRedirect("otp" + "?" + "reset-password", RedirectType.replace);
+  permanentRedirect("otp?verify=reset-password", RedirectType.replace);
 }

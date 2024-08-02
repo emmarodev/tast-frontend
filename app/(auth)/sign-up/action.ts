@@ -2,8 +2,9 @@
 
 import { SERVER_URL } from "@/app/constants/api";
 import { signUpSchema } from "./validate";
-import { permanentRedirect, RedirectType } from "next/navigation";
+import { redirect } from "next/navigation";
 import { FormState } from "./definition";
+import { cookies } from "next/headers";
 
 export async function signup(
   prevState: any,
@@ -28,18 +29,20 @@ export async function signup(
       },
     });
 
-    const { data } = await res.json();
+    const data = await res.json();
 
-    if (!data.status) {
+    if (!data.status || data.status_code === 400) {
       return {
         message: [data.message || "An unknown error occurred."],
       };
     }
+
+    cookies().set("email", validateFields.data.email);
   } catch (error) {
     return {
       message: ["Failed to connect to the server. Please try again later."],
     };
   }
 
-  permanentRedirect("/sign-in-success", RedirectType.replace);
+  redirect("/otp?verify=signup");
 }

@@ -28,7 +28,7 @@ export default function SignupForm() {
         <TextInput
           label="Username"
           name="name"
-          placeholder=""
+          placeholder=" "
           icon="./icons/profile.svg"
           type="text"
           errors={state}
@@ -37,18 +37,23 @@ export default function SignupForm() {
           label="Email"
           name="email"
           icon="./icons/message.svg"
-          placeholder=""
+          placeholder=" "
           type="text"
           errors={state}
         />
-        <TextInput
-          label="Password"
-          name="password"
-          type="password"
-          icon="./icons/password-check.svg"
-          placeholder=""
-          errors={state}
-        />
+        <div>
+          <TextInput
+            label="Password"
+            name="password"
+            type="password"
+            icon="./icons/password-check.svg"
+            placeholder=" "
+            errors={state}
+          />
+          <p className="text-medium mt-1 text-xs text-[#656565]">
+            Password should be at least 8 characters long
+          </p>
+        </div>
       </div>
 
       <div className="mt-6 flex justify-center">

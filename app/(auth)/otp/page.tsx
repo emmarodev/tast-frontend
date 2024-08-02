@@ -13,8 +13,8 @@ function Verification() {
         <p>
           We have sent a 4 digit verification code on{" "}
           <span className="flex items-center justify-center gap-x-2 font-bold">
-            {String(email)}
-            <div className="h-4 w-4 rounded-full bg-[#004485]" />
+            {email!.value}
+            <span className="h-4 w-4 rounded-full bg-[#004485]" />
           </span>
         </p>
       </header>

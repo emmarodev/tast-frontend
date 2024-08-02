@@ -15,7 +15,8 @@ function Success() {
       <div>
         <h1 className="mb-4 text-3xl font-extrabold">Signup Successfully!</h1>
         <p>
-          You have successfully login your details and now you are ready to go.
+          You have successfully register your details and now you are ready to
+          go.
         </p>
       </div>
 
