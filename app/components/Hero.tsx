@@ -9,24 +9,21 @@ export default function Hero({
   children: React.ReactNode;
 }) {
   return (
-    <section className="relative sm:py-20">
-      <div className="h-full w-full items-center text-white sm:flex">
+    <section className="relative">
+      <div className="relative h-[653px] w-full items-center text-white sm:flex">
         <Image
           alt="Background image"
           src={image}
-          placeholder="blur"
-          quality={100}
-          layout="fill"
-          sizes="100vw"
+          fill
+          sizes="(min-width: 808px) 50vw, 100vw"
           style={{
             objectFit: "cover",
-            zIndex: 0,
           }}
         />
 
         <Overlay />
 
-        <div className="z-20 flex flex-col items-start gap-y-5 rounded-none px-5 py-8 sm:rounded-[40px] sm:px-20 ">
+        <div className="z-20 flex flex-col items-start gap-y-5 rounded-none px-5 py-8 sm:rounded-[40px] sm:px-20">
           {children}
         </div>
       </div>

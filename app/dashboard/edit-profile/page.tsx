@@ -17,20 +17,27 @@ function EditProfile() {
   const [isSubmitting2, setIsSubmitting2] = useState(false);
   const [isSubmitting3, setIsSubmitting3] = useState(false);
   const [isSubmitting4, setIsSubmitting4] = useState(false);
-  const [errMsg, setErrMsg] = useState("");
+  const [errMsg1, setErrMsg1] = useState("");
+  const [errMsg2, setErrMsg2] = useState("");
+  const [errMsg3, setErrMsg3] = useState("");
+  const [errMsg4, setErrMsg4] = useState("");
   const [userId, setUserId] = useState("");
+  const [token, setToken] = useState("");
 
   useEffect(() => {
     let value;
     // Get the value from local storage if it exists
-    value = localStorage.getItem("token") || "";
+    value = localStorage.getItem("userid") || "";
     setUserId(value);
+
+    const token = localStorage.getItem("token") || "";
+    setToken(token);
   }, []);
 
   return (
-    <section className="bg-[#F2E6C9] rounded-xl py-5 px-6">
+    <section className="rounded-xl bg-[#F2E6C9] px-6 py-5">
       <ToastContainer />
-      <header className="flex justify-between items-end mb-4">
+      <header className="mb-4 flex items-end justify-between">
         <div className="flex items-end gap-x-4">
           <div className="h-16 w-16 rounded-full border border-black" />
           <div>
@@ -39,10 +46,10 @@ function EditProfile() {
           </div>
         </div>
       </header>
-      <main className="flex gap-x-2 items-start">
-        <section className="w-1/2 grid gap-y-2">
-          <section className="bg-white rounded-lg py-4">
-            <h2 className="text-lg font-semibold mb-4 text-center">
+      <main className="flex items-start gap-x-2">
+        <section className="grid w-1/2 gap-y-2">
+          <section className="rounded-lg bg-white py-4">
+            <h2 className="mb-4 text-center text-lg font-semibold">
               Personal Information
             </h2>
             <Formik
@@ -56,7 +63,7 @@ function EditProfile() {
                 identification: "",
               }}
               validationSchema={toFormikValidationSchema(
-                EditPersonalInfoFormValidationSchema
+                EditPersonalInfoFormValidationSchema,
               )}
               onSubmit={async (values) => {
                 const { language, ...remaining } = values;
@@ -75,27 +82,31 @@ function EditProfile() {
                     body: JSON.stringify(newValues),
                     headers: {
                       "Content-type": "application/json; charset=UTF-8",
+                      Authorization: `Bearer ${token}`,
                     },
-                  }
+                  },
                 ).then((res) =>
                   res.json().then((data) => {
                     console.log(data);
 
                     if (data.status && data.status_code === 200) {
-                      toast.success("Your personal details have been updated");
+                      setErrMsg1("");
+                      toast.success(
+                        "Your personal details have been updated successfully",
+                      );
                     } else {
-                      setErrMsg(data.message);
+                      setErrMsg1(data.message);
                     }
 
                     setIsSubmitting(false);
-                  })
+                  }),
                 );
               }}
             >
               <Form>
-                {errMsg && (
-                  <p className="mb-2 text-red-500 text-center text-sm">
-                    {errMsg}
+                {errMsg1 && (
+                  <p className="mb-2 text-center text-sm text-red-500">
+                    {errMsg1}
                   </p>
                 )}
                 <div className="flex flex-col gap-y-2">
@@ -118,7 +129,7 @@ function EditProfile() {
                       type="text"
                       placeholder=""
                     />
-                    <p className="text-[10px] font-semibold pr-4 text-right">
+                    <p className="pr-4 text-right text-[10px] font-semibold">
                       Eg: English, German
                     </p>
                   </div>
@@ -148,10 +159,10 @@ function EditProfile() {
                   />
                 </div>
 
-                <div className="flex justify-center mt-[2rem]">
+                <div className="mt-[2rem] flex justify-center">
                   <button
                     type="submit"
-                    className="bg-[#0077B6] text-white rounded-[30px] px-10 py-1 font-medium text-base"
+                    className="rounded-[30px] bg-[#0077B6] px-10 py-1 text-base font-medium text-white"
                   >
                     {isSubmitting ? "Sending Update..." : "Edit"}
                   </button>
@@ -159,8 +170,8 @@ function EditProfile() {
               </Form>
             </Formik>
           </section>
-          <section className="bg-white rounded-lg py-4">
-            <h2 className="text-lg font-semibold mb-4 text-center">
+          <section className="rounded-lg bg-white py-4">
+            <h2 className="mb-4 text-center text-lg font-semibold">
               Company Information
             </h2>
             <Formik
@@ -171,7 +182,7 @@ function EditProfile() {
                 website_url: "",
               }}
               validationSchema={toFormikValidationSchema(
-                EditCompanyInfoFormValidationSchema
+                EditCompanyInfoFormValidationSchema,
               )}
               onSubmit={async (values) => {
                 const newValues = {
@@ -188,33 +199,37 @@ function EditProfile() {
                     body: JSON.stringify(newValues),
                     headers: {
                       "Content-type": "application/json; charset=UTF-8",
+                      Authorization: `Bearer ${token}`,
                     },
-                  }
+                  },
                 ).then((res) =>
                   res.json().then((data) => {
                     console.log(data);
 
                     if (data.status && data.status_code === 200) {
-                      toast.success("Your permanent address have been updated");
+                      setErrMsg2("");
+                      toast.success(
+                        "Your company info have been successfully updated",
+                      );
                     } else {
-                      setErrMsg(data.message);
+                      setErrMsg2(data.message);
                     }
 
                     setIsSubmitting2(false);
-                  })
+                  }),
                 );
               }}
             >
               <Form>
-                {errMsg && (
-                  <p className="mb-2 text-red-500 text-center text-sm">
-                    {errMsg}
+                {errMsg2 && (
+                  <p className="mb-2 text-center text-sm text-red-500">
+                    {errMsg2}
                   </p>
                 )}
                 <div className="flex flex-col gap-y-2">
                   <TextInput
                     label="Company Name"
-                    name="country_name"
+                    name="company_name"
                     type="text"
                     placeholder=""
                   />
@@ -240,10 +255,10 @@ function EditProfile() {
                   />
                 </div>
 
-                <div className="flex justify-center mt-[2rem]">
+                <div className="mt-[2rem] flex justify-center">
                   <button
                     type="submit"
-                    className="bg-[#0077B6] text-white rounded-[30px]  px-10 py-1 font-medium text-base"
+                    className="rounded-[30px] bg-[#0077B6] px-10 py-1 text-base font-medium text-white"
                   >
                     {isSubmitting2 ? "Sending Update..." : "Edit"}
                   </button>
@@ -252,10 +267,10 @@ function EditProfile() {
             </Formik>
           </section>
         </section>
-
-        <section className="w-1/2 grid gap-y-2">
-          <section className="bg-white rounded-lg py-4">
-            <h2 className="text-lg font-semibold mb-4 text-center">
+        
+        <section className="grid w-1/2 gap-y-2">
+          <section className="rounded-lg bg-white py-4">
+            <h2 className="mb-4 text-center text-lg font-semibold">
               Present Address
             </h2>
             <Formik
@@ -266,7 +281,7 @@ function EditProfile() {
                 postalzone: "",
               }}
               validationSchema={toFormikValidationSchema(
-                EditPresentAddressFormValidationSchema
+                EditPresentAddressFormValidationSchema,
               )}
               onSubmit={async (values) => {
                 const newValues = {
@@ -283,27 +298,29 @@ function EditProfile() {
                     body: JSON.stringify(newValues),
                     headers: {
                       "Content-type": "application/json; charset=UTF-8",
+                      Authorization: `Bearer ${token}`,
                     },
-                  }
+                  },
                 ).then((res) =>
                   res.json().then((data) => {
                     console.log(data);
 
                     if (data.status && data.status_code === 200) {
+                      setErrMsg3("");
                       toast.success("Your present address have been updated");
                     } else {
-                      setErrMsg(data.message);
+                      setErrMsg3(data.message);
                     }
 
                     setIsSubmitting3(false);
-                  })
+                  }),
                 );
               }}
             >
               <Form>
-                {errMsg && (
-                  <p className="mb-2 text-red-500 text-center text-sm">
-                    {errMsg}
+                {errMsg3 && (
+                  <p className="mb-2 text-center text-sm text-red-500">
+                    {errMsg3}
                   </p>
                 )}
                 <div className="flex flex-col gap-y-2">
@@ -335,10 +352,10 @@ function EditProfile() {
                   />
                 </div>
 
-                <div className="flex justify-center  mt-[2rem]">
+                <div className="mt-[2rem] flex justify-center">
                   <button
                     type="submit"
-                    className="bg-[#0077B6] text-white rounded-[30px] px-10 py-1 font-medium text-base"
+                    className="rounded-[30px] bg-[#0077B6] px-10 py-1 text-base font-medium text-white"
                   >
                     {isSubmitting3 ? "Sending Update..." : "Edit"}
                   </button>
@@ -346,8 +363,8 @@ function EditProfile() {
               </Form>
             </Formik>
           </section>
-          <section className="bg-white rounded-lg py-4">
-            <h2 className="text-lg font-semibold mb-4 text-center">
+          <section className="rounded-lg bg-white py-4">
+            <h2 className="mb-4 text-center text-lg font-semibold">
               Permanent Address
             </h2>
             <Formik
@@ -358,7 +375,7 @@ function EditProfile() {
                 postalzone: "",
               }}
               validationSchema={toFormikValidationSchema(
-                EditPresentAddressFormValidationSchema
+                EditPresentAddressFormValidationSchema,
               )}
               onSubmit={async (values) => {
                 const newValues = {
@@ -375,27 +392,29 @@ function EditProfile() {
                     body: JSON.stringify(newValues),
                     headers: {
                       "Content-type": "application/json; charset=UTF-8",
+                      Authorization: `Bearer ${token}`,
                     },
-                  }
+                  },
                 ).then((res) =>
                   res.json().then((data) => {
                     console.log(data);
 
                     if (data.status && data.status_code === 200) {
+                      setErrMsg4("");
                       toast.success("Your permanent address have been updated");
                     } else {
-                      setErrMsg(data.message);
+                      setErrMsg4(data.message);
                     }
 
                     setIsSubmitting4(false);
-                  })
+                  }),
                 );
               }}
             >
               <Form>
-                {errMsg && (
-                  <p className="mb-2 text-red-500 text-center text-sm">
-                    {errMsg}
+                {errMsg4 && (
+                  <p className="mb-2 text-center text-sm text-red-500">
+                    {errMsg4}
                   </p>
                 )}
                 <div className="flex flex-col gap-y-2">
@@ -427,10 +446,10 @@ function EditProfile() {
                   />
                 </div>
 
-                <div className="flex justify-center mt-[2rem]">
+                <div className="mt-[2rem] flex justify-center">
                   <button
                     type="submit"
-                    className="bg-[#0077B6] text-white rounded-[30px] px-10 py-1 font-medium text-base"
+                    className="rounded-[30px] bg-[#0077B6] px-10 py-1 text-base font-medium text-white"
                   >
                     {isSubmitting4 ? "Sending Update..." : "Edit"}
                   </button>

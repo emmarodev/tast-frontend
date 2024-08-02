@@ -1,24 +1,22 @@
 import Link from "next/link";
-import SignUpForm from "./components/signup-form";
+import SignUpForm from "./signup-form";
 
 function SignUp() {
   return (
     <>
-      <header className="text-center mb-[30px]">
-        <h1 className="text-xl font-extrabold lg:text-3xl  mb-[13px]">
-          Create Account!
-        </h1>
-        <p className="sm:text-[18px]">
-          Register your details to get started
-        </p>
+      <header className="mb-10 text-center">
+        <h1 className="mb-3 font-extrabold lg:text-4xl">Create Account!</h1>
+        <p>Register your details to get started</p>
       </header>
+
       <main>
         <SignUpForm />
       </main>
-      <footer className="mt-3 text-center">
-        <p className="text-sm">
+
+      <footer className="mt-10 text-center">
+        <p>
           Already have an account?{" "}
-          <Link href="/sign-in" className="font-bold text-base">
+          <Link href="/sign-in" className="font-bold">
             Sign in
           </Link>
         </p>

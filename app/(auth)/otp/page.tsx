@@ -1,29 +1,20 @@
-"use client";
-
-import { useEffect, useState } from "react";
-import OTPForm from "./components/otp-form";
+import OTPForm from "./otp-form";
+import { cookies } from "next/headers";
 
 function Verification() {
-  const [email, setEmail] = useState("");
-
-  useEffect(() => {
-    let value;
-    // Get the value from local storage if it exists
-    value = localStorage.getItem("email") || "";
-    setEmail(value);
-  }, []);
+  const email = cookies().get("email");
 
   return (
-    <section className="text-center">
-      <header className="mb-10">
-        <h1 className="text-2xl font-extrabold lg:text-2xl text-[80px] leading-[97.52px] mb-[13px]">
+    <>
+      <header className="mb-10 text-center">
+        <h1 className="mb-3 font-extrabold lg:text-3xl">
           Enter Verification Code!
         </h1>
-        <p className="sm:text-[18px] text-[25px]">
+        <p>
           We have sent a 4 digit verification code on{" "}
-          <span className="font-bold flex justify-center items-center gap-x-2">
-            {email}
-            <div className="w-4 h-4 bg-[#004485] rounded-full" />
+          <span className="flex items-center justify-center gap-x-2 font-bold">
+            {String(email)}
+            <div className="h-4 w-4 rounded-full bg-[#004485]" />
           </span>
         </p>
       </header>
@@ -31,7 +22,14 @@ function Verification() {
       <main>
         <OTPForm />
       </main>
-    </section>
+
+      <footer className="mt-10 text-center">
+        <p>
+          Didn&apos;t receive code?{" "}
+          <button className="font-bold">Resend Again</button>
+        </p>
+      </footer>
+    </>
   );
 }
 

@@ -23,8 +23,8 @@ function News() {
 
       <main className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14 pb-20">
         <div className="mb-8 grid grid-cols-4 gap-4">
-          {news.map((_, i) => (
-            <NewsCard key={i} />
+          {news.map((d, i) => (
+            <NewsCard key={i} data={d} />
           ))}
         </div>
         <Paginate />

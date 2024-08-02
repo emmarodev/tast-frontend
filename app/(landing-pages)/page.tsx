@@ -1,23 +1,18 @@
 import Image from "next/image";
 import { functionalData, placeholderData } from "../data";
-import { GrServices } from "react-icons/gr";
 import { FaArrowLeft, FaArrowRight, FaStar } from "react-icons/fa";
-import { IoEyeSharp } from "react-icons/io5";
-import { IoMdShare } from "react-icons/io";
+import Line from "../components/Line";
+import ProjectCard from "../components/ProjectCard";
+import FeaturesCard from "../components/FeaturesCard";
+import Hero from "../components/Hero";
+import ServiceCard from "../components/ServiceCard";
 import house from "../../public/house.jpg";
 import oil from "../../public/oil.jpg";
 import art from "../../public/art.jpg";
 import duplex from "../../public/duplex.jpg";
-import team from "../../public/team.jpg";
-import rally from "../../public/rally.jpg";
-import estate from "../../public/estate.jpg";
-import discuss from "../../public/discuss.jpg";
 import parallel from "../../public/parallel.jpg";
 import skyscrapper from "../../public/skyscrapper.jpg";
-import cloud from "../../public/cloud.jpg";
 import camp from "../../public/camp.jpg";
-import brain from "../../public/brain.jpg";
-import canoe from "../../public/canoe.jpg";
 import anthony from "../../public/anthony.png";
 import nabur from "../../public/nabur.png";
 import map from "../../public/map.png";
@@ -27,14 +22,23 @@ import ags from "../../public/ags.png";
 import park from "../../public/park.png";
 import lola from "../../public/lola.png";
 import cp from "../../public/cp.png";
-import { CiHeart } from "react-icons/ci";
-import Line from "../components/Line";
-import ProjectCard from "../components/ProjectCard";
-import FeaturesCard from "../components/FeaturesCard";
-import Hero from "../components/Hero";
-import ServiceCard from "../components/ServiceCard";
+import { SERVER_URL } from "@/app/constants/api";
+import { ArchitectureDataProps } from "./architecture/definition";
+import NewsCard from "../components/NewsCard";
 
-function Home() {
+async function getData() {
+  const res = await fetch(`${SERVER_URL}/user/homepage`);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
+export default async function Home() {
+  const { data } = await getData();
+
   return (
     <>
       <header className="bg-[#231B7D] px-4 pb-10">
@@ -101,8 +105,6 @@ function Home() {
     </>
   );
 }
-
-export default Home;
 
 const Placeholder = () => {
   return (
@@ -191,7 +193,9 @@ const Placeholder = () => {
   );
 };
 
-const Service = () => {
+const Service = async () => {
+  const { data } = await getData();
+
   return (
     <div>
       <section className="grid grid-cols-4 gap-10">
@@ -207,12 +211,9 @@ const Service = () => {
           </p>
         </div>
 
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
-        <ServiceCard />
+        {data.service.map((d: any) => (
+          <ServiceCard data={d} key={d._id} />
+        ))}
       </section>
 
       <div className="flex justify-center">
@@ -223,7 +224,6 @@ const Service = () => {
     </div>
   );
 };
-
 
 const Gallery = () => {
   const categories = [
@@ -393,7 +393,9 @@ const Gallery = () => {
   );
 };
 
-const Project = () => {
+const Project = async () => {
+  const { data } = await getData();
+
   return (
     <section>
       <div className="mb-10 flex flex-col items-center gap-y-4">
@@ -402,14 +404,9 @@ const Project = () => {
       </div>
 
       <div className="grid grid-cols-4 gap-4">
-        <ProjectCard image={camp} />
-        <ProjectCard image={discuss} />
-        <ProjectCard image={brain} />
-        <ProjectCard image={team} />
-        <ProjectCard image={cloud} />
-        <ProjectCard image={rally} />
-        <ProjectCard image={camp} />
-        <ProjectCard image={estate} />
+        {data.project.map((d: any) => (
+          <ProjectCard data={d} image={camp} key={d._id} />
+        ))}
       </div>
 
       <div className="flex justify-center">
@@ -421,7 +418,9 @@ const Project = () => {
   );
 };
 
-const Features = () => {
+const Features = async () => {
+  const { data } = await getData();
+
   return (
     <section>
       <div className="mb-10 flex flex-col items-center gap-y-4">
@@ -430,14 +429,9 @@ const Features = () => {
       </div>
 
       <div className="grid grid-cols-4 gap-4">
-        <FeaturesCard />
-        <FeaturesCard />
-        <FeaturesCard />
-        <FeaturesCard />
-        <FeaturesCard />
-        <FeaturesCard />
-        <FeaturesCard />
-        <FeaturesCard />
+        {data.architecture.map((d: ArchitectureDataProps) => (
+          <FeaturesCard key={d._id} data={d} />
+        ))}
       </div>
 
       <div className="flex justify-center">
@@ -489,8 +483,6 @@ const FeedbackCard = ({ image }: { image: any }) => {
         />
       </div>
 
-     
-
       <div className="flex flex-col items-center">
         <h3>Nina Sanchez</h3>
         <p>Architect</p>
@@ -506,7 +498,9 @@ const FeedbackCard = ({ image }: { image: any }) => {
   );
 };
 
-const News = () => {
+const News = async () => {
+  const { data } = await getData();
+
   return (
     <section>
       <div className="mb-10 flex flex-col items-center gap-y-4">
@@ -515,14 +509,9 @@ const News = () => {
       </div>
 
       <div className="grid grid-cols-4 gap-4">
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
-        <NewsCard />
+        {data.blog.map((d: ArchitectureDataProps) => (
+          <NewsCard data={d} key={d._id} />
+        ))}
       </div>
 
       <div className="flex justify-center">
@@ -531,48 +520,6 @@ const News = () => {
         </button>
       </div>
     </section>
-  );
-};
-
-const NewsCard = () => {
-  return (
-    <article className="relative overflow-hidden bg-white p-2 font-medium text-[#00000099] shadow-xl">
-      <header className="relative mb-4 h-52">
-        <Image
-          alt="Mountains"
-          src={canoe}
-          placeholder="blur"
-          quality={100}
-          layout="fill"
-          sizes="100vw"
-          style={{
-            objectFit: "cover",
-          }}
-        />
-      </header>
-      <main className="mb-2 px-3">
-        <p className="mb-2 text-sm tracking-wide">NOV. 12, 2024</p>
-        <div className="mb-1 flex flex-col gap-y-1">
-          <Line />
-          <h3 className="text-xl font-bold text-black">Stunning Design</h3>
-        </div>
-        <p>Of Scripture chosen especially for the su</p>
-      </main>
-      <footer className="flex items-center gap-x-4 px-3 pb-2">
-        <div className="flex items-center gap-x-2">
-          <IoEyeSharp className="text-2xl font-bold text-[#172554]" />
-          <p className="font-semibold text-[#79797999]">1.2k</p>
-        </div>
-        <div className="flex items-center gap-x-2">
-          <IoMdShare className="text-2xl font-bold text-[#172554]" />
-          <p className="font-semibold text-[#79797999]">1.2k</p>
-        </div>
-        <div className="flex items-center gap-x-2">
-          <CiHeart className="text-2xl font-bold text-[#172554]" />
-          <p className="font-semibold text-[#79797999]">1.2k</p>
-        </div>
-      </footer>
-    </article>
   );
 };
 

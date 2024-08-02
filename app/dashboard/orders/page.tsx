@@ -1,7 +1,34 @@
+"use client";
+
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Card from "../components/Card";
+import { useEffect, useState } from "react";
+import { SERVER_URL } from "@/app/constants/api";
 
-function page() {
+function Page() {
+  const [data, setData] = useState<any>();
+
+  useEffect(() => {
+    const userid = localStorage.getItem("userid") || "";
+    const token = localStorage.getItem("token") || "";
+
+    async function getOrders(userid: string, token: string) {
+      const res = await fetch(`${SERVER_URL}/user/order/dashboard/${userid}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to fetch data");
+      }
+
+      const data = await res.json();
+      setData(data);
+    }
+    getOrders(userid, token);
+  });
+
+  console.log(data);
+
   const cardTitles = [
     "Total Orders",
     "Total project amount",
@@ -16,28 +43,28 @@ function page() {
   ];
 
   return (
-    <section className="rounded-xl py-5 px-6">
-      <div className="grid grid-cols-4 gap-3 mb-3">
+    <section className="rounded-xl px-6 py-5">
+      <div className="mb-3 grid grid-cols-4 gap-3">
         {cardTitles.map((title, i) => (
           <Card title={title} key={i} />
         ))}
       </div>
 
-      <header className="flex justify-between items-center">
+      <header className="flex items-center justify-between">
         <h1 className="text-2xl font-bold">Orders</h1>
         <div>
           <input
             type="search"
             placeholder="Search here..."
-            className="py-3 border rounded-lg shadow-xl px-3 mr-2 focus:outline-none focus:border-[#FFB200] min-w-[280px]"
+            className="mr-2 min-w-[280px] rounded-lg border px-3 py-3 shadow-xl focus:border-[#FFB200] focus:outline-none"
           />
-          <button className="py-3 px-6 bg-[#FFB200] font-semibold rounded-lg">
+          <button className="rounded-lg bg-[#FFB200] px-6 py-3 font-semibold">
             Search
           </button>
         </div>
       </header>
 
-      <table className="w-full text-sm rounded-lg mt-4 border border-[#FFB200]">
+      <table className="mt-4 w-full rounded-lg border border-[#FFB200] text-sm">
         <thead className="bg-[#FFB200]">
           <tr>
             <th className="py-6">No.</th>
@@ -51,46 +78,54 @@ function page() {
             <th className="w-[11%]">See</th>
           </tr>
         </thead>
-        <tbody className="text-center border border-[#FFB200]">
-          <tr className="odd:bg-[#FAEFD8] even:bg-white">
-            <td className="py-6 border-r border-r-[#FFB200]">
-              <span className="rounded px-2 py-1 bg-[#FFB200] font-semibold">
-                1
-              </span>
-            </td>
-            <td className="border-r border-r-[#FFB200]">045001</td>
-            <td className="border-r border-r-[#FFB200]">Web dev</td>
-            <td className="border-r border-r-[#FFB200]">-</td>
-            <td className="border-r border-r-[#FFB200]">-</td>
-            <td className="border-r border-r-[#FFB200]">-</td>
-            <td className="border-r border-r-[#FFB200]">
-              <button className="bg-[#FFB200] py-2 px-3 rounded font-semibold text-sm">
-                Update
-              </button>
-            </td>
-            <td className="border-r border-r-[#FFB200]">
-              <span className="bg-[#FF7777] text-white py-1 rounded px-3">
-                Pending
-              </span>
-            </td>
-            <td>
-              <button className="uppercase bg-[#FFB200] py-2 px-3 rounded font-semibold text-sm">
-                View
-              </button>
-            </td>
-          </tr>
+        <tbody className="border border-[#FFB200] text-center">
+          {data?.data?.userorders?.length === 0 ? (
+            <tr>
+              <td colSpan={9} className="py-4">
+                There is no available order
+              </td>
+            </tr>
+          ) : (
+            <tr className="odd:bg-[#FAEFD8] even:bg-white">
+              <td className="border-r border-r-[#FFB200] py-6">
+                <span className="rounded bg-[#FFB200] px-2 py-1 font-semibold">
+                  1
+                </span>
+              </td>
+              <td className="border-r border-r-[#FFB200]">045001</td>
+              <td className="border-r border-r-[#FFB200]">Web dev</td>
+              <td className="border-r border-r-[#FFB200]">-</td>
+              <td className="border-r border-r-[#FFB200]">-</td>
+              <td className="border-r border-r-[#FFB200]">-</td>
+              <td className="border-r border-r-[#FFB200]">
+                <button className="rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold">
+                  Update
+                </button>
+              </td>
+              <td className="border-r border-r-[#FFB200]">
+                <span className="rounded bg-[#FF7777] px-3 py-1 text-white">
+                  Pending
+                </span>
+              </td>
+              <td>
+                <button className="rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold uppercase">
+                  View
+                </button>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
-      <footer className="bg-white py-6 flex justify-between px-4 text-sm">
+      <footer className="flex justify-between bg-white px-4 py-6 text-sm">
         <div>
           <p className="font-bold">Showing 1 to 5 of 97 results</p>
         </div>
         <div className="flex items-center gap-x-2">
           <FaArrowLeft className="text-[#FFB200]" />
-          <button className="rounded-full h-6 w-6 bg-[#FFB200] text-white flex items-center justify-center text-xs font-semibold">
+          <button className="flex h-6 w-6 items-center justify-center rounded-full bg-[#FFB200] text-xs font-semibold text-white">
             1
           </button>
-          <button className="rounded-full h-6 w-6 bg-[#FFF2D4] text-black font-semibold flex items-center justify-center text-xs">
+          <button className="flex h-6 w-6 items-center justify-center rounded-full bg-[#FFF2D4] text-xs font-semibold text-black">
             2
           </button>
           <FaArrowRight className="text-[#FFB200]" />
@@ -100,4 +135,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

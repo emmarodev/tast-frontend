@@ -37,14 +37,14 @@ function TextInput({
         <input
           id={label}
           type={type}
-          className="peer h-10 w-full  text-gray-900 placeholder-transparent focus:outline-none focus:border-rose-600 px-6 pl-[60px] rounded-[40px] bg-[#2F2F2F1A] py-7"
+          className="peer h-10 w-full rounded-[40px] bg-[#2F2F2F1A] px-6 py-7 pl-[60px] text-gray-900 placeholder-transparent focus:border-rose-600 focus:outline-none"
           placeholder={placeholder}
           {...field}
           {...props}
         />
         <label
           htmlFor={label}
-          className="absolute left-[59px] -top-2 text-gray-600 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-4 peer-focus:-top-2 peer-focus:text-gray-600 peer-focus:text-sm"
+          className="absolute -top-2 left-[59px] text-sm text-gray-600 transition-all peer-placeholder-shown:top-4 peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-focus:-top-2 peer-focus:text-sm peer-focus:text-gray-600"
         >
           {label}
         </label>

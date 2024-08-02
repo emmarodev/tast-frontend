@@ -7,25 +7,9 @@ export default function AuthLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="h-screen w-screen overflow-y-scroll sm:py-20 relative">
-      <div className="w-full h-full sm:flex items-center justify-center">
-        <div className="hidden sm:block">
-          <Image
-            alt="Mountains"
-            src={bg}
-            placeholder="blur"
-            quality={100}
-            layout="fill"
-            sizes="100vw"
-            style={{
-              objectFit: "cover",
-              zIndex: -5,
-            }}
-          />
-        </div>
-        <div className="bg-white h-fit rounded-none sm:rounded-[40px] px-5 sm:px-10 py-8">
-          {children}
-        </div>
+    <section className="bg-auth-bg relative h-screen max-h-screen overflow-y-auto bg-cover bg-center bg-no-repeat py-20">
+      <div className="absolute left-1/2 top-1/2 w-full max-w-[540px] -translate-x-1/2 -translate-y-1/2 rounded-[40px] bg-white px-10 py-10">
+        {children}
       </div>
     </section>
   );

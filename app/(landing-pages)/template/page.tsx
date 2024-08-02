@@ -4,30 +4,23 @@ import Tools from "@/app/components/Tools";
 import ProjectCard from "@/app/components/ProjectCard";
 import Line from "@/app/components/Line";
 import team from "../../../public/team.jpg";
-import rally from "../../../public/rally.jpg";
-import estate from "../../../public/estate.jpg";
-import discuss from "../../../public/discuss.jpg";
-import cloud from "../../../public/cloud.jpg";
-import camp from "../../../public/camp.jpg";
-import brain from "../../../public/brain.jpg";
 import scifi from "../../../public/scifi.jpg";
 import Paginate from "@/app/components/Pagination";
+import { SERVER_URL } from "@/app/constants/api";
 
-function Template() {
-  const images = [
-    team,
-    rally,
-    estate,
-    discuss,
-    cloud,
-    camp,
-    brain,
-    rally,
-    discuss,
-    camp,
-    estate,
-    cloud,
-  ];
+async function getData() {
+  const res = await fetch(`${SERVER_URL}/user/project`);
+
+  if (!res.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return res.json();
+}
+
+async function Template() {
+  const { data } = await getData();
+  const images = [team];
 
   return (
     <>
@@ -45,9 +38,9 @@ function Template() {
       </header>
 
       <main className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14 pb-20">
-        <div className="grid grid-cols-4 gap-4 mb-8">
-          {images.map((img, i) => (
-            <ProjectCard key={i} image={img} />
+        <div className="mb-8 grid grid-cols-4 gap-4">
+          {data.map((d: any, i: number) => (
+            <ProjectCard key={i} data={d} image={images[0]} />
           ))}
         </div>
         <Paginate />

@@ -23,8 +23,8 @@ function Services() {
 
       <main className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14 pb-20">
         <section className="mb-8 grid grid-cols-4 gap-10">
-          {services.map((_, i) => (
-            <ServiceCard key={i} />
+          {services.map((d, i) => (
+            <ServiceCard key={i} data={d} />
           ))}
         </section>
         <Paginate />

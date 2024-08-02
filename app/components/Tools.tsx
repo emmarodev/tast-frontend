@@ -21,13 +21,30 @@ function Tools() {
         Ai
       </div>
       <div className="tool-container bg-[#330000]">
-        <Image src={angular} alt={"angular icon"} width={50} />
+        <Image
+          src={angular}
+          alt={"angular icon"}
+          width={50}
+          style={{ width: "auto", height: "auto" }}
+        />
       </div>
       <div className="tool-container bg-[#330000]">
-        <Image src={figma} alt={"figma icon"} width={30} height={40} />
+        <Image
+          src={figma}
+          alt={"figma icon"}
+          width={30}
+          height={40}
+          style={{ width: "auto", height: "auto" }}
+        />
       </div>
       <div className="tool-container bg-[#330000]">
-        <Image src={adobe} alt={"adobe icon"} width={40} height={40} />
+        <Image
+          src={adobe}
+          alt={"adobe icon"}
+          width={40}
+          height={40}
+          style={{ width: "auto", height: "auto" }}
+        />
       </div>
       <div className="tool-container bg-[#330000]">
         <SiTailwindcss className="text-5xl text-blue-500" />
