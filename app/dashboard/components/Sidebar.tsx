@@ -1,5 +1,5 @@
 import { FaUserAlt } from "react-icons/fa";
-import  NavLink  from "../../components/NavLink";
+import NavLink from "../../components/NavLink";
 import { RiReceiptFill } from "react-icons/ri";
 import { MdPayments } from "react-icons/md";
 import { IoLogOut, IoSettings, IoTriangle } from "react-icons/io5";
@@ -9,7 +9,7 @@ function Sidebar() {
 
   return (
     <aside className="h-full w-[280px]">
-      <div className="flex items-center gap-x-4 mt-5 my-10 justify-center">
+      <div className="my-10 mt-5 flex items-center justify-center gap-x-4">
         <div className="h-20 w-20 rounded-full border" />
         <h3 className="text-xl font-bold">Richard</h3>
         <IoTriangle />
@@ -17,7 +17,7 @@ function Sidebar() {
 
       <ul className="flex flex-col gap-y-2 px-4">
         <li>
-          <NavLink to="/dashboard/profile" active={active} className="sidebar">
+          <NavLink to="/dashboard" active={active} className="sidebar">
             <FaUserAlt className="text" />
             Profile
           </NavLink>
@@ -55,7 +55,7 @@ function Sidebar() {
           </NavLink>
         </li>
         <li>
-          <button className="mt-10 px-6 font-bold text-red-600 flex gap-x-2 items-center text-lg hover:text-red-700 transition-all duration-75">
+          <button className="mt-10 flex items-center gap-x-2 px-6 text-lg font-bold text-red-600 transition-all duration-75 hover:text-red-700">
             <IoLogOut /> Logout
           </button>
         </li>

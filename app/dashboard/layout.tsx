@@ -1,3 +1,5 @@
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../components/Navbar";
 import Sidebar from "./components/Sidebar";
 
@@ -11,7 +13,8 @@ export default function DashboardLayout({
       <Navbar />
       <main className="flex h-[86vh] min-h-[86vh]">
         <Sidebar />
-        <section className="bg-slate-100 w-[calc(100vw-280px)] p-10 overflow-y-auto">
+        <section className="w-[calc(100vw-280px)] overflow-y-auto bg-slate-100 p-10">
+          <ToastContainer />
           {children}
         </section>
       </main>
