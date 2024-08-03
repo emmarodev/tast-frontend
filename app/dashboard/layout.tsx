@@ -2,12 +2,18 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Navbar from "../components/Navbar";
 import Sidebar from "./components/Sidebar";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const cookiesStore = cookies();
+  const token = cookiesStore.get("token")?.value;
+  if (!token) redirect("/sign-in");
+
   return (
     <div>
       <Navbar />
