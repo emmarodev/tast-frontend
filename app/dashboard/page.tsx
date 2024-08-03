@@ -3,8 +3,14 @@ import Details from "./components/Details";
 import { ProfileDataProps } from "./definition";
 import getData from "./api/getProfileData";
 import Image from "next/image";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default async function Profile() {
+  const cookiesStore = cookies();
+  const token = cookiesStore.get("token")?.value;
+  if (!token) redirect("/sign-in");
+
   let data: ProfileDataProps | null = null;
   try {
     data = await getData();
