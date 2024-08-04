@@ -65,8 +65,6 @@ function Sidebar() {
               cookiesStore.set("token", "");
               cookiesStore.set("userId", "");
 
-              console.log(cookiesStore.get("token"));
-
               redirect("/");
             }}
           >
