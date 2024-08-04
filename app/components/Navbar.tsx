@@ -69,7 +69,7 @@ function Navbar() {
         </li>
         <li>
           <Link
-            href={id ? "/dashboard/profile" : "/sign-in"}
+            href={id ? "/dashboard" : "/sign-in"}
             className="bg-[#FFB200] text-[#231F20] font-semibold tracking-widest py-2.5 px-3 rounded-md"
           >
             {id ? "PROFILE" : "SIGN IN"}

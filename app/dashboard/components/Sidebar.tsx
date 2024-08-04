@@ -3,6 +3,8 @@ import NavLink from "../../components/NavLink";
 import { RiReceiptFill } from "react-icons/ri";
 import { MdPayments } from "react-icons/md";
 import { IoLogOut, IoSettings, IoTriangle } from "react-icons/io5";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 function Sidebar() {
   const active = "bg-[#FFB200] text-black font-bold";
@@ -55,9 +57,26 @@ function Sidebar() {
           </NavLink>
         </li>
         <li>
-          <button className="mt-10 flex items-center gap-x-2 px-6 text-lg font-bold text-red-600 transition-all duration-75 hover:text-red-700">
-            <IoLogOut /> Logout
-          </button>
+          <form
+            action={async () => {
+              "use server";
+
+              const cookiesStore = cookies();
+              cookiesStore.set("token", "");
+              cookiesStore.set("userId", "");
+
+              console.log(cookiesStore.get("token"));
+
+              redirect("/");
+            }}
+          >
+            <button
+              type="submit"
+              className="mt-10 flex items-center gap-x-2 px-6 text-lg font-bold text-red-600 transition-all duration-75 hover:text-red-700"
+            >
+              <IoLogOut /> Logout
+            </button>
+          </form>
         </li>
       </ul>
     </aside>
