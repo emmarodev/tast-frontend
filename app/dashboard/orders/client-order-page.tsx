@@ -1,10 +1,11 @@
 "use client";
 
-import { SetStateAction, useState } from "react";
+import { useState } from "react";
 import Card from "../components/Card";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Image from "next/image";
 import { GiCheckMark } from "react-icons/gi";
+import Link from "next/link";
 
 export default function OrderPage({ data }: { data: any }) {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
@@ -93,9 +94,12 @@ export default function OrderPage({ data }: { data: any }) {
                 </button>
               </td>
               <td>
-                <button className="rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold uppercase">
+                <Link
+                  href="/dashboard/orders/id"
+                  className="rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold uppercase"
+                >
                   View
-                </button>
+                </Link>
               </td>
             </tr>
           )}
