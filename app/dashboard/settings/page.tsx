@@ -8,19 +8,19 @@ function Settings() {
   const [isDelete, setDelete] = useState(false);
 
   return (
-    <section className="flex items-center justify-center h-full w-full relative">
+    <section className="relative flex h-full w-full items-center justify-center">
       <button
-        className={`absolute right-0 top-0 py-2 px-4 rounded-md transition-all duration-150 font-semibold ${
-          isDelete
-            ? "bg-[#EE404C] hover:bg-[#EE404C]/80 text-white"
+        className={`absolute right-0 top-0 rounded-md px-4 py-2 font-semibold transition-all duration-150 ${
+          !isDelete
+            ? "bg-[#EE404C] text-white hover:bg-[#EE404C]/80"
             : "bg-[#2FC9D2] hover:bg-[#2FC9D2]/80"
         }`}
         onClick={() => setDelete(!isDelete)}
       >
-        {isDelete ? "Account Delete" : "Change Password"}
+        {!isDelete ? "Account Delete" : "Change Password"}
       </button>
 
-      {isDelete ? <ChangePassword /> : <DeleteAccount />}
+      {!isDelete ? <ChangePassword /> : <DeleteAccount />}
     </section>
   );
 }
@@ -29,9 +29,9 @@ export default Settings;
 
 function DeleteAccount() {
   return (
-    <article className="border border-[#C3C3C3] bg-[#F2E6C9] rounded-lg p-8 text-[#6B6B6B]">
-      <div className="flex gap-x-2 items-center mb-4">
-        <div className="text-xl rounded-full bg-white h-10 w-10 items-center justify-center flex">
+    <article className="rounded-lg border border-[#C3C3C3] bg-[#F2E6C9] p-8 text-[#6B6B6B]">
+      <div className="mb-4 flex items-center gap-x-2">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-xl">
           <CgDanger className="text-red-500" />
         </div>
         <div className="text-xs">
@@ -50,20 +50,20 @@ function DeleteAccount() {
       </p>
 
       <form className="mt-10">
-        <div className="bg-white rounded-md p-2 flex items-center gap-x-2 mb-1">
+        <div className="mb-1 flex items-center gap-x-2 rounded-md bg-white p-2">
           <div className="p-1">
             <CiLock className="text-xl" />
           </div>
-          <div className="border-l h-8 border-[#D9D9D9]" />
+          <div className="h-8 border-l border-[#D9D9D9]" />
           <input type="password" className="focus:outline-none" />
         </div>
         <p className="text-sm">Enter your password to confirm</p>
 
-        <div className="flex gap-x-4 mt-6">
-          <button className="bg-white rounded-md py-3 font-semibold px-6 text-[#6B6B6B] text-sm">
+        <div className="mt-6 flex gap-x-4">
+          <button className="rounded-md bg-white px-6 py-3 text-sm font-semibold text-[#6B6B6B]">
             Cancel
           </button>
-          <button className="bg-[#236BFE] rounded-md py-3 font-semibold px-6 text-white text-sm">
+          <button className="rounded-md bg-[#236BFE] px-6 py-3 text-sm font-semibold text-white">
             Confirm Delete
           </button>
         </div>
@@ -74,9 +74,9 @@ function DeleteAccount() {
 
 function ChangePassword() {
   return (
-    <article className="border border-[#C3C3C3] bg-[#F2E6C9] rounded-lg p-8 text-[#6B6B6B]">
-      <div className="flex gap-x-2 items-center mb-4">
-        <div className="text-xl rounded-full bg-white h-10 w-10 items-center justify-center flex">
+    <article className="rounded-lg border border-[#C3C3C3] bg-[#F2E6C9] p-8 text-[#6B6B6B]">
+      <div className="mb-4 flex items-center gap-x-2">
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-xl">
           <CiLock className="text-xl" />
         </div>
         <div className="text-xs">
@@ -90,51 +90,51 @@ function ChangePassword() {
       </div>
 
       <form className="mt-10 grid gap-y-4">
-        <div className="bg-white rounded-md p-2 flex items-center gap-x-2 mb-1">
+        <div className="mb-1 flex items-center gap-x-2 rounded-md bg-white p-2">
           <div className="p-1">
             <CiLock className="text-xl" />
           </div>
-          <div className="border-l h-8 border-[#D9D9D9]" />
+          <div className="h-8 border-l border-[#D9D9D9]" />
           <input
             type="password"
-            className="focus:outline-none text-sm"
+            className="text-sm focus:outline-none"
             placeholder="Current Password"
           />
         </div>
         <div>
-          <div className="bg-white rounded-md p-2 flex items-center gap-x-2 mb-1">
+          <div className="mb-1 flex items-center gap-x-2 rounded-md bg-white p-2">
             <div className="p-1">
               <CiLock className="text-xl" />
             </div>
-            <div className="border-l h-8 border-[#D9D9D9]" />
+            <div className="h-8 border-l border-[#D9D9D9]" />
             <input
               type="password"
-              className="focus:outline-none text-sm"
+              className="text-sm focus:outline-none"
               placeholder="New Password"
             />
           </div>
-          <div className="grid grid-cols-4 gap-x-2 mt-2 mb-1">
+          <div className="mb-1 mt-2 grid grid-cols-4 gap-x-2">
             <div className="h-[2px] rounded-full bg-[#D9D9D9]"></div>
             <div className="h-[2px] rounded-full bg-[#D9D9D9]"></div>
             <div className="h-[2px] rounded-full bg-[#D9D9D9]"></div>
             <div className="h-[2px] rounded-full bg-[#D9D9D9]"></div>
           </div>
-          <p className="text-xs text-right">Good</p>
+          <p className="text-right text-xs">Good</p>
         </div>
-        <div className="bg-white rounded-md p-2 flex items-center gap-x-2 mb-1">
+        <div className="mb-1 flex items-center gap-x-2 rounded-md bg-white p-2">
           <div className="p-1">
             <CiLock className="text-xl" />
           </div>
-          <div className="border-l h-8 border-[#D9D9D9]" />
+          <div className="h-8 border-l border-[#D9D9D9]" />
           <input
             type="password"
-            className="focus:outline-none text-sm"
+            className="text-sm focus:outline-none"
             placeholder="Confirm New Password"
           />
         </div>
 
         <div>
-          <button className="bg-[#236BFE] rounded-md py-3 font-semibold px-6 text-white text-sm w-full">
+          <button className="w-full rounded-md bg-[#236BFE] px-6 py-3 text-sm font-semibold text-white">
             Change My Password
           </button>
         </div>
