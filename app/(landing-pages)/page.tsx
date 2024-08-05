@@ -85,6 +85,7 @@ export default async function Home() {
             alt="Mountains"
             src={map}
             placeholder="blur"
+            layout="fill"
             quality={100}
             sizes="100vw"
             style={{
