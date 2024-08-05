@@ -48,8 +48,6 @@ export async function editPersonalInfo(formData: FormData) {
 
     const data = await res.json();
 
-    console.log(data);
-
     if (!data.status || data.status_code === 400) {
       return {
         message: [data.message || "An unknown error occurred."],
@@ -238,7 +236,6 @@ export async function editSocialLink(formData: SocialLink) {
     });
 
     const data = await res.json();
-    console.log(data);
 
     if (!data.status || data.status_code === 400) {
       return {

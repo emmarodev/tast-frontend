@@ -57,7 +57,6 @@ const createOrder = async (formData: FormData) => {
     });
 
     const data = await res.json();
-    console.log(data);
 
     if (!data.status || data.status_code === 400) {
       return {

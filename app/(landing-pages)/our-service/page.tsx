@@ -9,7 +9,6 @@ import { Suspense } from "react";
 
 async function Services() {
   const data = await getData("user/service");
-  console.log(data);
 
   return (
     <>

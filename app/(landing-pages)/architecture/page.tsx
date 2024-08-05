@@ -21,7 +21,6 @@ async function getData() {
 
 export default async function Architecture() {
   const { data } = await getData();
-  console.log(data);
 
   return (
     <>

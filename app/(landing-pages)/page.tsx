@@ -6,10 +6,6 @@ import ProjectCard from "../components/ProjectCard";
 import FeaturesCard from "../components/FeaturesCard";
 import Hero from "../components/Hero";
 import ServiceCard from "../components/ServiceCard";
-import house from "../../public/house.jpg";
-import oil from "../../public/oil.jpg";
-import art from "../../public/art.jpg";
-import duplex from "../../public/duplex.jpg";
 import parallel from "../../public/parallel.jpg";
 import skyscrapper from "../../public/skyscrapper.jpg";
 import camp from "../../public/camp.jpg";
@@ -38,8 +34,6 @@ async function getData() {
 
 export default async function Home() {
   const { data } = await getData();
-  console.log(data);
-
   return (
     <>
       <header className="bg-[#231B7D] px-4 pb-10">
@@ -92,7 +86,6 @@ export default async function Home() {
             src={map}
             placeholder="blur"
             quality={100}
-            layout="fill"
             sizes="100vw"
             style={{
               objectFit: "cover",
@@ -226,7 +219,10 @@ const Service = async () => {
   );
 };
 
-const Gallery = () => {
+const Gallery = async () => {
+  const { data } = await getData();
+  const others = data.servicegallery.slice(1);
+
   const categories = [
     "All",
     "Home",
@@ -265,128 +261,43 @@ const Gallery = () => {
         </button>
       </div>
 
-      <div className="mt-6 grid grid-cols-4 grid-rows-3 gap-4">
-        <div className="relative col-span-2 row-span-2 rounded">
-          <Image
-            alt="Mountains"
-            src={art}
-            placeholder="blur"
-            quality={100}
-            layout="fill"
-            sizes="100vw"
-            style={{
-              objectFit: "cover",
-            }}
-          />
-        </div>
-        <div className="relative h-56 rounded">
-          <Image
-            alt="Mountains"
-            src={parallel}
-            placeholder="blur"
-            quality={100}
-            layout="fill"
-            sizes="100vw"
-            style={{
-              objectFit: "cover",
-            }}
-          />
-        </div>
-        <div className="relative rounded">
-          <Image
-            alt="Mountains"
-            src={duplex}
-            placeholder="blur"
-            quality={100}
-            layout="fill"
-            sizes="100vw"
-            style={{
-              objectFit: "cover",
-            }}
-          />
-        </div>
-        <div className="relative rounded">
-          <Image
-            alt="Mountains"
-            src={oil}
-            placeholder="blur"
-            quality={100}
-            layout="fill"
-            sizes="100vw"
-            style={{
-              objectFit: "cover",
-            }}
-          />
-        </div>
-        <div className="relative rounded">
-          <Image
-            alt="Mountains"
-            src={skyscrapper}
-            placeholder="blur"
-            quality={100}
-            layout="fill"
-            sizes="100vw"
-            style={{
-              objectFit: "cover",
-            }}
-          />
-        </div>
-        <div className="relative rounded">
-          <Image
-            alt="Mountains"
-            src={parallel}
-            placeholder="blur"
-            quality={100}
-            layout="fill"
-            sizes="100vw"
-            style={{
-              objectFit: "cover",
-            }}
-          />
-        </div>
-        <div className="relative rounded">
-          <Image
-            alt="Mountains"
-            src={house}
-            placeholder="blur"
-            quality={100}
-            layout="fill"
-            sizes="100vw"
-            style={{
-              objectFit: "cover",
-            }}
-          />
-        </div>
-        <div className="relative rounded">
-          <Image
-            alt="Mountains"
-            src={parallel}
-            placeholder="blur"
-            quality={100}
-            layout="fill"
-            sizes="100vw"
-            style={{
-              objectFit: "cover",
-            }}
-          />
-        </div>
-        <div className="relative rounded">
-          <Image
-            alt="Mountains"
-            src={house}
-            placeholder="blur"
-            quality={100}
-            layout="fill"
-            sizes="100vw"
-            style={{
-              objectFit: "cover",
-            }}
-          />
-        </div>
+      <div className="mt-6 grid grid-cols-4 gap-4">
+        {data.servicegallery.length > 0 && (
+          <div className="relative col-span-2 row-span-2 rounded">
+            <Image
+              alt="Mountains"
+              src={data.servicegallery[0].media}
+              quality={100}
+              sizes="100vw"
+              width={1181}
+              height={500}
+              style={{
+                objectFit: "cover",
+              }}
+            />
+          </div>
+        )}
+        {data.servicegallery.length > 1 &&
+          data.servicegallery.slice(1).map((obj: any) => {
+            return (
+              <div key={obj._id} className="relative rounded">
+                <Image
+                  alt="Mountains"
+                  src={obj.media}
+                  quality={100}
+                  width={463}
+                  height={366}
+                  style={{
+                    objectFit: "cover",
+                  }}
+                />
+              </div>
+            );
+          })}
       </div>
 
-      <div className="flex justify-center">
-        <button className="mt-10 inline-block rounded bg-[#ffb200] px-6 py-3 text-sm font-semibold hover:bg-[#ffb200]/90">
+      <div className="mt-10 flex justify-center">
+        <button className="inline-block rounded bg-[#ffb200] px-6 py-3 text-sm font-semibold hover:bg-[#ffb200]/90">
           SEE MORE
         </button>
       </div>
@@ -476,7 +387,6 @@ const FeedbackCard = ({ image }: { image: any }) => {
           src={image}
           placeholder="blur"
           quality={100}
-          layout="fill"
           sizes="100vw"
           style={{
             objectFit: "cover",
