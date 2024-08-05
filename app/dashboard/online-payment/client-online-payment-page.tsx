@@ -2,8 +2,14 @@
 
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Card from "../components/Card";
+import Link from "next/link";
+import { useState } from "react";
+import Image from "next/image";
+import { IoCloseCircle } from "react-icons/io5";
 
 function OnlinePayment({ data }: { data: any }) {
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+
   const cardTitles = [
     "Total payment",
     "Total pay amount",
@@ -49,29 +55,43 @@ function OnlinePayment({ data }: { data: any }) {
           </tr>
         </thead>
         <tbody className="border border-[#FFB200] text-center">
-          <tr className="odd:bg-[#FAEFD8] even:bg-white">
-            <td className="border-r border-r-[#FFB200] py-6">
-              <span className="rounded bg-[#FFB200] px-2 py-1 font-semibold">
-                1
-              </span>
-            </td>
-            <td className="border-r border-r-[#FFB200]">045001</td>
-            <td className="border-r border-r-[#FFB200]">Web dev</td>
-            <td className="border-r border-r-[#FFB200]">-</td>
-            <td className="border-r border-r-[#FFB200]">-</td>
-            <td className="border-r border-r-[#FFB200]">-</td>
-            <td className="border-r border-r-[#FFB200]">03-02-25</td>
-            <td className="border-r border-r-[#FFB200]">
-              <span className="rounded bg-[#FF7777] px-3 py-1 text-white">
-                Spam
-              </span>
-            </td>
-            <td>
-              <button className="rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold uppercase">
-                View
-              </button>
-            </td>
-          </tr>
+          {data?.length !== 0 ? (
+            <tr>
+              <td colSpan={9} className="py-6 text-2xl">
+                There is no available order
+              </td>
+            </tr>
+          ) : (
+            <tr className="odd:bg-[#FAEFD8] even:bg-white">
+              <td className="border-r border-r-[#FFB200] py-6">
+                <span className="rounded bg-[#FFB200] px-2 py-1 font-semibold">
+                  1
+                </span>
+              </td>
+              <td className="border-r border-r-[#FFB200]">045001</td>
+              <td className="border-r border-r-[#FFB200]">Web dev</td>
+              <td className="border-r border-r-[#FFB200]">-</td>
+              <td className="border-r border-r-[#FFB200]">-</td>
+              <td className="border-r border-r-[#FFB200]">-</td>
+              <td className="border-r border-r-[#FFB200]">03-02-25</td>
+              <td className="border-r border-r-[#FFB200]">
+                <button
+                  className="rounded bg-[#FF7777] px-3 py-1 text-white"
+                  onClick={() => setShowPaymentModal(true)}
+                >
+                  Spam
+                </button>
+              </td>
+              <td>
+                <Link
+                  href="/dashboard/online-payment/id"
+                  className="inline-block rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold uppercase"
+                >
+                  View
+                </Link>
+              </td>
+            </tr>
+          )}
         </tbody>
       </table>
       <footer className="flex justify-between bg-white px-4 py-6 text-sm">
@@ -89,6 +109,77 @@ function OnlinePayment({ data }: { data: any }) {
           <FaArrowRight className="text-[#FFB200]" />
         </div>
       </footer>
+
+      {showPaymentModal && (
+        <div className="absolute left-0 top-0 h-screen w-screen bg-black/50">
+          <article className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg bg-white p-6 px-8">
+            <div className="relative">
+              <button
+                className="absolute -left-4 -top-4 text-red-700 text-2xl"
+                onClick={() => setShowPaymentModal(false)}
+              >
+                <IoCloseCircle />
+              </button>
+              <h2 className="text-center text-lg font-bold text-[#4402FF]">
+                Payment Reception
+              </h2>
+              <div className="absolute right-0 top-0 text-[8px] font-semibold">
+                <p>Payment ID: 45KdF</p>
+                <p>Paymentment Data: 02 Sept, 1010</p>
+              </div>
+            </div>
+
+            <p className="mt-2 font-bold">
+              Dear, Mr jack <br /> Your order id: 64646 for Logo Design project.
+              You have paid 510 <br /> USD to sbi bank.{" "}
+              <span className="text-[#5296D6]">
+                Your payment status is pending
+              </span>
+              .
+            </p>
+
+            <section className="mt-4 font-medium">
+              <h3 className="font-bold">From</h3>
+              <div className="grid grid-cols-2 gap-x-8">
+                <div>
+                  <div>
+                    <p>Account Holder Name: Mr Jack</p>
+                    <p>Bank Name: Paypal</p>
+                    <p>Account Number: 9489373402</p>
+                    <p>Transaction ID: 38FNDF03UB03</p>
+                    <p>Transaction Receipt: yes</p>
+                    <p>Additional Information: hello sir</p>
+                  </div>
+                </div>
+                <div className="">
+                  <div>
+                    <p>Project amount: 1500 USD</p>
+                    <p>Paid Amount: 500 USD</p>
+                    <p>Left Amount: 1000 USD</p>
+                  </div>
+                  <div>
+                    <p>Pay Amount: 500USD</p>
+                    <p>VAT(2%): 10</p>
+                    <p>Total: 510 USD</p>
+                  </div>
+                </div>
+              </div>
+              <div className="grid grid-cols-2 items-start gap-x-8">
+                <Image
+                  src="/images/receipt.png"
+                  alt="A receipt"
+                  width={40}
+                  height={59}
+                  className="mt-1"
+                />
+                <span className="mt-1 inline-block w-full rounded-lg bg-[#D9D9D9] py-2 text-center font-bold">
+                  Total Amount: $150
+                </span>
+              </div>
+            </section>
+          </article>
+        </div>
+      )}
     </section>
   );
 }

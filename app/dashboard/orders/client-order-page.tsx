@@ -62,7 +62,7 @@ export default function OrderPage({ data }: { data: any }) {
           </tr>
         </thead>
         <tbody className="border border-[#FFB200] text-center">
-          {data?.length !== 0 ? (
+          {data?.length === 0 ? (
             <tr>
               <td colSpan={9} className="py-6 text-2xl">
                 There is no available order
@@ -96,7 +96,7 @@ export default function OrderPage({ data }: { data: any }) {
               <td>
                 <Link
                   href="/dashboard/orders/id"
-                  className="rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold uppercase"
+                  className="inline-block rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold uppercase"
                 >
                   View
                 </Link>
