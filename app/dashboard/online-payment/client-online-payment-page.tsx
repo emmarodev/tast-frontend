@@ -3,7 +3,7 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Card from "../components/Card";
 import Link from "next/link";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Image from "next/image";
 import { IoCloseCircle } from "react-icons/io5";
 import { GiCheckMark } from "react-icons/gi";
@@ -43,60 +43,63 @@ function OnlinePayment({ data }: { data: any }) {
         </div>
       </header>
 
-      <table className="mt-4 w-full rounded-lg border border-[#FFB200] text-sm">
-        <thead className="bg-[#FFB200]">
-          <tr>
-            <th className="py-6">No.</th>
-            <th className="w-[12%]">Payment ID</th>
-            <th className="w-[12%]">Project Name</th>
-            <th className="w-[13%]">Payment Method</th>
-            <th className="w-[12%]">Payment Type</th>
-            <th className="w-[12%]">Payment Amount</th>
-            <th className="w-[12%]">Payment Day</th>
-            <th className="w-[12%]">Status</th>
-            <th className="w-[11%]">See</th>
-          </tr>
-        </thead>
-        <tbody className="border border-[#FFB200] text-center">
-          {data?.length === 0 ? (
+      <Suspense>
+        <table className="mt-4 w-full rounded-lg border border-[#FFB200] text-sm">
+          <thead className="bg-[#FFB200]">
             <tr>
-              <td colSpan={9} className="py-6 text-2xl">
-                There is no available order
-              </td>
+              <th className="py-6">No.</th>
+              <th className="w-[12%]">Payment ID</th>
+              <th className="w-[12%]">Project Name</th>
+              <th className="w-[13%]">Payment Method</th>
+              <th className="w-[12%]">Payment Type</th>
+              <th className="w-[12%]">Payment Amount</th>
+              <th className="w-[12%]">Payment Day</th>
+              <th className="w-[12%]">Status</th>
+              <th className="w-[11%]">See</th>
             </tr>
-          ) : (
-            <tr className="odd:bg-[#FAEFD8] even:bg-white">
-              <td className="border-r border-r-[#FFB200] py-6">
-                <span className="rounded bg-[#FFB200] px-2 py-1 font-semibold">
-                  1
-                </span>
-              </td>
-              <td className="border-r border-r-[#FFB200]">045001</td>
-              <td className="border-r border-r-[#FFB200]">Web dev</td>
-              <td className="border-r border-r-[#FFB200]">-</td>
-              <td className="border-r border-r-[#FFB200]">-</td>
-              <td className="border-r border-r-[#FFB200]">-</td>
-              <td className="border-r border-r-[#FFB200]">03-02-25</td>
-              <td className="border-r border-r-[#FFB200]">
-                <button
-                  className="rounded bg-[#FF7777] px-3 py-1 text-white"
-                  onClick={() => setShowCreatePaymentModal(true)}
-                >
-                  Spam
-                </button>
-              </td>
-              <td>
-                <button
-                  className="rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold uppercase"
-                  onClick={() => setShowPaymentModal(true)}
-                >
-                  View
-                </button>
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className="border border-[#FFB200] text-center">
+            {data?.length === 0 ? (
+              <tr>
+                <td colSpan={9} className="py-6 text-2xl">
+                  There is no available order
+                </td>
+              </tr>
+            ) : (
+              <tr className="odd:bg-[#FAEFD8] even:bg-white">
+                <td className="border-r border-r-[#FFB200] py-6">
+                  <span className="rounded bg-[#FFB200] px-2 py-1 font-semibold">
+                    1
+                  </span>
+                </td>
+                <td className="border-r border-r-[#FFB200]">045001</td>
+                <td className="border-r border-r-[#FFB200]">Web dev</td>
+                <td className="border-r border-r-[#FFB200]">-</td>
+                <td className="border-r border-r-[#FFB200]">-</td>
+                <td className="border-r border-r-[#FFB200]">-</td>
+                <td className="border-r border-r-[#FFB200]">03-02-25</td>
+                <td className="border-r border-r-[#FFB200]">
+                  <button
+                    className="rounded bg-[#FF7777] px-3 py-1 text-white"
+                    onClick={() => setShowCreatePaymentModal(true)}
+                  >
+                    Spam
+                  </button>
+                </td>
+                <td>
+                  <button
+                    className="rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold uppercase"
+                    onClick={() => setShowPaymentModal(true)}
+                  >
+                    View
+                  </button>
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </Suspense>
+
       <footer className="flex justify-between bg-white px-4 py-6 text-sm">
         <div>
           <p className="font-bold">Showing 1 to 5 of 97 results</p>

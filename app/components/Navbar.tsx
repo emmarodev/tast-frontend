@@ -1,27 +1,21 @@
-"use client";
-
 import Image from "next/image";
 import logo from "../../public/logo.svg";
 import NavLink from "./NavLink";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { cookies } from "next/headers";
 
 function Navbar() {
   const active = "font-bold text-white hover:text-white";
-  const [id, setId] = useState<string | null>("");
-
-  useEffect(() => {
-    const id = localStorage.getItem("token");
-    setId(id);
-  }, []);
+  const cookiesStore = cookies();
+  const token = cookiesStore.get("token")?.value;
 
   return (
-    <nav className="flex justify-between items-center py-4 px-10 bg-[#231B7D] h-[14vh]">
+    <nav className="flex h-[14vh] items-center justify-between bg-[#231B7D] px-10 py-4">
       <div>
         <Image src={logo} alt="Logo" />
       </div>
 
-      <ul className="flex gap-x-5 items-center">
+      <ul className="flex items-center gap-x-5">
         <li>
           <NavLink to="/" className="navbar" active={active}>
             Home
@@ -69,10 +63,10 @@ function Navbar() {
         </li>
         <li>
           <Link
-            href={id ? "/dashboard" : "/sign-in"}
-            className="bg-[#FFB200] text-[#231F20] font-semibold tracking-widest py-2.5 px-3 rounded-md"
+            href={token ? "/dashboard" : "/sign-in"}
+            className="rounded-md bg-[#FFB200] px-3 py-2.5 font-semibold tracking-widest text-[#231F20]"
           >
-            {id ? "PROFILE" : "SIGN IN"}
+            {token ? "PROFILE" : "SIGN IN"}
           </Link>
         </li>
       </ul>
