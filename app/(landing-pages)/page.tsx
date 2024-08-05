@@ -382,12 +382,13 @@ const Feedback = () => {
 const FeedbackCard = ({ image }: { image: any }) => {
   return (
     <article className="group flex h-[400px] w-[240px] flex-col items-center gap-y-4 rounded-md px-10 py-8 hover:bg-[#ffb200]">
-      <div className="relative h-40 w-40 overflow-hidden rounded-full border-2 border-[#ffb200] group-hover:h-44 group-hover:w-32">
+      <div className="relative h-40 w-40 overflow-hidden rounded-full border-2 border-[#ffb200]">
         <Image
           alt="Mountains"
           src={image}
           placeholder="blur"
           quality={100}
+          layout="fill"
           sizes="100vw"
           style={{
             objectFit: "cover",
