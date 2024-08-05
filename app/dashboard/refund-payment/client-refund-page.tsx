@@ -3,11 +3,13 @@
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Card from "../components/Card";
 import { useState } from "react";
-import Image from "next/image";
 import { IoCloseCircle } from "react-icons/io5";
+import { IoIosCheckmarkCircle } from "react-icons/io";
 
 function RefundPage({ data }: { data: any }) {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [showCreatePaymentModal, setShowCreatePaymentModal] = useState(false);
+  const [successPaymentModal, setSuccessPaymentModal] = useState(false);
 
   const cardTitles = [
     "Total refund",
@@ -74,13 +76,16 @@ function RefundPage({ data }: { data: any }) {
               <td className="border-r border-r-[#FFB200]">
                 <button
                   className="rounded bg-[#FF7777] px-3 py-1 text-white"
-                  onClick={() => setShowPaymentModal(true)}
+                  onClick={() => setShowCreatePaymentModal(true)}
                 >
                   Ineligible
                 </button>
               </td>
               <td>
-                <button className="rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold uppercase">
+                <button
+                  className="rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold uppercase"
+                  onClick={() => setShowPaymentModal(true)}
+                >
                   View
                 </button>
               </td>
@@ -134,7 +139,7 @@ function RefundPage({ data }: { data: any }) {
 
             <section className="mt-4 font-medium">
               <h3 className="font-bold">From</h3>
-              <div className="flex justify-between gap-x-8 border text-sm">
+              <div className="flex justify-between gap-x-8 text-sm">
                 <div>
                   <div>
                     <p>Account Holder Name: Mr Jack</p>
@@ -163,8 +168,192 @@ function RefundPage({ data }: { data: any }) {
           </article>
         </div>
       )}
+
+      {showCreatePaymentModal && (
+        <div className="absolute left-0 top-0 h-screen w-screen bg-black/50">
+          <article className="no-scrollbar absolute left-1/2 top-1/2 max-h-[95vh] w-3/5 -translate-x-1/2 -translate-y-1/2 overflow-y-auto bg-white">
+            <form
+              action={"somthing"}
+              className="mb-10 flex items-center justify-center gap-x-5 py-5 shadow-xl"
+            >
+              <div>
+                {/* <label
+                    htmlFor="pay_method"
+                    className="mb-1 block px-4 text-xs"
+                  >
+                    Payment Method
+                  </label> */}
+                <select className="rounded-full border-2 border-[#1497CF] px-4 py-3 text-sm">
+                  <option value="">Refund method</option>
+                </select>
+              </div>
+              <div className="flex items-center gap-x-1">
+                <label
+                  htmlFor="pay_method"
+                  className="mb-1 text-sm font-semibold"
+                >
+                  Refund Amount
+                </label>
+                <input
+                  className="rounded-full border-2 border-[#1497CF] px-4 py-3 text-sm placeholder:text-black"
+                  placeholder="Refund Amount"
+                />
+              </div>
+            </form>
+
+            <h2 className="mb-8 px-5 text-2xl font-bold">
+              Enter your payment refund Information
+            </h2>
+
+            <div className="mb-10 flex items-center gap-x-10 px-5">
+              <form action={"something"} className="grid grow gap-y-4">
+                <div>
+                  <label
+                    htmlFor="ahn"
+                    className="mb-1 block text-sm font-medium"
+                  >
+                    Account Holder Name
+                  </label>
+                  <input
+                    type="text"
+                    id="ahn"
+                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="mwn"
+                    className="mb-1 block text-sm font-medium"
+                  >
+                    Receipient&apos;s Bank Name
+                  </label>
+                  <input
+                    type="text"
+                    id="mwn"
+                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="an"
+                    className="mb-1 block text-sm font-medium"
+                  >
+                    Receipient&apos;s Bank Account Numer
+                  </label>
+                  <input
+                    type="text"
+                    id="an"
+                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="tid"
+                    className="mb-1 block text-sm font-medium"
+                  >
+                    Receipient&apos;s Bank Routing Numer
+                  </label>
+                  <input
+                    type="text"
+                    id="tid"
+                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="tr"
+                    className="mb-1 block text-sm font-medium"
+                  >
+                    IBAN or SWIFT/BIC code
+                  </label>
+                  <input
+                    type="text"
+                    id="tr"
+                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
+                  />
+                </div>
+                <div>
+                  <label
+                    htmlFor="adi"
+                    className="mb-1 block text-sm font-medium"
+                  >
+                    What is the reason for the refund?
+                  </label>
+                  <input
+                    type="text"
+                    id="adi"
+                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
+                  />
+                </div>
+                <div className="flex items-center gap-x-4">
+                  <input type="checkbox" checked id="tac" />
+                  <label htmlFor="tac">
+                    I agree with the terms and condition
+                  </label>
+                </div>
+              </form>
+              <div>
+                <h2 className="mb-2 text-center text-xl font-bold">
+                  Refund Processing
+                </h2>
+                <PaymentInformation
+                  handleClick={() => {
+                    setShowCreatePaymentModal(false);
+                    setSuccessPaymentModal(true);
+                  }}
+                />
+              </div>
+            </div>
+          </article>
+        </div>
+      )}
+
+      {successPaymentModal && (
+        <div className="absolute left-0 top-0 h-screen w-screen bg-black/50">
+          <article className="absolute left-1/2 top-1/2 max-h-[90vh] w-full max-w-[450px] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg bg-white p-5">
+            <div className="mb-6 grid gap-y-0.5 px-4 text-center">
+              <h3 className="text-2xl font-bold text-green-700">
+                <IoIosCheckmarkCircle className="inline-block" /> Refund request
+                submitted successfully
+              </h3>
+              <p className="mt-4 font-semibold">
+                We are processing your request. We will respond as soon as
+                possible.
+              </p>
+            </div>
+            <div className="flex justify-center">
+              <button
+                className="mx-auto rounded bg-orange-700 p-1 px-4 py-2 text-base font-medium text-white"
+                onClick={() => setSuccessPaymentModal(false)}
+              >
+                OK
+              </button>
+            </div>
+          </article>
+        </div>
+      )}
     </section>
   );
 }
 
 export default RefundPage;
+
+const PaymentInformation = ({ handleClick }: { handleClick: () => void }) => {
+  return (
+    <div className="grid shrink-0 gap-y-4 rounded-lg bg-[#E8E3E3] p-5 shadow-xl shadow-[#e8e3e3]/50">
+      <div>
+        <p>Project amount: 1500 USD</p>
+        <p>Paid Amount: 500 USD</p>
+        <p>Left Amount: 1000 USD</p>
+        <p>Refund Amount: 500 USD</p>
+      </div>
+
+      <button
+        onClick={handleClick}
+        className="rounded-lg bg-[#3C5A99] py-3 text-white"
+      >
+        Continue
+      </button>
+    </div>
+  );
+};

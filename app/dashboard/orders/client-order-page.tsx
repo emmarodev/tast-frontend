@@ -4,13 +4,10 @@ import { useState } from "react";
 import Card from "../components/Card";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import Image from "next/image";
-import { GiCheckMark } from "react-icons/gi";
 import Link from "next/link";
 
 export default function OrderPage({ data }: { data: any }) {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [showVerifyPaymentModal, setShowVerifyPaymentModal] = useState(false);
-  const [successPaymentModal, setSuccessPaymentModal] = useState(false);
 
   const cardTitles = [
     "Total Orders",
@@ -62,7 +59,7 @@ export default function OrderPage({ data }: { data: any }) {
           </tr>
         </thead>
         <tbody className="border border-[#FFB200] text-center">
-          {data?.length === 0 ? (
+          {data?.length !== 0 ? (
             <tr>
               <td colSpan={9} className="py-6 text-2xl">
                 There is no available order
@@ -191,150 +188,15 @@ export default function OrderPage({ data }: { data: any }) {
               <PaymentInformation
                 handleClick={() => {
                   setShowPaymentModal(false);
-                  setShowVerifyPaymentModal(true);
                 }}
               />
             </main>
-            <footer>
+            {/* <footer>
               <p className="py-4 text-center text-sm font-semibold text-red-700">
                 Click on continue after you have paid the specified amount to
                 the bank info provided here
               </p>
-            </footer>
-          </article>
-        </div>
-      )}
-
-      {showVerifyPaymentModal && (
-        <div className="absolute left-0 top-0 h-screen w-screen bg-black/50">
-          <article className="absolute left-1/2 top-1/2 max-h-[90vh] w-3/5 -translate-x-1/2 -translate-y-1/2 overflow-y-auto bg-white p-5">
-            <h2 className="mb-8 text-2xl font-bold">
-              Enter your Mobile Wallet Information
-            </h2>
-
-            <div className="flex items-center gap-x-10">
-              <form action={"something"} className="grid grow gap-y-4">
-                <div>
-                  <label
-                    htmlFor="ahn"
-                    className="mb-1 block text-sm font-medium"
-                  >
-                    Account Holder Name
-                  </label>
-                  <input
-                    type="text"
-                    id="ahn"
-                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="mwn"
-                    className="mb-1 block text-sm font-medium"
-                  >
-                    Mobile Wallet Name
-                  </label>
-                  <input
-                    type="text"
-                    id="mwn"
-                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="an"
-                    className="mb-1 block text-sm font-medium"
-                  >
-                    Account Numer
-                  </label>
-                  <input
-                    type="text"
-                    id="an"
-                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="tid"
-                    className="mb-1 block text-sm font-medium"
-                  >
-                    Transaction ID
-                  </label>
-                  <input
-                    type="text"
-                    id="tid"
-                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="tr"
-                    className="mb-1 block text-sm font-medium"
-                  >
-                    Transaction Receipt
-                  </label>
-                  <input
-                    type="text"
-                    id="tr"
-                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="adi"
-                    className="mb-1 block text-sm font-medium"
-                  >
-                    Any additional Information
-                  </label>
-                  <input
-                    type="text"
-                    id="adi"
-                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
-                  />
-                </div>
-                <div className="flex items-center gap-x-4">
-                  <input type="checkbox" checked id="tac" />
-                  <label htmlFor="tac">
-                    I agree with the terms and condition
-                  </label>
-                </div>
-              </form>
-              <div>
-                <h2 className="mb-2 text-center text-xl font-bold">
-                  Payment Processing
-                </h2>
-                <PaymentInformation
-                  handleClick={() => {
-                    setShowVerifyPaymentModal(false);
-                    setSuccessPaymentModal(true);
-                  }}
-                />
-              </div>
-            </div>
-          </article>
-        </div>
-      )}
-
-      {successPaymentModal && (
-        <div className="absolute left-0 top-0 h-screen w-screen bg-black/50">
-          <article className="absolute left-1/2 top-1/2 max-h-[90vh] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg bg-white p-5">
-            <div className="mb-6 grid gap-y-0.5 px-4 text-center">
-              <GiCheckMark className="mx-auto text-4xl font-black text-green-400" />
-              <h3 className="text-2xl font-bold text-green-400">
-                Payment Succesful
-              </h3>
-              <p className="font-semibold text-gray-500">
-                Thank you! Your payment is complete
-              </p>
-            </div>
-            <div className="flex justify-center">
-              <button
-                className="mx-auto rounded bg-green-500 p-1 px-2 text-sm font-medium text-white"
-                onClick={() => setSuccessPaymentModal(false)}
-              >
-                Done
-              </button>
-            </div>
+            </footer> */}
           </article>
         </div>
       )}
