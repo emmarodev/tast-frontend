@@ -58,7 +58,7 @@ function OnlinePayment({ data }: { data: any }) {
           </tr>
         </thead>
         <tbody className="border border-[#FFB200] text-center">
-          {data?.length !== 0 ? (
+          {data?.length === 0 ? (
             <tr>
               <td colSpan={9} className="py-6 text-2xl">
                 There is no available order
