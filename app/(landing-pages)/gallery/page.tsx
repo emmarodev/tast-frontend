@@ -5,15 +5,11 @@ import skyfaced from "../../../public/skyfaced.jpg";
 import HeroFormWithSelect from "@/app/components/HeroFormWithSelect";
 import Paginate from "@/app/components/Pagination";
 import Image from "next/image";
-import duplex from "../../../public/duplex.jpg";
-import team from "../../../public/team.jpg";
-import rally from "../../../public/rally.jpg";
-import estate from "../../../public/estate.jpg";
-import discuss from "../../../public/discuss.jpg";
-import parallel from "../../../public/parallel.jpg";
+import { getData } from "../action";
+import { Suspense } from "react";
 
-export default function Orders() {
-  let orders = new Array(12).fill(undefined);
+export default async function Orders() {
+  const data = await getData("user/servicegallery");
 
   const categories = [
     "All",
@@ -24,8 +20,6 @@ export default function Orders() {
     "office",
     "road construction",
   ];
-
-  const images = [duplex, team, rally, estate, discuss, parallel]
 
   return (
     <>
@@ -43,14 +37,21 @@ export default function Orders() {
       </header>
 
       <main className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14 pb-20">
-        <section className="mb-8 grid grid-cols-5 gap-10">
-          {images.map((img, i) => (
-            <div key={i}>
-              <Image  src={img} alt='background image
-              'className="" />
-            </div>
-          ))}
-        </section>
+        <Suspense>
+          <section className="mb-8 grid grid-cols-5 gap-10">
+            {data.map((obj: any) => (
+              <div key={obj._id}>
+                <Image
+                  src={obj.media}
+                  alt="background image"
+                  width={321}
+                  height={312}
+                  className="rounded"
+                />
+              </div>
+            ))}
+          </section>
+        </Suspense>
         <Paginate />
       </main>
     </>

@@ -13,6 +13,7 @@ import master from "../../public/logos/master.png";
 import paypl from "../../public/logos/paypal.png";
 import sbi from "../../public/logos/sbi.png";
 import Link from "next/link";
+import { SERVER_URL } from "../constants/api";
 
 export default function Footer() {
   const usefulLinks = [
@@ -46,8 +47,7 @@ export default function Footer() {
     "green building",
     "cap management",
     "material testing",
-  ]
-  
+  ];
 
   return (
     <footer className="bg-[#231B7D] px-14 pb-2">
@@ -187,100 +187,136 @@ const Switch = () => {
 
 const Subscribe = () => {
   const languages = [
-    "Afrikaans", 
-    "Azərbaycan", 
-    "Bahasa Indonesia", 
-    "Bahasa Malaysia", 
-    "Bosanski", 
-    "Català", 
-    "Čeština", 
-    "Dansk", 
-    "Deutsch", 
-    "Eesti", 
-    "English (India)", 
-    "English (UK)", 
-    "English (US)", 
-    "Español (España)", 
-    "Español (Latinoamérica)", 
-    "Español (US)", 
-    "Euskara", 
-    "Filipino", 
-    "Français", 
-    "Français (Canada)", 
-    "Galego", 
-    "Hrvatski", 
-    "IsiZulu", 
-    "Íslenska", 
-    "Italiano", 
-    "Kiswahili", 
-    "Latviešu valoda", 
-    "Lietuvių", 
-    "Magyar", 
-    "Nederlands", 
-    "Norsk", 
-    "O‘zbek", 
-    "Polski", 
-    "Português", 
-    "Português (Brasil)", 
-    "Română", 
-    "Shqip", 
-    "Slovenčina", 
-    "Slovenščina", 
-    "Srpski", 
-    "Suomi", 
-    "Svenska", 
-    "Tiếng Việt", 
-    "Türkçe", 
-    "Беларуская", 
-    "Български", 
-    "Кыргызча", 
-    "Қазақ Тілі", 
-    "Македонски", 
-    "Монгол", 
-    "Русский", 
-    "Српски", 
-    "Українська", 
-    "Ελληνικά", 
-    "Հայերեն", 
-    "עברית", 
-    "اردو", 
-    "فارسی", 
-    "नेपाली", 
-    "मराठी", 
-    "हिन्दी", 
-    "অসমীয়া", 
-    "বাংলা", 
-    "ਪੰਜਾਬੀ", 
-    "ગુજરાતી", 
-    "ଓଡ଼ିଆ", 
-    "தமிழ்", 
-    "తెలుగు", 
-    "ಕನ್ನಡ", 
-    "മലയാളം", 
-    "සිංහල", 
-    "ภาษาไทย", 
-    "ລາວ", 
-    "ဗမာ", 
-    "ქართული", 
-    "አማርኛ", 
-    "ខ្មែរ", 
-    "中文 (简体)", 
-    "中文 (繁體)", 
-    "中文 (香港)", 
-    "日本語", 
-    "한국어"
+    "Afrikaans",
+    "Azərbaycan",
+    "Bahasa Indonesia",
+    "Bahasa Malaysia",
+    "Bosanski",
+    "Català",
+    "Čeština",
+    "Dansk",
+    "Deutsch",
+    "Eesti",
+    "English (India)",
+    "English (UK)",
+    "English (US)",
+    "Español (España)",
+    "Español (Latinoamérica)",
+    "Español (US)",
+    "Euskara",
+    "Filipino",
+    "Français",
+    "Français (Canada)",
+    "Galego",
+    "Hrvatski",
+    "IsiZulu",
+    "Íslenska",
+    "Italiano",
+    "Kiswahili",
+    "Latviešu valoda",
+    "Lietuvių",
+    "Magyar",
+    "Nederlands",
+    "Norsk",
+    "O‘zbek",
+    "Polski",
+    "Português",
+    "Português (Brasil)",
+    "Română",
+    "Shqip",
+    "Slovenčina",
+    "Slovenščina",
+    "Srpski",
+    "Suomi",
+    "Svenska",
+    "Tiếng Việt",
+    "Türkçe",
+    "Беларуская",
+    "Български",
+    "Кыргызча",
+    "Қазақ Тілі",
+    "Македонски",
+    "Монгол",
+    "Русский",
+    "Српски",
+    "Українська",
+    "Ελληνικά",
+    "Հայերեն",
+    "עברית",
+    "اردو",
+    "فارسی",
+    "नेपाली",
+    "मराठी",
+    "हिन्दी",
+    "অসমীয়া",
+    "বাংলা",
+    "ਪੰਜਾਬੀ",
+    "ગુજરાતી",
+    "ଓଡ଼ିଆ",
+    "தமிழ்",
+    "తెలుగు",
+    "ಕನ್ನಡ",
+    "മലയാളം",
+    "සිංහල",
+    "ภาษาไทย",
+    "ລາວ",
+    "ဗမာ",
+    "ქართული",
+    "አማርኛ",
+    "ខ្មែរ",
+    "中文 (简体)",
+    "中文 (繁體)",
+    "中文 (香港)",
+    "日本語",
+    "한국어",
   ];
 
+  async function subscribe(formData: FormData) {
+    "use server";
+
+    const body = {
+      email: formData.get("email"),
+    };
+
+    try {
+      const res = await fetch(`${SERVER_URL}/user/subscribe`, {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      });
+
+      const data = await res.json();
+
+      if (!data.status || data.status_code === 400) {
+        return {
+          message: [data.message || "An unknown error occurred."],
+        };
+      }
+    } catch (error) {
+      console.log(error);
+      return {
+        message: ["Failed to connect to the server. Please try again later."],
+      };
+    }
+  }
+
   return (
-    <form>
-      <select className="mr-4 rounded-lg border border-black px-3 py-2">      
-        {languages.map((l, i) => <option value="english" key={i}>{l}</option>)}
+    <form action={subscribe}>
+      <select className="mr-4 rounded-lg border border-black px-3 py-2">
+        {languages.map((l, i) => (
+          <option value="english" key={i}>
+            {l}
+          </option>
+        ))}
       </select>
 
       <input
         type="text"
         className="rounded-l-full px-6 py-3 text-sm font-semibold"
         placeholder="tact@gmail.com"
+        name="email"
       />
 
       <button className="rounded-r-full bg-[#231B7D] px-6 py-3 text-sm font-semibold text-white">

@@ -7,6 +7,7 @@ import team from "../../../public/team.jpg";
 import scifi from "../../../public/scifi.jpg";
 import Paginate from "@/app/components/Pagination";
 import { SERVER_URL } from "@/app/constants/api";
+import { Suspense } from "react";
 
 async function getData() {
   const res = await fetch(`${SERVER_URL}/user/project`);
@@ -37,14 +38,16 @@ async function Template() {
         <Tools />
       </header>
 
-      <main className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14 pb-20">
-        <div className="mb-8 grid grid-cols-4 gap-4">
-          {data.map((d: any, i: number) => (
-            <ProjectCard key={i} data={d} image={images[0]} />
-          ))}
-        </div>
-        <Paginate />
-      </main>
+      <Suspense>
+        <main className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14 pb-20">
+          <div className="mb-8 grid grid-cols-4 gap-4">
+            {data.map((d: any, i: number) => (
+              <ProjectCard key={i} data={d} image={images[0]} />
+            ))}
+          </div>
+          <Paginate />
+        </main>
+      </Suspense>
     </>
   );
 }

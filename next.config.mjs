@@ -10,6 +10,12 @@ const nextConfig = {
         port: "3000",
         pathname: "**",
       },
+      {
+        protocol: "https",
+        hostname: "encrypted-tbn0.gstatic.com",
+        port: "",
+        pathname: "**",
+      },
     ],
   },
 };

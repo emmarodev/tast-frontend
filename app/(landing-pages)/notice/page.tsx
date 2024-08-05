@@ -3,8 +3,12 @@ import Line from "@/app/components/Line";
 import HeroForm from "@/app/components/HeroForm";
 import Paginate from "@/app/components/Pagination";
 import skyfaced from "../../../public/skyfaced.jpg";
+import { Suspense } from "react";
+import { getData } from "../action";
 
-function Notice() {
+async function Notice() {
+  const data = await getData("user/notice");
+
   return (
     <>
       <header className="flex flex-col gap-y-4 bg-[#231B7D] px-4 pb-10">
@@ -18,10 +22,12 @@ function Notice() {
       </header>
 
       <main className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14 pb-20">
-        <div className="h-auto w-full overflow-hidden rounded-2xl border border-transparent pb-6 shadow-lg">
-          <Table />
-          <Paginate />
-        </div>
+        <Suspense>
+          <div className="h-auto w-full overflow-hidden rounded-2xl border border-transparent pb-6 shadow-lg">
+            <Table data={data} />
+            <Paginate />
+          </div>
+        </Suspense>
       </main>
     </>
   );
@@ -29,7 +35,7 @@ function Notice() {
 
 export default Notice;
 
-const Table = () => {
+const Table = ({ data }: { data: any }) => {
   return (
     <div>
       <table className="mb-6 w-full rounded-lg border border-[#FFB200] text-sm">
@@ -44,25 +50,35 @@ const Table = () => {
         </thead>
 
         <tbody className="border border-[#FFB200] text-center">
-          <tr className="odd:bg-[#FAEFD8] even:bg-white">
-            <td className="border-r border-r-[#FFB200] py-6">
-              <span className="rounded bg-[#FFB200] px-2 py-1 font-semibold">
-                1
-              </span>
-            </td>
-            <td className="border-r border-r-[#FFB200]">Notice Title</td>
-            <td className="border-r border-r-[#FFB200]">2023-10-20</td>
-            <td className="border-r border-r-[#FFB200]">
-              <span className="rounded-full bg-[#05FF0080] px-4 py-1">
-                Ongoing
-              </span>
-            </td>
-            <td className="border-r border-r-[#FFB200]">
-              <button className="rounded bg-[#FFB200] px-6 py-2 text-sm font-semibold uppercase">
-                View
-              </button>
-            </td>
-          </tr>
+          {data.length === 0 ? (
+            <tr>
+              <td colSpan={5} className="py-4 text-center text-2xl">
+                There is no Notice
+              </td>
+            </tr>
+          ) : (
+            data.map((obj: any) => {
+              <tr key={obj._id} className="odd:bg-[#FAEFD8] even:bg-white">
+                <td className="border-r border-r-[#FFB200] py-6">
+                  <span className="rounded bg-[#FFB200] px-2 py-1 font-semibold">
+                    1
+                  </span>
+                </td>
+                <td className="border-r border-r-[#FFB200]">Notice Title</td>
+                <td className="border-r border-r-[#FFB200]">2023-10-20</td>
+                <td className="border-r border-r-[#FFB200]">
+                  <span className="rounded-full bg-[#05FF0080] px-4 py-1">
+                    Ongoing
+                  </span>
+                </td>
+                <td className="border-r border-r-[#FFB200]">
+                  <button className="rounded bg-[#FFB200] px-6 py-2 text-sm font-semibold uppercase">
+                    View
+                  </button>
+                </td>
+              </tr>;
+            })
+          )}
         </tbody>
       </table>
     </div>

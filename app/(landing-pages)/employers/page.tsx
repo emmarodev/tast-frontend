@@ -4,9 +4,11 @@ import Paginate from "@/app/components/Pagination";
 import HeroForm from "@/app/components/HeroForm";
 import skyfaced from "../../../public/skyfaced.jpg";
 import EmployeeCard from "@/app/components/EmployeeCard";
+import { Suspense } from "react";
+import { getData } from "../action";
 
-export default function Employers() {
-  let orders = new Array(12).fill(undefined);
+export default async function Employers() {
+  const data = await getData("user/servicegallery");
 
   return (
     <>
@@ -22,11 +24,13 @@ export default function Employers() {
       </header>
 
       <main className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14 pb-20">
-        <section className="mb-8 grid grid-cols-4 gap-10">
-          {orders.map((_, i) => (
-            <EmployeeCard key={i} />
-          ))}
-        </section>
+        <Suspense>
+          <section className="mb-8 grid grid-cols-4 gap-10">
+            {data.map((obj: any) => (
+              <EmployeeCard key={obj._id} data={data} />
+            ))}
+          </section>
+        </Suspense>
         <Paginate />
       </main>
     </>

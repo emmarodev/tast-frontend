@@ -6,6 +6,7 @@ import Line from "@/app/components/Line";
 import Paginate from "@/app/components/Pagination";
 import { SERVER_URL } from "@/app/constants/api";
 import { ArchitectureDataProps } from "./definition";
+import { Suspense } from "react";
 
 async function getData() {
   const res = await fetch(`${SERVER_URL}/user/architecture`);
@@ -37,14 +38,16 @@ export default async function Architecture() {
         <Tools />
       </header>
 
-      <main className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14 pb-20">
-        <div className="mb-8 grid grid-cols-4 gap-4">
-          {data.map((d: ArchitectureDataProps) => (
-            <FeaturesCard key={d._id} data={d} />
-          ))}
-        </div>
-        <Paginate />
-      </main>
+      <Suspense>
+        <main className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14 pb-20">
+          <div className="mb-8 grid grid-cols-4 gap-4">
+            {data.map((d: ArchitectureDataProps) => (
+              <FeaturesCard key={d._id} data={d} />
+            ))}
+          </div>
+          <Paginate />
+        </main>
+      </Suspense>
     </>
   );
 }

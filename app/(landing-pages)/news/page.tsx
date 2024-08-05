@@ -4,9 +4,12 @@ import Line from "@/app/components/Line";
 import Paginate from "@/app/components/Pagination";
 import NewsCard from "@/app/components/NewsCard";
 import skyfaced from "../../../public/skyfaced.jpg";
+import { getData } from "../action";
+import { Suspense } from "react";
 
-function News() {
-  let news = new Array(12).fill(undefined);
+async function News() {
+  const data = await getData("user/blog");
+  console.log(data);
 
   return (
     <>
@@ -21,14 +24,16 @@ function News() {
         </Hero>
       </header>
 
-      <main className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14 pb-20">
-        <div className="mb-8 grid grid-cols-4 gap-4">
-          {news.map((d, i) => (
-            <NewsCard key={i} data={d} />
-          ))}
-        </div>
-        <Paginate />
-      </main>
+      <Suspense>
+        <main className="bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-14 pb-20">
+          <div className="mb-8 grid grid-cols-4 gap-4">
+            {data.map((d: any) => (
+              <NewsCard key={d._id} data={d} />
+            ))}
+          </div>
+          <Paginate />
+        </main>
+      </Suspense>
     </>
   );
 }

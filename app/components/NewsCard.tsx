@@ -26,29 +26,29 @@ const NewsCard = ({ data }: { data: ArchitectureDataProps }) => {
 
       <main className="mb-2 px-3">
         <p className="mb-2 text-xs tracking-wide">
-          {/* {formatISODateString(data.createdAt)} */}
+          {formatISODateString(data.createdAt)}
         </p>
         <div className="mb-1 flex flex-col gap-y-1">
           <Line />
           <h3 className="text-lg font-bold capitalize text-black">
-            {/* {data.title} */}
+            {data.title}
           </h3>
         </div>
-        {/* <p className="text-sm">{data.description}</p> */}
+        <p className="text-sm">{data.description}</p>
       </main>
 
       <footer className="flex items-center gap-x-4 px-3">
         <div className="flex items-center gap-x-2">
           <IoEyeSharp className="text-xl font-bold text-[#172554]" />
-          {/* <p className="font-semibold text-[#79797999]">{data.view}</p> */}
+          <p className="font-semibold text-[#79797999]">{data.view}</p>
         </div>
         <div className="flex items-center gap-x-2">
           <IoMdShare className="text-xl font-bold text-[#172554]" />
-          {/* <p className="font-semibold text-[#79797999]">{data.share}</p> */}
+          <p className="font-semibold text-[#79797999]">{data.share}</p>
         </div>
         <div className="flex items-center gap-x-2">
           <CiHeart className="text-xl font-bold text-[#172554]" />
-          {/* <p className="font-semibold text-[#79797999]">{data.favourite}</p> */}
+          <p className="font-semibold text-[#79797999]">{data.favourite}</p>
         </div>
       </footer>
     </article>
