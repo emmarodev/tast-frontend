@@ -45,7 +45,7 @@ async function Template() {
               <ProjectCard key={i} data={d} image={images[0]} />
             ))}
           </div>
-          <Paginate />
+          {/* <Paginate /> */}
         </main>
       </Suspense>
     </>

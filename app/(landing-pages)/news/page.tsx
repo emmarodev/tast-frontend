@@ -30,7 +30,7 @@ async function News() {
               <NewsCard key={d._id} data={d} />
             ))}
           </div>
-          <Paginate />
+          {/* <Paginate /> */}
         </main>
       </Suspense>
     </>

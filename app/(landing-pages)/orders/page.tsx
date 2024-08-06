@@ -52,7 +52,7 @@ export default async function Orders() {
             <OrderCard key={d._id} data={d} />
           ))}
         </section>
-        <Paginate />
+        {/* <Paginate /> */}
       </main>
     </>
   );

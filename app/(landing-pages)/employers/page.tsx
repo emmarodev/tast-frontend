@@ -31,7 +31,7 @@ export default async function Employers() {
             ))}
           </section>
         </Suspense>
-        <Paginate />
+        {/* <Paginate /> */}
       </main>
     </>
   );

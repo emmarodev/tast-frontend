@@ -211,11 +211,11 @@ const Service = async () => {
         ))}
       </section>
 
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <button className="mt-10 inline-block rounded border bg-[#222222] px-6 py-3 text-sm font-semibold text-white hover:bg-[#222222]/90">
           SEE MORE
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
@@ -297,11 +297,11 @@ const Gallery = async () => {
           })}
       </div>
 
-      <div className="mt-10 flex justify-center">
+      {/* <div className="mt-10 flex justify-center">
         <button className="inline-block rounded bg-[#ffb200] px-6 py-3 text-sm font-semibold hover:bg-[#ffb200]/90">
           SEE MORE
         </button>
-      </div>
+      </div> */}
     </section>
   );
 };
@@ -322,11 +322,11 @@ const Project = async () => {
         ))}
       </div>
 
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <button className="mt-10 inline-block rounded bg-[#ffb200] px-6 py-3 text-sm font-semibold hover:bg-[#ffb200]/90">
           SEE MORE
         </button>
-      </div>
+      </div> */}
     </section>
   );
 };
@@ -347,11 +347,11 @@ const Features = async () => {
         ))}
       </div>
 
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <button className="mt-10 inline-block rounded bg-[#ffb200] px-6 py-3 text-sm font-semibold hover:bg-[#ffb200]/90">
           SEE MORE
         </button>
-      </div>
+      </div> */}
     </section>
   );
 };
@@ -388,7 +388,6 @@ const FeedbackCard = ({ image }: { image: any }) => {
           src={image}
           placeholder="blur"
           quality={100}
-          layout="fill"
           sizes="100vw"
           style={{
             objectFit: "cover",
@@ -427,11 +426,11 @@ const News = async () => {
         ))}
       </div>
 
-      <div className="flex justify-center">
+      {/* <div className="flex justify-center">
         <button className="mt-10 inline-block rounded bg-[#ffb200] px-6 py-3 text-sm font-semibold hover:bg-[#ffb200]/90">
           SEE MORE
         </button>
-      </div>
+      </div> */}
     </section>
   );
 };

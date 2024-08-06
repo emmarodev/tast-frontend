@@ -44,7 +44,7 @@ export default async function Architecture() {
               <FeaturesCard key={d._id} data={d} />
             ))}
           </div>
-          <Paginate />
+          {/* <Paginate /> */}
         </main>
       </Suspense>
     </>

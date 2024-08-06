@@ -25,7 +25,7 @@ async function Notice() {
         <Suspense>
           <div className="h-auto w-full overflow-hidden rounded-2xl border border-transparent pb-6 shadow-lg">
             <Table data={data} />
-            <Paginate />
+            {/* <Paginate /> */}
           </div>
         </Suspense>
       </main>

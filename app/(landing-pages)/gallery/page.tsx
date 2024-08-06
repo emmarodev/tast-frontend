@@ -52,7 +52,7 @@ export default async function Orders() {
             ))}
           </section>
         </Suspense>
-        <Paginate />
+        {/* <Paginate /> */}
       </main>
     </>
   );

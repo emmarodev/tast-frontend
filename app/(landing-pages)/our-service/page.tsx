@@ -29,7 +29,7 @@ async function Services() {
             {data.length > 0 &&
               data.map((d: any) => <ServiceCard key={d._id} data={d} />)}
           </section>
-          <Paginate />
+          {/* <Paginate /> */}
         </main>
       </Suspense>
     </>
