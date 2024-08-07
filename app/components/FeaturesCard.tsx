@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Line from "./Line";
 import Overlay from "./Overlay";
@@ -8,6 +10,9 @@ import canoe from "../../public/canoe.jpg";
 import ceiling from "../../public/ceiling.jpg";
 import { ArchitectureDataProps } from "../(landing-pages)/architecture/definition";
 import { formatISODateString } from "../lib/formatISODateString";
+import { viewFavShare } from "../(landing-pages)/action";
+import { FaHeart } from "react-icons/fa";
+import { useState } from "react";
 
 export default function FeaturesCard({
   data,
@@ -79,6 +84,8 @@ const FeaturesCardFront = ({ data }: { data: ArchitectureDataProps }) => {
 };
 
 const FeaturesCardBack = ({ data }: { data: ArchitectureDataProps }) => {
+  const [clicked, setClicked] = useState(false);
+
   return (
     <article className="flip-card-back relative h-[400px] w-full bg-gray-900 px-6 py-10">
       <Image
@@ -97,7 +104,16 @@ const FeaturesCardBack = ({ data }: { data: ArchitectureDataProps }) => {
 
       <Tag price={data.price} />
 
-      <main className="relative z-50 mb-4 pt-4 text-sm font-semibold text-[#727272]">
+      <main
+        className="relative z-50 mb-4 pt-4 text-sm font-semibold text-[#727272]"
+        onMouseEnter={() =>
+          viewFavShare(
+            { architectureid: data._id, contain: "view" },
+            "user/architecture/action",
+            "/architecture",
+          )
+        }
+      >
         <Line width="57.75px" />
         <h3 className="mb-4 mt-2 text-2xl font-bold capitalize text-white">
           {data.title}
@@ -133,10 +149,24 @@ const FeaturesCardBack = ({ data }: { data: ArchitectureDataProps }) => {
           <IoMdShare className="text-2xl font-bold text-[#ffb200]" />
           <p className="font-medium text-white">{data.share}</p>
         </div>
-        <div className="flex items-center gap-x-2">
-          <CiHeart className="text-2xl font-bold text-[#ffb200]" />
+        <button
+          className="flex items-center gap-x-2"
+          onClick={() => {
+            setClicked(!clicked);
+            viewFavShare(
+              { blogid: data._id, contain: "like" },
+              "user/blog/action",
+              "/news",
+            );
+          }}
+        >
+          {clicked ? (
+            <FaHeart className="text-red-500" />
+          ) : (
+            <CiHeart className="text-2xl font-bold text-[#ffb200]" />
+          )}
           <p className="font-medium text-white">{data.favourite}</p>
-        </div>
+        </button>
       </footer>
     </article>
   );

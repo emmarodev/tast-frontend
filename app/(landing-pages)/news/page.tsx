@@ -9,6 +9,7 @@ import { Suspense } from "react";
 
 async function News() {
   const data = await getData("user/blog");
+  console.log(data)
 
   return (
     <>

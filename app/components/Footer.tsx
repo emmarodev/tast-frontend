@@ -6,7 +6,6 @@ import { MdOutlineEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 import logo from "../../public/logo.svg";
 import usa from "../../public/icons/usa.png";
-import chat from "../../public/icons/chat.png";
 import bitcoin from "../../public/logos/bitcoin.png";
 import payoneer from "../../public/logos/payoneer.png";
 import master from "../../public/logos/master.png";
@@ -14,40 +13,12 @@ import paypl from "../../public/logos/paypal.png";
 import sbi from "../../public/logos/sbi.png";
 import Link from "next/link";
 import { SERVER_URL } from "../constants/api";
+import { getData } from "../(landing-pages)/action";
+import { Suspense } from "react";
+import ContactUs from "./ContactUs";
 
-export default function Footer() {
-  const usefulLinks = [
-    "cookies",
-    "contact us",
-    "help &support",
-    "about us",
-    "terms and condition",
-    "privacy policy",
-    "return policy",
-    "global locations",
-    "global businesses",
-  ];
-  const informationTech = [
-    "fire safety",
-    "electrical safety",
-    "detailed engineering assessment(DEA)",
-    "Energy efficient audit",
-    "architectural",
-    "testing and training",
-    "environmental and social",
-    "impact assessment",
-    "green building",
-  ];
-  const civilEng = [
-    "energy efficient audit",
-    "architectural",
-    "testing and training",
-    "environmental and social",
-    "impact assessment",
-    "green building",
-    "cap management",
-    "material testing",
-  ];
+export default async function Footer() {
+  const data = await getData("user/footer");
 
   return (
     <footer className="bg-[#231B7D] px-14 pb-2">
@@ -88,21 +59,29 @@ export default function Footer() {
           </ul>
           <ul className="flex flex-col gap-y-2">
             <li className="mb-2 text-base font-bold">Company</li>
-            {usefulLinks.map((link, i) => (
-              <FooterLink key={i}>{link}</FooterLink>
-            ))}
+            <Suspense>
+              {data?.company?.map((obj: any) => (
+                <FooterLink key={obj._id}>{obj.note}</FooterLink>
+              ))}
+            </Suspense>
           </ul>
           <ul className="flex flex-col gap-y-2">
-            <li className="mb-2 text-base font-bold">Information technology</li>
-            {informationTech.map((link, i) => (
-              <FooterLink key={i}>{link}</FooterLink>
-            ))}
+            <Suspense>
+              <li className="mb-2 text-base font-bold">
+                Information technology
+              </li>
+              {data?.infotech?.map((obj: any) => (
+                <FooterLink key={obj._id}>{obj.note}</FooterLink>
+              ))}
+            </Suspense>
           </ul>
           <ul className="flex flex-col gap-y-2">
             <li className="mb-2 text-base font-bold">Civil Engineering</li>
-            {civilEng.map((link, i) => (
-              <FooterLink key={i}>{link}</FooterLink>
-            ))}
+            <Suspense>
+              {data?.civil?.map((obj: any) => (
+                <FooterLink key={obj._id}>{obj.note}</FooterLink>
+              ))}
+            </Suspense>
           </ul>
         </div>
 
@@ -112,7 +91,7 @@ export default function Footer() {
             <Subscribe />
           </div>
           <div className="flex flex-col items-end">
-            <Image src={chat} alt="Chat bot icon" width={70} className="mb-4" />
+            <ContactUs />
 
             <div className="flex items-center gap-x-4">
               <Image src={bitcoin} alt="bitcoin logo" width={60} />

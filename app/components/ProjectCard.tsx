@@ -1,9 +1,15 @@
+"use client";
+
 import Image from "next/image";
 import { CiHeart } from "react-icons/ci";
 import { IoMdPricetag, IoMdShare } from "react-icons/io";
 import { IoEyeSharp } from "react-icons/io5";
 import { ArchitectureDataProps } from "../(landing-pages)/architecture/definition";
 import { formatISODateString } from "../lib/formatISODateString";
+import { SERVER_URL } from "../constants/api";
+import { useState } from "react";
+import { FaHeart } from "react-icons/fa";
+import { viewFavShare } from "../(landing-pages)/action";
 
 export default function ProjectCard({
   image,
@@ -12,8 +18,19 @@ export default function ProjectCard({
   image: any;
   data: ArchitectureDataProps;
 }) {
+  const [clicked, setClicked] = useState(false);
+
   return (
-    <article className="relative overflow-hidden rounded-xl bg-white px-6 py-5 font-medium text-[#00000099] shadow-xl">
+    <article
+      className="relative overflow-hidden rounded-xl bg-white px-6 py-5 font-medium text-[#00000099] shadow-xl"
+      onMouseEnter={() =>
+        viewFavShare(
+          { projectid: data._id, contain: "view" },
+          "user/project/action",
+          "/template",
+        )
+      }
+    >
       <header className="relative mb-4 h-52 overflow-hidden rounded-lg">
         <Image
           alt="Mountains"
@@ -47,8 +64,22 @@ export default function ProjectCard({
           <IoMdShare className="text-xl font-bold text-[#172554]" />
           <p className="font-semibold text-[#79797999]">{data.share}</p>
         </button>
-        <button className="flex items-center gap-x-2">
-          <CiHeart className="text-xl font-bold text-[#172554]" />
+        <button
+          className="flex items-center gap-x-2"
+          onClick={() => {
+            setClicked(!clicked);
+            viewFavShare(
+              { projectid: data._id, contain: "view" },
+              "user/project/action",
+              "/template",
+            );
+          }}
+        >
+          {clicked ? (
+            <FaHeart className="text-lg font-bold text-red-500" />
+          ) : (
+            <CiHeart className="text-xl font-bold text-[#172554]" />
+          )}
           <p className="font-semibold text-[#79797999]">{data.favourite}</p>
         </button>
       </footer>

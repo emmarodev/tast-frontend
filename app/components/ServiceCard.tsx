@@ -1,5 +1,6 @@
 import { GrServices } from "react-icons/gr";
 import { ArchitectureDataProps } from "../(landing-pages)/architecture/definition";
+import ServiceCardButton from "./ServiceCardButton";
 
 export default function ServiceCard({ data }: { data: ArchitectureDataProps }) {
   return (
@@ -9,9 +10,7 @@ export default function ServiceCard({ data }: { data: ArchitectureDataProps }) {
       </div>
       <h3 className="text-base font-bold capitalize">{data.title}</h3>
       <p className="text-sm">{data.description}</p>
-      <button className="mt-4 rounded border border-[#ffb200] bg-transparent px-4 py-2 text-xs font-bold transition-all duration-150 group-hover:border-black group-hover:bg-black group-hover:text-white">
-        LEARN MORE
-      </button>
+      <ServiceCardButton data={data} />
     </article>
   );
 }
