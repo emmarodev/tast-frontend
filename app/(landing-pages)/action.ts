@@ -14,7 +14,6 @@ export async function getData(path: string) {
     if (!data.status || data.status_code === 400) {
       throw new Error("Failed to fetch data");
     }
-    console.log(data);
 
     return data.data;
   } catch (error) {
@@ -80,7 +79,6 @@ export async function contactUs(formData: FormData) {
     });
 
     const data = await res.json();
-    console.log(data);
 
     if (!data.status || data.status_code === 400) {
       return {
@@ -116,8 +114,6 @@ export const viewFavShare = async (
     });
 
     const resData = await res.json();
-
-    console.log(resData);
   } catch (error) {
     console.log(error);
   }

@@ -7,6 +7,45 @@ import Paginate from "@/app/components/Pagination";
 import { SERVER_URL } from "@/app/constants/api";
 import { ArchitectureDataProps } from "../architecture/definition";
 import OrderCard from "@/app/components/OrderCard";
+import { z } from "zod";
+
+async function searchOrder(formData: FormData) {
+  "use server";
+
+  const schema = z.object({
+    title: z.string().min(1, { message: "Please input your name" }),
+  });
+
+  const validateFields = schema.safeParse({
+    title: formData.get("title"),
+  });
+
+  if (!validateFields.success) {
+    return validateFields.error.flatten().fieldErrors;
+  }
+
+  try {
+    const res = await fetch(`${SERVER_URL}/user/search/order`, {
+      method: "POST",
+      body: JSON.stringify(validateFields.data),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    });
+
+    const data = await res.json();
+
+    if (!data.status || data.status_code === 400) {
+      return {
+        message: [data.message || "An unknown error occurred."],
+      };
+    }
+  } catch (error) {
+    return {
+      message: ["Failed to connect to the server. Please try again later."],
+    };
+  }
+}
 
 async function getData() {
   const res = await fetch(`${SERVER_URL}/user/order`);
@@ -22,15 +61,11 @@ async function getData() {
 export default async function Orders() {
   const { data } = await getData();
 
-  const categories = [
-    "All",
-    "market construction",
-    "masaue construction",
-    "airport construction",
-    "school construction",
-    "home construction",
-    "road construction",
-  ];
+  const categories = data.map((d: { title: string; _id: string }) => {
+    return { title: d.title, link: `/orders/${d._id}` };
+  });
+
+  const options = data.map((d: { title: string }) => d.title);
 
   return (
     <>
@@ -40,7 +75,7 @@ export default async function Orders() {
           <h1 className="hero-heading">
             <span className="text-[#ffb200]">Orders</span>
           </h1>
-          <HeroFormWithSelect options={["All", "App Dev", "Bug", "Orders"]} />
+          <HeroFormWithSelect options={options} action={searchOrder} />
         </Hero>
 
         <Categories categories={categories} />

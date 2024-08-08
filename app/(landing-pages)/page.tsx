@@ -101,7 +101,9 @@ export default async function Home() {
   );
 }
 
-const Placeholder = () => {
+const Placeholder = async () => {
+  const { data } = await getData();
+
   return (
     <section className="mt-6">
       <div className="mb-10 flex flex-col items-center gap-y-4">
@@ -109,20 +111,23 @@ const Placeholder = () => {
         <h2 className="text-2xl font-bold text-white">Placeholder Text</h2>
       </div>
       <div className="flex justify-center gap-x-52">
-        {placeholderData.map((data, i) => {
+        {data?.threecard?.map((data: any) => {
           return (
             <article
               className="max-w-[200px] text-center text-sm text-white"
-              key={i}
+              key={data._id}
             >
               <Image
-                src={data.icon}
+                src={data.image}
                 alt="icon"
                 width={60}
+                height={60}
                 className="mx-auto mb-3"
               />
-              <h3 className="mb-3 text-base font-bold">{data.title}</h3>
-              <p className="mb-3 text-[#FFFFFFB2]">{data.text}</p>
+              <h3 className="mb-3 text-base font-bold capitalize">
+                {data.title}
+              </h3>
+              <p className="mb-3 text-[#FFFFFFB2]">{data.description}</p>
               <button className="rounded bg-[#FFB200] px-4 py-2 text-xs font-semibold uppercase text-black transition-all duration-150 hover:bg-black hover:text-white">
                 Read more
               </button>
@@ -130,9 +135,8 @@ const Placeholder = () => {
           );
         })}
       </div>
-
-      <div className="mt-20 flex gap-x-10 px-10">
-        <div className="flex w-3/5 flex-col rounded bg-[#EDEDED]">
+      <div className="mt-20 grid grid-cols-5 grid-rows-4 gap-x-10 gap-y-4 px-10">
+        <div className="col-span-3 row-span-4 flex flex-col rounded bg-[#EDEDED]">
           <div className="relative grow rounded bg-gray-500">
             <Image
               alt="Mountains"
@@ -165,25 +169,25 @@ const Placeholder = () => {
             </button>
           </div>
         </div>
-        <div className="grid w-2/5 gap-y-4">
-          {functionalData.map((data, i) => {
-            return (
-              <article
-                key={i}
-                className="flex items-center gap-x-4 rounded bg-white px-4 py-4 transition-all duration-150 hover:bg-[#ffb200]"
-              >
-                <div>
-                  <Image src={data.icon} alt="icon" />
-                </div>
-                <div className="">
-                  <h3 className="font-semibold">{data.title}</h3>
-                  <p className="text-sm text-[#00000099]">{data.text}</p>
-                </div>
-              </article>
-            );
-          })}
-        </div>
+
+        {data.fourcard?.map((data: any) => {
+          return (
+            <article
+              key={data._id}
+              className="col-span-2 row-span-1 flex min-h-[120px] items-center gap-x-4 rounded bg-white px-4 py-4 transition-all duration-150 hover:bg-[#ffb200]"
+            >
+              <div>
+                <Image src={data.image} alt="icon" width={50} height={50} />
+              </div>
+              <div className="">
+                <h3 className="font-semibold capitalize">{data.title}</h3>
+                <p className="text-sm text-[#00000099]">{data.tag}</p>
+              </div>
+            </article>
+          );
+        })}
       </div>
+      s
     </section>
   );
 };
@@ -224,15 +228,7 @@ const Gallery = async () => {
   const { data } = await getData();
   const others = data.servicegallery.slice(1);
 
-  const categories = [
-    "All",
-    "Home",
-    "Road",
-    "Bridge",
-    "Electricity",
-    "Airport",
-    "Railway",
-  ];
+  const titles = data.servicegallery.map((d: { title: string }) => d.title);
   return (
     <section>
       <div className="mb-10 flex flex-col items-center gap-y-4">
@@ -242,24 +238,24 @@ const Gallery = async () => {
         </h2>
       </div>
       <div className="flex items-center gap-x-4">
-        <button className="flex h-8 w-8 items-center justify-center rounded-full bg-[#ffb200] text-[#231B7D] hover:bg-[#ffb200]/90">
+        {/* <button className="flex h-8 w-8 items-center justify-center rounded-full bg-[#ffb200] text-[#231B7D] hover:bg-[#ffb200]/90">
           <FaArrowLeft />
-        </button>
+        </button> */}
         <div className="flex grow gap-x-6">
-          {categories.map((category, i) => {
+          {titles.map((category: string, i: number) => {
             return (
               <button
                 key={i}
-                className="grow rounded bg-white py-3 text-center font-semibold uppercase transition-all duration-150 hover:bg-black hover:text-white"
+                className="w-fit px-4 rounded bg-white py-3 text-center font-semibold uppercase transition-all duration-150 hover:bg-black hover:text-white"
               >
                 {category}
               </button>
             );
           })}
         </div>
-        <button className="flex h-8 w-8 items-center justify-center rounded-full bg-[#ffb200] text-[#231B7D] hover:bg-[#ffb200]/90">
+        {/* <button className="flex h-8 w-8 items-center justify-center rounded-full bg-[#ffb200] text-[#231B7D] hover:bg-[#ffb200]/90">
           <FaArrowRight />
-        </button>
+        </button> */}
       </div>
 
       <div className="mt-6 grid grid-cols-4 gap-4">

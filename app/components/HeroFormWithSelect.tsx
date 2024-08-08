@@ -1,6 +1,12 @@
-const HeroFormWithSelect = ({ options }: { options: string[] }) => {
+const HeroFormWithSelect = ({
+  options,
+  action,
+}: {
+  options: string[];
+  action?: any;
+}) => {
   return (
-    <form>
+    <form action={action}>
       <select
         name=""
         id=""
@@ -14,8 +20,9 @@ const HeroFormWithSelect = ({ options }: { options: string[] }) => {
       </select>
       <input
         type="search"
+        name="title"
         placeholder="Search here..."
-        className="mr-2 min-w-[280px] rounded-lg border px-3 py-3 shadow-xl focus:border-[#FFB200] focus:outline-none"
+        className="mr-2 min-w-[280px] rounded-lg border px-3 py-3 text-black shadow-xl focus:border-[#FFB200] focus:outline-none"
       />
       <button className="rounded-lg bg-[#FFB200] px-6 py-3 font-semibold">
         Search

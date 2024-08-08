@@ -3,6 +3,10 @@ import Image from "next/image";
 import Line from "@/app/components/Line";
 import { getOrders } from "@/app/dashboard/orders/get-orders";
 import { SERVER_URL } from "@/app/constants/api";
+import { redirect } from "next/navigation";
+import getData from "@/app/dashboard/api/getProfileData";
+import ImageOrFile from "@/app/components/ImageOrFile";
+import SubmitButton from "@/app/(auth)/components/submit-button";
 
 async function generateStaticParams() {
   const data: any = getOrders();
@@ -25,15 +29,24 @@ const createOrder = async (formData: FormData) => {
     project_files: formData.getAll("project_files"),
     project_details: formData.get("project_details"),
     budget: Number(formData.get("budget")),
+    signature: formData.get("signature"),
   };
 
-  const { project_files, ...others } = data;
+  let { project_files, signature, ...others } = data;
   const filesArray: { file_type: string; file_url: string }[] = [];
 
   project_files.forEach((file: any) => {
     const { type, name } = file;
     filesArray.push({ file_type: type, file_url: name });
   });
+
+  let signature_value, signature_type;
+  if (typeof signature !== "string" && signature !== undefined) {
+    signature_value = signature?.name;
+    signature_type = "image";
+  } else {
+    (signature_type = "text"), (signature_value = signature);
+  }
 
   const token = cookies().get("token")?.value;
   const userId = cookies().get("userId")?.value;
@@ -42,8 +55,8 @@ const createOrder = async (formData: FormData) => {
     ...others,
     project_files: filesArray,
     userid: userId,
-    signature_type: userId,
-    signature: userId,
+    signature_type: signature_type,
+    signature: signature_value,
   };
 
   try {
@@ -67,7 +80,11 @@ const createOrder = async (formData: FormData) => {
 };
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const userId = cookies().get("userId")?.value;
+  const cookiesStore = cookies();
+  const token = cookiesStore.get("token")?.value;
+  if (!token) redirect("/sign-in");
+
+  const data = await getData();
 
   return (
     <div className="mb-10 bg-white p-10 px-28">
@@ -97,27 +114,39 @@ export default async function Page({ params }: { params: { id: string } }) {
         </div>
         <form>
           <div className="grid grid-cols-3 gap-5">
-            <TextInput name="fullName" label="Applicant's Full Name" value="" />
+            <TextInput
+              name="fullName"
+              label="Applicant's Full Name"
+              value={data.name}
+            />
             <TextInput
               name="fullName"
               label="What's your occupation"
-              value=""
+              value={data.occupation}
             />
             <TextInput
               name="fullName"
               label="What language can you speak"
-              value=""
+              value={data.language.join(", ")}
             />
-            <TextInput name="fullName" label="Date of Birth" value="" />
+            <TextInput name="fullName" label="Date of Birth" value={data.dob} />
             <TextInput
               name="fullName"
               label="National Identification Number / Passport Number"
-              value=""
+              value={data.identification}
             />
-            <TextInput name="fullName" label="Permanent Address" value="" />
-            <TextInput name="fullName" label="Phone Number" value="" />
-            <TextInput name="fullName" label="Email" value="" />
-            <TextInput name="fullName" label="Company Name" value="" />
+            <TextInput
+              name="fullName"
+              label="Permanent Address"
+              value={`${data.permanent_address.city} ${data.permanent_address.state} ${data.permanent_address.country} `}
+            />
+            <TextInput name="fullName" label="Phone Number" value={""} />
+            <TextInput name="fullName" label="Email" value={data.email} />
+            <TextInput
+              name="fullName"
+              label="Company Name"
+              value={data.company_info.company_name}
+            />
           </div>
         </form>
       </section>
@@ -192,24 +221,12 @@ export default async function Page({ params }: { params: { id: string } }) {
           </div>
 
           <section className="mt-5 flex items-end justify-between">
-            <div className="w-[280px]">
-              <div className="rounded border-2 border-[#00000026] bg-[#D9D9D91A]">
-                <Image
-                  src="/images/signature.png"
-                  alt="Signature of user"
-                  width={120}
-                  height={135}
-                  className="mx-auto"
-                />
-              </div>
-              <p className="mt-2 text-center text-xs">
-                Applicant&apos;s signature
-              </p>
-            </div>
+            <ImageOrFile />
             <div>
-              <button className="flex gap-x-4 rounded-full bg-[#3C5A99] px-8 py-3 font-bold text-white">
+              {/* <button className="flex gap-x-4 rounded-full bg-[#3C5A99] px-8 py-3 font-bold text-white">
                 Submit <span className="">{">>"}</span>
-              </button>
+              </button> */}
+              <SubmitButton pendingText="Submiting..." text={"Submit >>"} />
             </div>
           </section>
         </form>
@@ -242,7 +259,7 @@ const TextInput = ({
         type={type}
         id={name}
         name={name}
-        defaultValue={value}
+        value={value}
         required={required}
         multiple={multiple}
         className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"

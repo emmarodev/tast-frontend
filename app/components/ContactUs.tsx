@@ -47,17 +47,14 @@ export default function ContactUs() {
 
               <form action={contactUs} className="grid gap-y-4">
                 <Input name="name" label="Name">
-                  children=
                   <IoPersonOutline className="text-xl" />
                 </Input>
 
                 <Input name="email" label="Email">
-                  children=
                   <AiOutlineMail className="text-xl" />
                 </Input>
 
                 <Input name="subject" label="Subject">
-                  children=
                   <MdOutlineTitle className="text-xl" />
                 </Input>
 
@@ -76,7 +73,7 @@ export default function ContactUs() {
                 </button>
               </form>
 
-              <div className="absolute -right-20 top-1/2 w-fit -translate-y-1/2 bg-black p-10 text-white">
+              <div className="absolute left-[580px] top-1/2 w-fit -translate-y-1/2 bg-black p-10 text-white">
                 <h3 className="text-xl font-bold">INFORMATION</h3>
                 <div className="flex gap-x-4 border-b border-b-white py-4">
                   <div className="flex items-center justify-center bg-orange-600 px-3 text-2xl">

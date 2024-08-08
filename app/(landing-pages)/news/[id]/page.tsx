@@ -7,8 +7,6 @@ import { IoCalendarNumber, IoEyeSharp } from "react-icons/io5";
 export default async function Page({ params }: { params: { id: string } }) {
   const res = await fetch(`${SERVER_URL}/user/single/blog/${params.id}`);
   const { data } = await res.json();
-  console.log(data);
-  console.log(params);
 
   return (
     <div className="grid gap-y-8 bg-gradient-to-br from-[#F2E6C9] to-[#F2E6C9] p-10">
