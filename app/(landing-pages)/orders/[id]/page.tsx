@@ -164,10 +164,11 @@ export default async function Page({ params }: { params: { id: string } }) {
             />
             <TextInput name="project_type" label="Type of Project" required />
             <TextInput name="pay_currency" label="Pay Currency" required />
-            <TextInput name="budget" label="Budget" required />
+            <TextInput name="budget" label="Budget" required type="number" />
             <TextInput
               name="project_deadline"
               label="Project Deadline"
+              type="date"
               required
             />
             <TextInput name="reference_name" label="Reference Name" required />

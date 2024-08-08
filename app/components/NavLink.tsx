@@ -19,7 +19,7 @@ export default function NavLink({
   const isActive =
     pathname === to ||
     (to === "/" && pathname === "/") ||
-    (pathname.startsWith(to) && to !== "/");
+    (pathname.startsWith(to) && to !== "/" && to !== "/dashboard");
 
   return (
     <Link href={to} className={`${className} ${isActive ? active : ""}`}>

@@ -58,7 +58,7 @@ function RefundPage({ data }: { data: any }) {
           {data?.length === 0 ? (
             <tr>
               <td colSpan={9} className="py-6 text-2xl">
-                There is no available order
+                There is no available refund
               </td>
             </tr>
           ) : (

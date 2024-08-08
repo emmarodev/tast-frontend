@@ -66,44 +66,54 @@ export default function OrderPage({ data }: { data: any }) {
               </td>
             </tr>
           ) : (
-            <tr className="odd:bg-[#FAEFD8] even:bg-white">
-              <td className="border-r border-r-[#FFB200] py-6">
-                <span className="rounded bg-[#FFB200] px-2 py-1 font-semibold">
-                  1
-                </span>
-              </td>
-              <td className="border-r border-r-[#FFB200]">045001</td>
-              <td className="border-r border-r-[#FFB200]">Web dev</td>
-              <td className="border-r border-r-[#FFB200]">-</td>
-              <td className="border-r border-r-[#FFB200]">-</td>
-              <td className="border-r border-r-[#FFB200]">-</td>
-              <td className="border-r border-r-[#FFB200]">
-                <button className="rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold">
-                  Update
-                </button>
-              </td>
-              <td className="border-r border-r-[#FFB200]">
-                <button
-                  className="rounded bg-[#FF7777] px-3 py-1 text-white"
-                  onClick={() => setShowPaymentModal(true)}
-                >
-                  Pending
-                </button>
-              </td>
-              <td>
-                <Link
-                  href="/dashboard/orders/id"
-                  className="inline-block rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold uppercase"
-                >
-                  View
-                </Link>
-              </td>
-            </tr>
+            data?.map((data: any, i: any) => {
+              return (
+                <tr className="odd:bg-[#FAEFD8] even:bg-white" key={data._id}>
+                  <td className="border-r border-r-[#FFB200] py-6">
+                    <span className="rounded bg-[#FFB200] px-2 py-1 font-semibold">
+                      {i + 1}
+                    </span>
+                  </td>
+                  <td className="border-r border-r-[#FFB200]">{"-"}</td>
+                  <td className="border-r border-r-[#FFB200] capitalize">
+                    {data.project_type}
+                  </td>
+                  <td className="border-r border-r-[#FFB200]">{data.budget}</td>
+                  <td className="border-r border-r-[#FFB200]">
+                    {data.paid_amount}
+                  </td>
+                  <td className="border-r border-r-[#FFB200]">
+                    {data.balance_amount}
+                  </td>
+                  <td className="border-r border-r-[#FFB200]">
+                    <button className="rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold">
+                      Update
+                    </button>
+                  </td>
+                  <td className="border-r border-r-[#FFB200]">
+                    <button
+                      className="rounded bg-[#FF7777] px-3 py-1 text-white"
+                      onClick={() => setShowPaymentModal(true)}
+                    >
+                      Pending
+                    </button>
+                  </td>
+                  <td>
+                    <Link
+                      href={`/dashboard/orders/${data._id}`}
+                      className="inline-block rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold uppercase"
+                    >
+                      View
+                    </Link>
+                  </td>
+                </tr>
+              );
+            })
           )}
         </tbody>
       </table>
 
-      <footer className="flex justify-between bg-white px-4 py-6 text-sm">
+      {/* <footer className="flex justify-between bg-white px-4 py-6 text-sm">
         <div>
           <p className="font-bold">Showing 1 to 5 of 97 results</p>
         </div>
@@ -117,7 +127,7 @@ export default function OrderPage({ data }: { data: any }) {
           </button>
           <FaArrowRight className="text-[#FFB200]" />
         </div>
-      </footer>
+      </footer> */}
 
       {showPaymentModal && (
         <div className="absolute left-0 top-0 h-screen w-screen bg-black/50">

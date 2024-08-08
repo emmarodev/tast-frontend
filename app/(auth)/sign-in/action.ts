@@ -36,6 +36,7 @@ export async function signIn(
       };
     }
 
+    console.log(data.data);
     cookies().set("token", data.data.token);
     cookies().set("userId", data.data.userDetails._id);
   } catch (error) {
