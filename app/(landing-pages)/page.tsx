@@ -115,19 +115,19 @@ const Placeholder = async () => {
           return (
             <article
               className="max-w-[200px] text-center text-sm text-white"
-              key={data._id}
+              key={data?._id}
             >
               <Image
-                src={data.image}
+                src={data?.image}
                 alt="icon"
                 width={60}
                 height={60}
                 className="mx-auto mb-3"
               />
               <h3 className="mb-3 text-base font-bold capitalize">
-                {data.title}
+                {data?.title}
               </h3>
-              <p className="mb-3 text-[#FFFFFFB2]">{data.description}</p>
+              <p className="mb-3 text-[#FFFFFFB2]">{data?.description}</p>
               <button className="rounded bg-[#FFB200] px-4 py-2 text-xs font-semibold uppercase text-black transition-all duration-150 hover:bg-black hover:text-white">
                 Read more
               </button>
@@ -173,15 +173,15 @@ const Placeholder = async () => {
         {data.fourcard?.map((data: any) => {
           return (
             <article
-              key={data._id}
+              key={data?._id}
               className="col-span-2 row-span-1 flex min-h-[120px] items-center gap-x-4 rounded bg-white px-4 py-4 transition-all duration-150 hover:bg-[#ffb200]"
             >
               <div>
                 <Image src={data.image} alt="icon" width={50} height={50} />
               </div>
               <div className="">
-                <h3 className="font-semibold capitalize">{data.title}</h3>
-                <p className="text-sm text-[#00000099]">{data.tag}</p>
+                <h3 className="font-semibold capitalize">{data?.title}</h3>
+                <p className="text-sm text-[#00000099]">{data?.tag}</p>
               </div>
             </article>
           );
@@ -210,9 +210,7 @@ const Service = async () => {
           </p>
         </div>
 
-        {data.service.map((d: any) => (
-          <ServiceCard data={d} key={d._id} />
-        ))}
+        {data?.service?.map((d: any) => <ServiceCard data={d} key={d._id} />)}
       </section>
 
       {/* <div className="flex justify-center">
@@ -226,9 +224,9 @@ const Service = async () => {
 
 const Gallery = async () => {
   const { data } = await getData();
-  const others = data.servicegallery.slice(1);
+  const others = data?.servicegallery.slice(1);
 
-  const titles = data.servicegallery.map((d: { title: string }) => d.title);
+  const titles = data?.servicegallery?.map((d: { title: string }) => d.title);
   return (
     <section>
       <div className="mb-10 flex flex-col items-center gap-y-4">
@@ -242,11 +240,11 @@ const Gallery = async () => {
           <FaArrowLeft />
         </button> */}
         <div className="flex grow gap-x-6">
-          {titles.map((category: string, i: number) => {
+          {titles?.map((category: string, i: number) => {
             return (
               <button
                 key={i}
-                className="w-fit px-4 rounded bg-white py-3 text-center font-semibold uppercase transition-all duration-150 hover:bg-black hover:text-white"
+                className="w-fit rounded bg-white px-4 py-3 text-center font-semibold uppercase transition-all duration-150 hover:bg-black hover:text-white"
               >
                 {category}
               </button>
@@ -259,7 +257,7 @@ const Gallery = async () => {
       </div>
 
       <div className="mt-6 grid grid-cols-4 gap-4">
-        {data.servicegallery.length > 0 && (
+        {data?.servicegallery?.length > 0 && (
           <div className="relative col-span-2 row-span-2 rounded">
             <Image
               alt="Mountains"
@@ -274,8 +272,8 @@ const Gallery = async () => {
             />
           </div>
         )}
-        {data.servicegallery.length > 1 &&
-          data.servicegallery.slice(1).map((obj: any) => {
+        {data?.servicegallery?.length > 1 &&
+          data?.servicegallery?.slice(1).map((obj: any) => {
             return (
               <div key={obj._id} className="relative rounded">
                 <Image
@@ -313,7 +311,7 @@ const Project = async () => {
       </div>
 
       <div className="grid grid-cols-4 gap-4">
-        {data.project.map((d: any) => (
+        {data?.project.map((d: any) => (
           <ProjectCard data={d} image={camp} key={d._id} />
         ))}
       </div>
@@ -338,7 +336,7 @@ const Features = async () => {
       </div>
 
       <div className="grid grid-cols-4 gap-4">
-        {data.architecture.map((d: ArchitectureDataProps) => (
+        {data?.architecture.map((d: ArchitectureDataProps) => (
           <FeaturesCard key={d._id} data={d} />
         ))}
       </div>
@@ -417,7 +415,7 @@ const News = async () => {
       </div>
 
       <div className="grid grid-cols-4 gap-4">
-        {data.blog.map((d: ArchitectureDataProps) => (
+        {data?.blog.map((d: ArchitectureDataProps) => (
           <NewsCard data={d} key={d._id} />
         ))}
       </div>

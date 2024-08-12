@@ -76,7 +76,9 @@ const createOrder = async (formData: FormData) => {
         message: [data.message || "Something went wrong try again."],
       };
     }
-  } catch (error) {}
+  } catch (error) {
+    console.log(error)
+  }
 };
 
 export default async function Page({ params }: { params: { id: string } }) {

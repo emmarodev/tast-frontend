@@ -29,3 +29,31 @@ export async function getOrders() {
     console.error(error);
   }
 }
+
+export async function getBankDetails() {
+  const userId = cookies().get("userId")?.value;
+  const token = cookies().get("token")?.value;
+
+  try {
+    const res = await fetch(`${SERVER_URL}/user/retrieve/bank/`, {
+      method: "POST",
+      body: JSON.stringify({ userid: userId }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    const data = await res.json();
+
+    if (!data.status || data.status_code === 400) {
+      return {
+        message: [data.message || "Something went wrong try again."],
+      };
+    }
+
+    return data.data;
+  } catch (error) {
+    console.log(error);
+  }
+}

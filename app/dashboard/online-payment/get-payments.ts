@@ -29,7 +29,8 @@ export async function getPayments(id?: string) {
     }
 
     if (id) return data;
-    return data.data.userpayments;
+
+    return data.data;
   } catch (error) {
     console.error(error);
   }

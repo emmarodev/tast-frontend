@@ -10,9 +10,6 @@ import { GiCheckMark } from "react-icons/gi";
 
 function OnlinePayment({ data }: { data: any }) {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
-  const [showCreatePaymentModal, setShowCreatePaymentModal] = useState(false);
-  const [successPaymentModal, setSuccessPaymentModal] = useState(false);
-  console.log(data);
 
   const cardTitles = [
     "Total payment",
@@ -60,48 +57,47 @@ function OnlinePayment({ data }: { data: any }) {
             </tr>
           </thead>
           <tbody className="border border-[#FFB200] text-center">
-            {data?.length === 0 ? (
+            {data?.userpayments.length === 0 ? (
               <tr>
                 <td colSpan={9} className="py-6 text-2xl">
                   There is no available payments
                 </td>
               </tr>
             ) : (
-              <tr className="odd:bg-[#FAEFD8] even:bg-white">
-                <td className="border-r border-r-[#FFB200] py-6">
-                  <span className="rounded bg-[#FFB200] px-2 py-1 font-semibold">
-                    1
-                  </span>
-                </td>
-                <td className="border-r border-r-[#FFB200]">045001</td>
-                <td className="border-r border-r-[#FFB200]">Web dev</td>
-                <td className="border-r border-r-[#FFB200]">-</td>
-                <td className="border-r border-r-[#FFB200]">-</td>
-                <td className="border-r border-r-[#FFB200]">-</td>
-                <td className="border-r border-r-[#FFB200]">03-02-25</td>
-                <td className="border-r border-r-[#FFB200]">
-                  <button
-                    className="rounded bg-[#FF7777] px-3 py-1 text-white"
-                    onClick={() => setShowCreatePaymentModal(true)}
-                  >
-                    Spam
-                  </button>
-                </td>
-                <td>
-                  <button
-                    className="rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold uppercase"
-                    onClick={() => setShowPaymentModal(true)}
-                  >
-                    View
-                  </button>
-                </td>
-              </tr>
+              data?.userpayments.map((d: any) => (
+                <tr className="odd:bg-[#FAEFD8] even:bg-white" key={d._id}>
+                  <td className="border-r border-r-[#FFB200] py-6">
+                    <span className="rounded bg-[#FFB200] px-2 py-1 font-semibold">
+                      1
+                    </span>
+                  </td>
+                  <td className="border-r border-r-[#FFB200]">045001</td>
+                  <td className="border-r border-r-[#FFB200]">Web dev</td>
+                  <td className="border-r border-r-[#FFB200]">-</td>
+                  <td className="border-r border-r-[#FFB200]">-</td>
+                  <td className="border-r border-r-[#FFB200]">-</td>
+                  <td className="border-r border-r-[#FFB200]">03-02-25</td>
+                  <td className="border-r border-r-[#FFB200]">
+                    <button className="rounded bg-[#FF7777] px-3 py-1 text-white">
+                      Spam
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      className="rounded bg-[#FFB200] px-3 py-2 text-sm font-semibold uppercase"
+                      onClick={() => setShowPaymentModal(true)}
+                    >
+                      View
+                    </button>
+                  </td>
+                </tr>
+              ))
             )}
           </tbody>
         </table>
       </Suspense>
 
-      <footer className="flex justify-between bg-white px-4 py-6 text-sm">
+      {/* <footer className="flex justify-between bg-white px-4 py-6 text-sm">
         <div>
           <p className="font-bold">Showing 1 to 5 of 97 results</p>
         </div>
@@ -115,7 +111,7 @@ function OnlinePayment({ data }: { data: any }) {
           </button>
           <FaArrowRight className="text-[#FFB200]" />
         </div>
-      </footer>
+      </footer> */}
 
       {showPaymentModal && (
         <div className="absolute left-0 top-0 h-screen w-screen bg-black/50">
@@ -184,140 +180,6 @@ function OnlinePayment({ data }: { data: any }) {
                 </span>
               </div>
             </section>
-          </article>
-        </div>
-      )}
-
-      {showCreatePaymentModal && (
-        <div className="absolute left-0 top-0 h-screen w-screen bg-black/50">
-          <article className="absolute left-1/2 top-1/2 max-h-[90vh] w-3/5 -translate-x-1/2 -translate-y-1/2 overflow-y-auto bg-white p-5">
-            <h2 className="mb-8 text-2xl font-bold">
-              Enter your Mobile Wallet Information
-            </h2>
-
-            <div className="flex items-center gap-x-10">
-              <form action={"something"} className="grid grow gap-y-4">
-                <div>
-                  <label
-                    htmlFor="ahn"
-                    className="mb-1 block text-sm font-medium"
-                  >
-                    Account Holder Name
-                  </label>
-                  <input
-                    type="text"
-                    id="ahn"
-                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="mwn"
-                    className="mb-1 block text-sm font-medium"
-                  >
-                    Mobile Wallet Name
-                  </label>
-                  <input
-                    type="text"
-                    id="mwn"
-                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="an"
-                    className="mb-1 block text-sm font-medium"
-                  >
-                    Account Numer
-                  </label>
-                  <input
-                    type="text"
-                    id="an"
-                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="tid"
-                    className="mb-1 block text-sm font-medium"
-                  >
-                    Transaction ID
-                  </label>
-                  <input
-                    type="text"
-                    id="tid"
-                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="tr"
-                    className="mb-1 block text-sm font-medium"
-                  >
-                    Transaction Receipt
-                  </label>
-                  <input
-                    type="text"
-                    id="tr"
-                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="adi"
-                    className="mb-1 block text-sm font-medium"
-                  >
-                    Any additional Information
-                  </label>
-                  <input
-                    type="text"
-                    id="adi"
-                    className="border-[#00000026 w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
-                  />
-                </div>
-                <div className="flex items-center gap-x-4">
-                  <input type="checkbox" checked id="tac" />
-                  <label htmlFor="tac">
-                    I agree with the terms and condition
-                  </label>
-                </div>
-              </form>
-              <div>
-                <h2 className="mb-2 text-center text-xl font-bold">
-                  Payment Processing
-                </h2>
-                <PaymentInformation
-                  handleClick={() => {
-                    setShowCreatePaymentModal(false);
-                    setSuccessPaymentModal(true);
-                  }}
-                />
-              </div>
-            </div>
-          </article>
-        </div>
-      )}
-
-      {successPaymentModal && (
-        <div className="absolute left-0 top-0 h-screen w-screen bg-black/50">
-          <article className="absolute left-1/2 top-1/2 max-h-[90vh] -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-lg bg-white p-5">
-            <div className="mb-6 grid gap-y-0.5 px-4 text-center">
-              <GiCheckMark className="mx-auto text-4xl font-black text-green-400" />
-              <h3 className="text-2xl font-bold text-green-400">
-                Payment Succesful
-              </h3>
-              <p className="font-semibold text-gray-500">
-                Thank you! Your payment is complete
-              </p>
-            </div>
-            <div className="flex justify-center">
-              <button
-                className="mx-auto rounded bg-green-500 p-1 px-2 text-sm font-medium text-white"
-                onClick={() => setSuccessPaymentModal(false)}
-              >
-                Done
-              </button>
-            </div>
           </article>
         </div>
       )}

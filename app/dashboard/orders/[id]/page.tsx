@@ -33,7 +33,6 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   const { data } = await getSingleOrder(params.id);
   const profileData = await getData();
-  console.log(profileData);
 
   return (
     <div className="bg-white p-10">
