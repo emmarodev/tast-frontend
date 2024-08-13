@@ -116,7 +116,7 @@ export default function OrderPage({
                     <button
                       className="rounded bg-[#FF7777] px-3 py-1 capitalize text-white"
                       onClick={() => {
-                        data.status === "pending" && setShowPaymentModal(true);
+                        data.status === "payment" && setShowPaymentModal(true);
                         data.status === "waiting" && setShowRefundForm(true);
                       }}
                     >
