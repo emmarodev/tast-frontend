@@ -14,7 +14,7 @@ function OnlinePayment({ data }: { data: any }) {
 
   const cardTitles = [
     { title: "Total payment", number: data.totalpayments },
-    { title: "Total payment amount", number: 0 },
+    { title: "Total payment amount", number: data?.totalpaidamount },
     { title: "Total pending payment", number: data.totalpendingpayment },
     { title: "Total accepted payment", number: data.totalacceptedpoayment },
     { title: "Total spam payment", number: data.totalspampayment },

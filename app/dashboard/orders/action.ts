@@ -4,7 +4,10 @@ import { SERVER_URL } from "@/app/constants/api";
 import { cookies } from "next/headers";
 import { z } from "zod";
 
-export async function createPaymentForWallet(formData: FormData) {
+export async function createPaymentForWallet(
+  prevState: any,
+  formData: FormData,
+) {
   const createPaymentSchema = z.object({
     additional_note: z.string(),
     transaction_receipt: z.instanceof(File),
@@ -73,6 +76,8 @@ export async function createPaymentForWallet(formData: FormData) {
         message: [data.message || "An unknown error occurred."],
       };
     }
+
+    return { success: true };
   } catch (error) {
     return {
       message: ["Failed to connect to the server. Please try again later."],

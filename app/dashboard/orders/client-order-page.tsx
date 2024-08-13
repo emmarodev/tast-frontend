@@ -1,13 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import Image from "next/image";
 import Link from "next/link";
 import { GiCheckMark } from "react-icons/gi";
 import { createPaymentForWallet, createRefund } from "./action";
-import { useFormStatus } from "react-dom";
+import { useFormState, useFormStatus } from "react-dom";
 import { IoIosCheckmarkCircle } from "react-icons/io";
+
+const initialState: any = {
+  email: [],
+  password: [],
+  name: [],
+  message: [],
+  success: false,
+};
 
 export default function OrderPage({
   data,
@@ -28,19 +36,30 @@ export default function OrderPage({
   const [amount, setAmount] = useState(0);
   const [refundAmount, setRefundAmount] = useState(0);
   const { pending } = useFormStatus();
+  const [state, formAction] = useFormState(
+    createPaymentForWallet,
+    initialState,
+  );
 
   const cardTitles = [
     { title: "Total Orders", number: data?.totalorders },
-    { title: "Total project amount", number: 0 },
-    { title: "Total project paid", number: 0 },
-    { title: "Total amount left", number: 0 },
-    { title: "Total pending Orders", number: 0 },
-    { title: "Total Waiting orders", number: 0 },
-    { title: "Total working orders", number: 0 },
-    { title: "total complete orders", number: 0 },
-    { title: "total delivery orders", number: 0 },
-    { title: "total cancel orders", number: 0 },
+    { title: "Total project amount", number: data?.totalbudget },
+    { title: "Total project paid", number: data?.totalpaidamount },
+    { title: "Total amount left", number: data?.totalmoneyleft },
+    { title: "Total pending Orders", number: data?.totalpendingorders },
+    { title: "Total Waiting orders", number: data?.totalwaitingorders },
+    { title: "Total working orders", number: data?.totalworkingorders },
+    { title: "total complete orders", number: data?.totalcompletedorders },
+    { title: "total delivery orders", number: data?.totaldelivredorders },
+    { title: "total cancel orders", number: data?.totalcancelledorders },
   ];
+
+  useEffect(() => {
+    if (state.success) {
+      setShowCreatePaymentModal(false);
+      setSuccessPaymentModal(true);
+    }
+  }, [state]);
 
   return (
     <section className="rounded-xl px-6 py-5">
@@ -114,7 +133,7 @@ export default function OrderPage({
                   </td>
                   <td className="border-r border-r-[#FFB200]">
                     <button
-                      className="rounded bg-[#FF7777] px-3 py-1 capitalize text-white"
+                      className={`rounded ${data.status === "pending" ? "bg-[#FF7777]" : data.status === "payment" ? "bg-[#FCC74D]" : data.status === "waiting" ? "bg-[#5296D6]" : data.status === "working" ? "bg-[#FF8D4E]" : "bg-[#0DB746]"} px-3 py-1 capitalize text-white`}
                       onClick={() => {
                         data.status === "payment" && setShowPaymentModal(true);
                         data.status === "waiting" && setShowRefundForm(true);
@@ -259,7 +278,7 @@ export default function OrderPage({
 
                         <div className="flex items-center gap-x-10">
                           <form
-                            action={createPaymentForWallet}
+                            action={formAction}
                             className="grid grow gap-y-4"
                           >
                             <div>
@@ -417,7 +436,7 @@ export default function OrderPage({
                                 : "Confirm Payment"}
                             </button>
                           </form>
-                          <div>
+                          {/* <div>
                             <h2 className="mb-2 text-center text-xl font-bold">
                               Payment Processing
                             </h2>
@@ -429,7 +448,7 @@ export default function OrderPage({
                                 setSuccessPaymentModal(true);
                               }}
                             />
-                          </div>
+                          </div> */}
                         </div>
                       </article>
                     </div>

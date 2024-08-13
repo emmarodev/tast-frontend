@@ -13,10 +13,10 @@ function RefundPage({ data }: { data: any }) {
 
   const cardTitles = [
     { title: "Total refund", number: data.totalrefunds },
-    { title: "Total refund amount", number: 0 },
+    { title: "Total refund amount", number: data?.totalpaidamount },
     { title: "Total pending refund", number: data.totalpendingrefund },
-    { title: "Total sending refund", number: 0 },
-    { title: "Total ineligible refund", number: 0 },
+    { title: "Total sending refund", number: data?.totalsendingrefund },
+    { title: "Total ineligible refund", number: data?.totalineliblerefund },
   ];
 
   return (
