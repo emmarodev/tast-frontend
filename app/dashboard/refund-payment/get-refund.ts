@@ -29,7 +29,8 @@ export async function getRefunds(id?: string) {
     }
 
     if (id) return data;
-    return data.data.userrefunds;
+    
+    return data.data;
   } catch (error) {
     console.error(error);
   }

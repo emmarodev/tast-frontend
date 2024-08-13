@@ -12,18 +12,18 @@ function RefundPage({ data }: { data: any }) {
   const [showPaymentModal, setShowPaymentModal] = useState(false);
 
   const cardTitles = [
-    "Total refund",
-    "Total refund amount",
-    "Total pending refund",
-    "Total sending refund",
-    "Total ineligible refund",
+    { title: "Total refund", number: data.totalrefunds },
+    { title: "Total refund amount", number: 0 },
+    { title: "Total pending refund", number: data.totalpendingrefund },
+    { title: "Total sending refund", number: 0 },
+    { title: "Total ineligible refund", number: 0 },
   ];
 
   return (
     <section className="rounded-xl px-6 py-5">
       <div className="mb-3 grid grid-cols-4 gap-3">
-        {cardTitles.map((title, i) => (
-          <Card title={title} key={i} />
+        {cardTitles.map((obj: { title: string; number: number }, i) => (
+          <Card title={obj.title} number={obj.number} key={i} />
         ))}
       </div>
 
@@ -55,14 +55,14 @@ function RefundPage({ data }: { data: any }) {
           </tr>
         </thead>
         <tbody className="border border-[#FFB200] text-center">
-          {data?.length === 0 ? (
+          {data?.userrefunds?.length === 0 ? (
             <tr>
               <td colSpan={9} className="py-6 text-2xl">
                 There is no available refund
               </td>
             </tr>
           ) : (
-            data?.map((d: any, i: number) => {
+            data?.userrefunds?.map((d: any, i: number) => {
               return (
                 <tr className="odd:bg-[#FAEFD8] even:bg-white" key={d?._id}>
                   <td className="border-r border-r-[#FFB200] py-6">

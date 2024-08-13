@@ -4,7 +4,6 @@ import { useState } from "react";
 import Card from "../components/Card";
 import Image from "next/image";
 import Link from "next/link";
-import { cardTitles } from "./data";
 import { GiCheckMark } from "react-icons/gi";
 import { createPaymentForWallet, createRefund } from "./action";
 import { useFormStatus } from "react-dom";
@@ -25,17 +24,30 @@ export default function OrderPage({
   const [successRefundPaymentModal, setSuccessRefundPaymentModal] =
     useState(false);
   const [showRefundForm, setShowRefundForm] = useState(false);
-  const [index, setIndex] = useState<null | number>(null);
+  const [index, setIndex] = useState<number | null>(null);
   const [amount, setAmount] = useState(0);
   const [refundAmount, setRefundAmount] = useState(0);
   const { pending } = useFormStatus();
+
+  const cardTitles = [
+    { title: "Total Orders", number: data?.totalorders },
+    { title: "Total project amount", number: 0 },
+    { title: "Total project paid", number: 0 },
+    { title: "Total amount left", number: 0 },
+    { title: "Total pending Orders", number: 0 },
+    { title: "Total Waiting orders", number: 0 },
+    { title: "Total working orders", number: 0 },
+    { title: "total complete orders", number: 0 },
+    { title: "total delivery orders", number: 0 },
+    { title: "total cancel orders", number: 0 },
+  ];
 
   return (
     <section className="rounded-xl px-6 py-5">
       <header>
         <section className="mb-3 grid grid-cols-4 gap-3">
-          {cardTitles.map((title, i) => (
-            <Card title={title} key={i} />
+          {cardTitles.map((obj: { title: string; number: number }, i) => (
+            <Card title={obj.title} number={obj.number} key={i} />
           ))}
         </section>
 
@@ -69,14 +81,14 @@ export default function OrderPage({
           </tr>
         </thead>
         <tbody className="border border-[#FFB200] text-center">
-          {data?.length === 0 ? (
+          {data?.userorders?.length === 0 ? (
             <tr>
               <td colSpan={9} className="py-6 text-2xl">
                 There is no available order
               </td>
             </tr>
           ) : (
-            data?.map((data: any, i: any) => {
+            data?.userorders?.map((data: any, i: any) => {
               return (
                 <tr className="odd:bg-[#FAEFD8] even:bg-white" key={data._id}>
                   <td className="border-r border-r-[#FFB200] py-6">
@@ -104,7 +116,7 @@ export default function OrderPage({
                     <button
                       className="rounded bg-[#FF7777] px-3 py-1 capitalize text-white"
                       onClick={() => {
-                        data.status === "payment" && setShowPaymentModal(true);
+                        data.status === "pending" && setShowPaymentModal(true);
                         data.status === "waiting" && setShowRefundForm(true);
                       }}
                     >
@@ -293,7 +305,7 @@ export default function OrderPage({
                               type="text"
                               id="bank_id"
                               name="bankid"
-                              value={index && payDetails[index]._id}
+                              value={index !== null && payDetails[index]._id}
                               className="border-[#00000026 hidden w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
                             />
 
@@ -301,7 +313,9 @@ export default function OrderPage({
                               type="text"
                               id="bank-number"
                               name="bank_number"
-                              value={index && payDetails[index].account_info}
+                              value={
+                                index !== null && payDetails[index].account_info
+                              }
                               className="border-[#00000026 hidden w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
                             />
 
@@ -309,7 +323,7 @@ export default function OrderPage({
                               type="text"
                               id="bank-name"
                               name="bank_name"
-                              value={index && payDetails[index].name}
+                              value={index !== null && payDetails[index].name}
                               className="border-[#00000026 hidden w-full rounded-lg border bg-[#D9D9D91A] px-4 py-3 text-sm"
                             />
 

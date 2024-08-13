@@ -24,7 +24,7 @@ export async function getOrders() {
       throw new Error("Failed to fetch data");
     }
 
-    return data.data.userorders;
+    return data.data;
   } catch (error) {
     console.error(error);
   }

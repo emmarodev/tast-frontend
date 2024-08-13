@@ -23,6 +23,7 @@ export async function getPayments(id?: string) {
     });
 
     const data = await res.json();
+    console.log(data.data.userpayments);
 
     if (!data.status || data.status_code === 400) {
       throw new Error("Failed to fetch data");
